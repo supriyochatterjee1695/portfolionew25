@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sankalp Finance | Transparent Loans for Individuals & Businesses</title>
+  <meta name="description" content="Sankalp Finance offers transparent personal, home, business, education, and vehicle loans with clear terms, guided support, and a simple digital journey." />
+  <link rel="canonical" href="https://www.example.com/sankalp.html" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --sf-primary: #0b3c5d;
+      --sf-primary-soft: #e2ecf4;
+      --sf-bg: #f7f7f9;
+      --sf-dark: #0f172a;
+      --sf-muted: #6b7280;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--sf-bg);
+      color: var(--sf-dark);
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    .navbar {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+    .navbar-brand {
+      font-weight: 200;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      padding-bottom: 0.25rem;
+      border-bottom: 2px solid transparent;
+      opacity: 0.7;
+      transition: color 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--sf-primary);
+      border-bottom-color: var(--sf-primary);
+      opacity: 1;
+    }
+    .nav-global-highlight {
+      position: relative;
+      margin-left: 1rem;
+    }
+    .nav-global-highlight a {
+      border-radius: 999px;
+      padding-inline: 1rem;
+      background: var(--sf-primary);
+      color: #fff !important;
+      box-shadow: 0 0 0 0 rgba(11, 60, 93, 0.18);
+      transition: background 0.2s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .nav-global-highlight a span {
+      display: inline-block;
+    }
+    .nav-global-highlight a:hover {
+      background: #06263c;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 5.25rem;
+      padding-bottom: 3.5rem;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.9rem;
+      background: rgba(11, 60, 93, 0.05);
+      color: var(--sf-primary);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+    .hero-title {
+      font-size: clamp(2.4rem, 3.4vw + 1rem, 3.6rem);
+      font-weight: 700;
+    }
+    .hero-highlight {
+      color: var(--sf-primary);
+    }
+    .hero-subtitle {
+      max-width: 580px;
+      color: var(--sf-muted);
+    }
+    .hero-meta {
+      color: var(--sf-muted);
+    }
+    .hero-visual {
+      border-radius: 1.5rem;
+      background:
+        radial-gradient(circle at 0 0, #dbeafe 0, transparent 45%),
+        radial-gradient(circle at 100% 100%, #fee2e2 0, transparent 40%),
+        #ffffff;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+      min-height: 260px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-visual-card {
+      border-radius: 1.1rem;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1.2rem 1.4rem;
+    }
+    .hero-visual-pill {
+      border-radius: 999px;
+      background: var(--sf-primary-soft);
+      color: var(--sf-primary);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.7rem;
+    }
+    .hero-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.6);
+      animation: heroFloat 6s ease-in-out infinite alternate;
+    }
+    .hero-dot:nth-child(1) { top: 16%; left: 18%; }
+    .hero-dot:nth-child(2) { top: 68%; left: 72%; animation-delay: 1s; }
+    .hero-dot:nth-child(3) { top: 40%; left: 45%; animation-delay: 2s; }
+    @keyframes heroFloat {
+      0% { transform: translateY(0); opacity: 0.7; }
+      100% { transform: translateY(-10px); opacity: 1; }
+    }
+
+    /* Sections */
+    section {
+      padding-block: 4rem;
+    }
+    .section-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .section-subtitle {
+      color: var(--sf-muted);
+      max-width: 640px;
+    }
+
+    /* Carousel */
+    .minimal-carousel .carousel-inner {
+      border-radius: 1rem;
+      background: #ffffff;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+    .minimal-carousel .carousel-indicators [data-bs-target] {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: rgba(15, 23, 42, 0.25);
+    }
+    .minimal-carousel .carousel-indicators .active {
+      width: 18px;
+      background-color: var(--sf-primary);
+    }
+
+    /* Loan cards */
+    .loan-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: #ffffff;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+    .loan-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--sf-primary);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.15);
+    }
+
+    /* Eligibility section */
+    .eligibility-wrapper {
+      border-radius: 1.5rem;
+      background: #ffffff;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    /* Process badges */
+    .process-badge {
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.04);
+      padding: 0.25rem 0.7rem;
+      font-size: 0.75rem;
+      color: var(--sf-muted);
+    }
+
+    /* Footer */
+    footer {
+      padding-block: 2rem;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+    footer a {
+      color: #cbd5f5;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 991.98px) {
+      .hero {
+        padding-top: 4.5rem;
+        padding-bottom: 2.5rem;
+      }
+      .hero-visual {
+        margin-top: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom">
+    <div class="container">
+      <a href="index.html">
+        <img src="assets\sankalp.jpg" alt="Sankalp Finance Logo" height="70" />
+      </a>
+      <a class="navbar-brand" href="index.html">  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="mainNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#loans">Loan Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#eligibility">Eligibility</a></li>
+          <li class="nav-item"><a class="nav-link" href="#process">How It Works</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Stories</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item nav-global-highlight">
+            <a class="nav-link text-white" href="sankalpglobaltest.html">
+              <span><i class="fa-solid fa-earth-asia me-1"></i> Sankalp Global</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="hero" class="hero">
+    <div class="container">
+      <div class="row gy-5 align-items-center">
+        <div class="col-lg-6">
+          <div class="hero-badge mb-3">
+            <i class="fa-solid fa-shield-check"></i> Transparent loans, guided journeys
+          </div>
+          <h1 class="hero-title mb-3">
+            Finance that puts <span class="hero-highlight">clarity</span> before complexity.
+          </h1>
+          <p class="hero-subtitle lead mb-4">
+            Sankalp Finance helps individuals and businesses access personal, home, business, education, and vehicle loans with visible terms and human support at every step.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <a href="#eligibility" class="btn btn-dark btn-lg px-4">
+              Check loan eligibility
+            </a>
+            <a href="#loans" class="btn btn-outline-secondary btn-lg px-4">
+              Explore loan products
+            </a>
+          </div>
+          <div class="hero-meta small d-flex flex-wrap gap-3">
+            <span><i class="fa-solid fa-bolt me-1 text-warning"></i> Quick initial assessment</span>
+            <span><i class="fa-solid fa-circle-info me-1 text-primary"></i> Clear communication on charges</span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-visual p-4 p-md-5">
+            <div class="hero-dot"></div>
+            <div class="hero-dot"></div>
+            <div class="hero-dot"></div>
+            <div class="hero-visual-card mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="hero-visual-pill">
+                  <i class="fa-solid fa-indian-rupee-sign me-1"></i> Snapshot
+                </span>
+                <span class="small text-muted">Illustrative only</span>
+              </div>
+              <div class="small text-muted mb-2">Example monthly EMI for ₹5,00,000</div>
+              <div class="d-flex justify-content-between small">
+                <div>
+                  <div class="fw-semibold">₹X,XXX</div>
+                  <div class="text-muted">Approx. EMI*</div>
+                </div>
+                <div>
+                  <div class="fw-semibold">Y years</div>
+                  <div class="text-muted">Tenure</div>
+                </div>
+                <div>
+                  <div class="fw-semibold">Z.xx%</div>
+                  <div class="text-muted">Interest (p.a.)</div>
+                </div>
+              </div>
+            </div>
+            <div class="small text-muted">
+              Use the eligibility section below to share your requirement; the Sankalp team will respond with loan options that fit your profile.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loan products -->
+  <section id="loans">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
+        <div>
+          <h2 class="section-title">Loan products</h2>
+          <p class="section-subtitle">
+            A focused set of loan options with clear documentation and repayment structures so you always know what to expect.
+          </p>
+        </div>
+      </div>
+
+      <div id="loanCarousel" class="carousel slide minimal-carousel" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#loanCarousel" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#loanCarousel" data-bs-slide-to="1"></button>
+        </div>
+        <div class="carousel-inner p-3 p-md-4">
+          <div class="carousel-item active">
+            <div class="row g-3 g-md-4">
+              <div class="col-md-4">
+                <article class="loan-card h-100 p-3">
+                  <h3 class="h5 mb-2">Personal Loans</h3>
+                  <p class="small text-muted">
+                    Support for medical needs, travel, or emergencies with structured EMIs and minimal paperwork.
+                  </p>
+                  <ul class="small ps-3 mb-3">
+                    <li>Quick processing</li>
+                    <li>Flexible tenure</li>
+                    <li>Direct bank disbursal</li>
+                  </ul>
+                  <button class="btn btn-sm btn-outline-dark">Know more</button>
+                </article>
+              </div>
+              <div class="col-md-4">
+                <article class="loan-card h-100 p-3">
+                  <h3 class="h5 mb-2">Home Loans</h3>
+                  <p class="small text-muted">
+                    Financing for new homes or balance transfers with clear charges and support in documentation.
+                  </p>
+                  <ul class="small ps-3 mb-3">
+                    <li>Balance transfer assistance</li>
+                    <li>Doorstep document collection</li>
+                    <li>Co-applicant options</li>
+                  </ul>
+                  <button class="btn btn-sm btn-outline-dark">Know more</button>
+                </article>
+              </div>
+              <div class="col-md-4">
+                <article class="loan-card h-100 p-3">
+                  <h3 class="h5 mb-2">Business Loans</h3>
+                  <p class="small text-muted">
+                    Working capital and expansion loans designed for MSMEs and growing enterprises.
+                  </p>
+                  <ul class="small ps-3 mb-3">
+                    <li>Collateral / collateral-free variants</li>
+                    <li>Cash flow based evaluation</li>
+                    <li>Dedicated relationship support</li>
+                  </ul>
+                  <button class="btn btn-sm btn-outline-dark">Know more</button>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row g-3 g-md-4">
+              <div class="col-md-6">
+                <article class="loan-card h-100 p-3">
+                  <h3 class="h5 mb-2">Education Loans</h3>
+                  <p class="small text-muted">
+                    Support for higher education and skill programmes in India and abroad.
+                  </p>
+                  <ul class="small ps-3 mb-3">
+                    <li>Flexible repayment options</li>
+                    <li>Moratorium period choices</li>
+                    <li>Co-borrower support</li>
+                  </ul>
+                  <button class="btn btn-sm btn-outline-dark">Know more</button>
+                </article>
+              </div>
+              <div class="col-md-6">
+                <article class="loan-card h-100 p-3">
+                  <h3 class="h5 mb-2">Vehicle Loans</h3>
+                  <p class="small text-muted">
+                    Loans for two-wheelers, four-wheelers, and commercial vehicles with simple documentation.
+                  </p>
+                  <ul class="small ps-3 mb-3">
+                    <li>New and used vehicles</li>
+                    <li>Fast turnaround</li>
+                    <li>Flexible tenure options</li>
+                  </ul>
+                  <button class="btn btn-sm btn-outline-dark">Know more</button>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#loanCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#loanCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eligibility -->
+  <section id="eligibility">
+    <div class="container">
+      <div class="row gy-4 align-items-start">
+        <div class="col-lg-5">
+          <h2 class="section-title">Loan eligibility check</h2>
+          <p class="section-subtitle">
+            Share a few basic details so the Sankalp team can understand your requirement and respond with suitable loan options.
+          </p>
+          <ul class="small text-muted ps-3">
+            <li>No impact on your credit score at this stage</li>
+            <li>Only essential information requested</li>
+            <li>Team connects with you for next steps</li>
+          </ul>
+        </div>
+        <div class="col-lg-7">
+          <div class="eligibility-wrapper p-4 p-md-5">
+            <h3 class="h6 mb-3">Start with a quick assessment</h3>
+            <form class="row g-3" novalidate>
+              <div class="col-12 col-md-6">
+                <label class="form-label">Full name</label>
+                <input type="text" class="form-control" placeholder="Enter your name" />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-control" placeholder="+91-" />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label">Loan type</label>
+                <select class="form-select">
+                  <option>Personal Loan</option>
+                  <option>Home Loan</option>
+                  <option>Business Loan</option>
+                  <option>Education Loan</option>
+                  <option>Vehicle Loan</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label">Amount (₹)</label>
+                <input type="number" class="form-control" placeholder="5,00,000" />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" placeholder="Your city" />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label">Preferred contact time</label>
+                <input type="text" class="form-control" placeholder="e.g., 3–6 PM" />
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary w-100">
+                  Get a callback
+                </button>
+              </div>
+              <p class="small text-muted mt-2 mb-0">
+                By submitting this form, you consent to be contacted by Sankalp Finance for loan-related communication.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <div class="row gy-4 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="section-title">How Sankalp Finance works</h2>
+          <p class="section-subtitle">
+            A structured, digital-first process from enquiry to disbursal keeps your loan journey predictable and transparent.
+          </p>
+          <ol class="small text-muted ps-3">
+            <li>Share your requirement and basic details.</li>
+            <li>Receive eligibility and product options.</li>
+            <li>Upload documents digitally for verification.</li>
+            <li>Review sanction and sign agreements.</li>
+            <li>Track disbursal status and repayment schedule.</li>
+          </ol>
+          <div class="d-flex flex-wrap gap-2 mt-2 small">
+            <span class="process-badge"><i class="fa-solid fa-mobile-screen-button me-1"></i> Digital-first</span>
+            <span class="process-badge"><i class="fa-solid fa-user-check me-1"></i> Assisted support</span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div id="processCarousel" class="carousel slide minimal-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner p-4">
+              <div class="carousel-item active">
+                <h3 class="h6 mb-2">Digital documentation</h3>
+                <p class="small text-muted mb-0">
+                  Secure upload and digital signatures help reduce branch visits and accelerate approvals.
+                </p>
+              </div>
+              <div class="carousel-item">
+                <h3 class="h6 mb-2">Dedicated relationship support</h3>
+                <p class="small text-muted mb-0">
+                  Relationship managers assist with queries, documentation, and product selection when you prefer human guidance.
+                </p>
+              </div>
+              <div class="carousel-item">
+                <h3 class="h6 mb-2">Clear communication</h3>
+                <p class="small text-muted mb-0">
+                  Key terms, charges, and repayment schedules are communicated upfront to avoid surprises later.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-indicators position-static mt-3">
+              <button type="button" data-bs-target="#processCarousel" data-bs-slide-to="0" class="active"></button>
+              <button type="button" data-bs-target="#processCarousel" data-bs-slide-to="1"></button>
+              <button type="button" data-bs-target="#processCarousel" data-bs-slide-to="2"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div class="container">
+      <h2 class="section-title mb-3">Customer stories</h2>
+      <p class="section-subtitle mb-4">
+        A few snapshots of people and businesses who turned their plans into reality with Sankalp Finance.
+      </p>
+      <div id="testimonialCarousel" class="carousel slide minimal-carousel" data-bs-ride="carousel">
+        <div class="carousel-inner p-4">
+          <div class="carousel-item active">
+            <figure class="mb-0">
+              <blockquote class="blockquote small text-muted mb-3">
+                Sankalp Finance simplified our working capital planning with clear timelines and outcomes.
+              </blockquote>
+              <figcaption class="blockquote-footer mb-0">
+                MSME owner, Manufacturing
+              </figcaption>
+            </figure>
+          </div>
+          <div class="carousel-item">
+            <figure class="mb-0">
+              <blockquote class="blockquote small text-muted mb-3">
+                The team supported our home loan transfer and improved our overall EMI structure.
+              </blockquote>
+              <figcaption class="blockquote-footer mb-0">
+                Young family, Homebuyer
+              </figcaption>
+            </figure>
+          </div>
+          <div class="carousel-item">
+            <figure class="mb-0">
+              <blockquote class="blockquote small text-muted mb-3">
+                Documentation support and timely updates helped us focus on business instead of paperwork.
+              </blockquote>
+              <figcaption class="blockquote-footer mb-0">
+                Retail entrepreneur
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="carousel-indicators position-static mt-3">
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-6">
+          <h2 class="section-title">Contact Sankalp Finance</h2>
+          <p class="section-subtitle">
+            Share your requirement, and the team will respond with loan options and next steps.
+          </p>
+          <ul class="list-unstyled small text-muted">
+            <li><i class="fa-solid fa-location-dot me-2"></i>Registered office: Your address line here</li>
+            <li><i class="fa-solid fa-phone me-2"></i>Phone: +91-XXXXXXXXXX</li>
+            <li><i class="fa-solid fa-envelope me-2"></i>Email: info@sankalpfinance.in</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <form class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Message</label>
+              <textarea rows="4" class="form-control"></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-dark w-100" type="submit">Send message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="mt-5">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div class="small">&copy; <span id="year"></span> Sankalp Finance. All rights reserved.</div>
+      <div class="small">
+        <a href="sankalpglobal.html" class="me-3">Sankalp Global</a>
+        <a href="#hero">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

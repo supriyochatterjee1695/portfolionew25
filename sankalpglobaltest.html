@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sankalp Global | Sustainable Education Initiatives</title>
+  <meta name="description" content="Sankalp Global is the social impact arm of Sankalp, working on education-focused sustainable development through projects, LMS and an Android learning app." />
+  <link rel="canonical" href="https://www.example.com/sankalpglobal.html" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --sg-primary: #0a6847;
+      --sg-secondary: #f4f9f4;
+      --sg-accent: #ffc857;
+      --sg-dark: #0f172a;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--sg-secondary);
+      color: var(--sg-dark);
+      scroll-behavior: smooth;
+    }
+    .navbar {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.96);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sg-primary) !important;
+    }
+    .nav-link {
+      font-weight: 500;
+    }
+    .nav-link.active {
+      color: var(--sg-primary) !important;
+    }
+    .nav-finance-chip a {
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      padding-inline: 1rem;
+      background: #0f172a;
+      color: #f9fafb !important;
+    }
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      padding-top: 5rem;
+      display: flex;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.22rem 0.9rem;
+      background: rgba(10, 104, 71, 0.06);
+      color: #065f46;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw + 1rem, 3.1rem);
+      font-weight: 700;
+    }
+    .hero-illustration {
+      border-radius: 2rem;
+      background: radial-gradient(circle at 0 0, #bbf7d0, transparent 50%),
+                  radial-gradient(circle at 100% 100%, #fee2e2, transparent 50%),
+                  #ffffff;
+      min-height: 280px;
+      box-shadow: 0 20px 55px rgba(15, 23, 42, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-illustration .dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.09);
+      animation: floatDots 6s infinite alternate ease-in-out;
+    }
+    .hero-illustration .dot:nth-child(1) { top: 20%; left: 20%; }
+    .hero-illustration .dot:nth-child(2) { top: 60%; left: 70%; animation-delay: 1s; }
+    .hero-illustration .dot:nth-child(3) { top: 40%; left: 40%; animation-delay: 2s; }
+    @keyframes floatDots {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-12px); }
+    }
+
+    section {
+      padding-block: 4rem;
+    }
+    .section-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .section-subtitle {
+      color: #6b7280;
+      max-width: 680px;
+    }
+    .impact-card {
+      border-radius: 1rem;
+      background: #ffffff;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 1.5rem;
+      height: 100%;
+    }
+    /* Carousel */
+    .minimal-carousel .carousel-inner {
+      border-radius: 1.3rem;
+      background: #ffffff;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+    .minimal-carousel .carousel-indicators [data-bs-target] {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: rgba(15, 23, 42, 0.25);
+    }
+    .minimal-carousel .carousel-indicators .active {
+      width: 18px;
+      background-color: var(--sg-primary);
+    }
+    /* CTA */
+    .cta-card {
+      border-radius: 1.5rem;
+      background: linear-gradient(135deg, var(--sg-primary), #16a34a);
+      color: #ecfdf5;
+      padding: 2rem;
+    }
+    footer {
+      padding-block: 2rem;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+    footer a {
+      color: #bfdbfe;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Nav -->
+  <nav class="navbar navbar-expand-lg fixed-top border-bottom">
+    <div class="container">
+    <a href="index.html">
+        <img src="assets\sankalp.jpg" alt="Sankalp Finance Logo" height="70" />
+      </a>
+      <a class="navbar-brand" href="sankalpglobal.html">  </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#ngonav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="ngonav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#digital">LMS & App</a></li>
+          <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+          <li class="nav-item nav-finance-chip mt-2 mt-lg-0 ms-lg-3">
+            <a class="nav-link" href="test.html">
+              <i class="fa-solid fa-building-columns me-1"></i> Sankalp Micro
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="hero" class="hero">
+    <div class="container">
+      <div class="row gy-5 align-items-center">
+        <div class="col-lg-6">
+          <div class="hero-badge mb-3">
+            <i class="fa-solid fa-seedling"></i> Sustainable development • Education
+          </div>
+          <h1 class="hero-title mb-3">
+            Learning that enables every child to participate in a sustainable future.
+          </h1>
+          <p class="lead text-muted mb-4">
+            Sankalp Global works with communities, schools, and partners to make education inclusive, relevant, and aligned with sustainable development goals.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#programs" class="btn btn-success px-4">
+              Explore our programs
+            </a>
+            <a href="activities.html" class="btn btn-outline-dark px-4">
+              View activities
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-illustration p-4 p-md-5">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="d-flex flex-column justify-content-between h-100">
+              <div class="mb-3">
+                <h2 class="h6 text-uppercase text-muted mb-1">Impact at a glance</h2>
+                <div class="d-flex flex-wrap gap-3">
+                  <div>
+                    <div class="h3 mb-0">X+</div>
+                    <div class="small text-muted">Learners reached</div>
+                  </div>
+                  <div>
+                    <div class="h3 mb-0">Y</div>
+                    <div class="small text-muted">Partner schools</div>
+                  </div>
+                  <div>
+                    <div class="h3 mb-0">Z</div>
+                    <div class="small text-muted">Communities engaged</div>
+                  </div>
+                </div>
+              </div>
+              <div class="small text-muted">
+                Supported by a blended learning ecosystem with on-ground programmes, a learning management system, and an Android app for continuous engagement.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About / Mission -->
+  <section id="about">
+    <div class="container">
+      <div class="row gy-4 align-items-center">
+        <div class="col-lg-5">
+          <h2 class="section-title">Who we are</h2>
+          <p class="section-subtitle">
+            Sankalp Global is the social impact initiative of Sankalp, dedicated to education-focused sustainable development and community capacity building.
+          </p>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="impact-card text-center">
+                <i class="fa-solid fa-book-open-reader fa-2x text-success mb-3"></i>
+                <h3 class="h6 mb-1">Foundational learning</h3>
+                <p class="small text-muted mb-0">Strengthening literacy, numeracy, and life skills through contextual content.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="impact-card text-center">
+                <i class="fa-solid fa-earth-asia fa-2x text-success mb-3"></i>
+                <h3 class="h6 mb-1">SDG-linked modules</h3>
+                <p class="small text-muted mb-0">Embedding climate, gender, and sustainability themes in the curriculum.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="impact-card text-center">
+                <i class="fa-solid fa-people-group fa-2x text-success mb-3"></i>
+                <h3 class="h6 mb-1">Community partnerships</h3>
+                <p class="small text-muted mb-0">Working with parents, educators, and local bodies to keep learning continuous.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs with carousel -->
+  <section id="programs">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
+        <div>
+          <h2 class="section-title">Education programs</h2>
+          <p class="section-subtitle">
+            Programmes are designed to be modular, measurable, and adaptable to different learning environments.
+          </p>
+        </div>
+      </div>
+      <div id="programCarousel" class="carousel slide minimal-carousel" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#programCarousel" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#programCarousel" data-bs-slide-to="1"></button>
+        </div>
+        <div class="carousel-inner p-4">
+          <div class="carousel-item active">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <h3 class="h5">School-based SDG labs</h3>
+                <p class="small text-muted">
+                  Experiential learning modules delivered in schools to help learners link classroom concepts with real-world sustainability challenges.
+                </p>
+                <ul class="small text-muted ps-3">
+                  <li>Activity-based learning kits</li>
+                  <li>Teacher facilitation guides</li>
+                  <li>Simple assessment tools</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h3 class="h5">Community learning circles</h3>
+                <p class="small text-muted">
+                  Curated sessions in communities that blend storytelling, local knowledge, and digital content to keep learners engaged.
+                </p>
+                <ul class="small text-muted ps-3">
+                  <li>Weekend and after-school formats</li>
+                  <li>Parent and youth volunteers</li>
+                  <li>Offline-friendly content</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <h3 class="h5">Educator capacity building</h3>
+                <p class="small text-muted">
+                  Workshops and continuous support for teachers on facilitation, digital tools, and SDG-linked pedagogy.
+                </p>
+              </div>
+              <div class="col-md-6">
+                <h3 class="h5">Impact measurement & research</h3>
+                <p class="small text-muted">
+                  Simple frameworks and tools to capture learning outcomes, engagement, and community feedback.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#programCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#programCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LMS & App -->
+  <section id="digital">
+    <div class="container">
+      <div class="row gy-4 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="section-title">Digital learning ecosystem</h2>
+          <p class="section-subtitle">
+            A lightweight LMS and Android app extend learning beyond the classroom and keep learners connected.
+          </p>
+          <ul class="list-unstyled small text-muted">
+            <li class="mb-2">
+              <i class="fa-solid fa-graduation-cap me-2 text-success"></i>
+              LMS with structured courses, assessments, and progress tracking.
+            </li>
+            <li class="mb-2">
+              <i class="fa-brands fa-android me-2 text-success"></i>
+              Android app for low-bandwidth content, quizzes, and notifications.
+            </li>
+            <li class="mb-2">
+              <i class="fa-solid fa-link me-2 text-success"></i>
+              Spaces to integrate partner content, videos, and local language resources.
+            </li>
+          </ul>
+
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            <!-- Placeholder buttons for future URLs -->
+            <a href="https://skillstosuccess.ingeniumedu.com/" class="btn btn-outline-success">
+              <i class="fa-solid fa-globe me-2"></i>LMS 
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.ingenium.tca1989" class="btn btn-outline-dark">
+              <i class="fa-brands fa-google-play me-2"></i>Android App
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="cta-card">
+            <h3 class="h5 mb-2">Partner with Sankalp Global</h3>
+            <p class="small mb-3">
+              Institutions, CSR teams, and community organisations interested in education and sustainability can collaborate on programmes or pilots.
+            </p>
+            <ul class="small mb-3">
+              <li>Co-create context-specific modules</li>
+              <li>Support adoption of LMS and app</li>
+              <li>Collaborate on monitoring and evaluation</li>
+            </ul>
+            <a href="#contact" class="btn btn-light btn-sm px-4">Start a conversation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-6">
+          <h2 class="section-title">Contact Sankalp Global</h2>
+          <p class="section-subtitle">
+            Reach out to explore partnerships, programmes, or volunteering opportunities in education and sustainable development.
+          </p>
+          <ul class="list-unstyled small text-muted">
+            <li><i class="fa-solid fa-location-dot me-2"></i>Office address line here</li>
+            <li><i class="fa-solid fa-envelope me-2"></i>Email: connect@sankalpglobal.org</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <form class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Organisation</label>
+              <input type="text" class="form-control" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">How would you like to collaborate?</label>
+              <textarea rows="4" class="form-control"></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-success w-100" type="submit">Submit enquiry</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="mt-5">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div class="small">&copy; <span id="year"></span> Sankalp Global. All rights reserved.</div>
+      <div class="small">
+        <a href="activities.html" class="me-3">Activities & achievements</a>
+        <a href="sankalp.html">Sankalp Finance</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

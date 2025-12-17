@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechFlow - Premium Analytics & Automation Solutions</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      color: #212121;
+    }
+    header {
+      background: linear-gradient(90deg, #0d47a1 0%, #1565c0 100%);
+      color: #fff;
+      padding: 1.2rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+    }
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      gap: 2rem;
+    }
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      letter-spacing: 1px;
+    }
+    .search-bar {
+      flex: 1;
+      display: flex;
+      max-width: 500px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 6px 0 0 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    .search-bar input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+    .search-btn {
+      background: #ffb800;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0 6px 6px 0;
+      cursor: pointer;
+      font-weight: 800;
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+    }
+    .search-btn:hover {
+      background: #ff9500;
+      transform: scale(1.02);
+    }
+    .nav-right {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .nav-link:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+    .cart-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #ffb800;
+      color: #0d47a1;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      animation: pulse 2s infinite;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0d47a1 0%, #1565c0 50%, #1976d2 100%);
+      color: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
+      animation: slideInDown 0.9s ease;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+    .hero-btn {
+      background: #ffb800;
+      color: #0d47a1;
+      border: none;
+      padding: 1rem 2.8rem;
+      border-radius: 6px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+    }
+    .hero-btn:hover {
+      background: #ff9500;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    .container {
+      max-width: 1400px;
+      margin: 2.5rem auto;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+      padding: 0 2rem;
+    }
+    .sidebar {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+    .filter-group {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 2rem;
+    }
+    .filter-group:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .filter-group h4 {
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+      color: #0d47a1;
+      font-weight: 800;
+    }
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-option input[type="checkbox"] {
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      accent-color: #0d47a1;
+    }
+    .filter-option label {
+      cursor: pointer;
+      flex: 1;
+      font-weight: 500;
+      color: #424242;
+    }
+    .filter-option:hover {
+      color: #0d47a1;
+    }
+    .products-section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .sort-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .sort-bar select {
+      padding: 0.7rem 1.2rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .sort-bar select:hover {
+      border-color: #0d47a1;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 1.8rem;
+    }
+    .product-item {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: fadeInUp 0.7s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .product-item:nth-child(1) { animation-delay: 0.1s; }
+    .product-item:nth-child(2) { animation-delay: 0.15s; }
+    .product-item:nth-child(3) { animation-delay: 0.2s; }
+    .product-item:nth-child(4) { animation-delay: 0.25s; }
+    .product-item:nth-child(5) { animation-delay: 0.3s; }
+    .product-item:nth-child(6) { animation-delay: 0.35s; }
+    .product-item:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px);
+      border-color: #0d47a1;
+    }
+    .product-image {
+      height: 200px;
+      background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-image::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><defs><pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/></pattern></defs><rect width="400" height="200" fill="%230d47a1"/><rect width="400" height="200" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+    .product-image::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+      transform: translateX(-100%);
+      animation: shimmer 2.5s infinite;
+    }
+    .product-info {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #212121;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+      min-height: 2.8rem;
+    }
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.85rem;
+    }
+    .stars {
+      color: #ff9800;
+      letter-spacing: 1px;
+    }
+    .rating-count {
+      color: #878787;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .product-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .price-current {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #0d47a1;
+    }
+    .price-original {
+      font-size: 0.9rem;
+      color: #878787;
+      text-decoration: line-through;
+    }
+    .discount {
+      font-size: 0.8rem;
+      color: #ff9800;
+      font-weight: 800;
+    }
+    .product-description {
+      font-size: 0.8rem;
+      color: #878787;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+      line-height: 1.5;
+    }
+    .add-to-cart-btn {
+      background: #ffb800;
+      color: #0d47a1;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-size: 0.95rem;
+      margin-top: auto;
+      letter-spacing: 0.5px;
+    }
+    .add-to-cart-btn:hover {
+      background: #ff9500;
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+    .add-to-cart-btn:active {
+      transform: scale(0.98);
+    }
+    .modal-product {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+    .modal-product.active { display: flex; align-items: center; justify-content: center; }
+    .modal-content-product {
+      background-color: #fff;
+      padding: 3rem;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 750px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+      animation: slideInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .close {
+      color: #999;
+      float: right;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      line-height: 1;
+    }
+    .close:hover { color: #333; }
+    .modal-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 1.5rem;
+    }
+    .modal-img {
+      height: 320px;
+      background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: rgba(255, 255, 255, 0.9);
+      animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .modal-img::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+      transform: translateX(-100%);
+      animation: shimmer 2.5s infinite;
+    }
+    .modal-text h3 {
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+      color: #212121;
+      font-weight: 900;
+    }
+    .modal-price {
+      font-size: 2.2rem;
+      color: #0d47a1;
+      font-weight: 900;
+      margin: 1.2rem 0;
+    }
+    .modal-text p {
+      color: #64748b;
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+    }
+    .specs {
+      background: #f8fafc;
+      padding: 1.8rem;
+      border-radius: 12px;
+      margin-bottom: 1.8rem;
+      border-left: 5px solid #0d47a1;
+    }
+    .specs-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem 0;
+      color: #475569;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .specs-item:hover {
+      transform: translateX(10px);
+      color: #0d47a1;
+    }
+    .specs-item strong {
+      color: #0d47a1;
+      font-weight: 800;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 1.2rem;
+    }
+    .modal-actions button {
+      flex: 1;
+      padding: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      letter-spacing: 0.5px;
+    }
+    .buy-btn {
+      background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+      color: #fff;
+    }
+    .buy-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(13, 71, 161, 0.3);
+    }
+    .close-btn {
+      background: #f0f0f0;
+      color: #333;
+    }
+    .close-btn:hover {
+      background: #e0e0e0;
+      transform: translateY(-4px);
+    }
+    .cta-section {
+      background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+      color: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      position: relative;
+      overflow: hidden;
+      animation: slideInUp 0.8s ease;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(13, 71, 161, 0.25);
+    }
+    .cta-section h2 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-section p {
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-btn {
+      background: #ffb800;
+      color: #0d47a1;
+      padding: 1.1rem 2.8rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 2;
+      letter-spacing: 0.5px;
+    }
+    .cta-btn:hover {
+      transform: translateY(-5px) scale(1.06);
+      box-shadow: 0 15px 45px rgba(255, 184, 0, 0.4);
+    }
+    footer {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem;
+      font-size: 0.95rem;
+      margin-top: 4rem;
+      letter-spacing: 0.3px;
+    }
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; gap: 1rem; }
+      .search-bar { max-width: 100%; }
+      .nav-right { gap: 1rem; }
+      .container { grid-template-columns: 1fr; gap: 1.5rem; }
+      .sidebar { position: relative; top: auto; }
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.2rem; }
+      .modal-details { grid-template-columns: 1fr; }
+      .modal-content-product { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">Shopping Platform</div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search products..." id="searchInput">
+        <button class="search-btn">Search</button>
+      </div>
+      <div class="nav-right">
+        <a href="index.html" class="nav-link">Back Home</a>
+        <a href="#" class="nav-link" id="cartLink" onclick="showCartAlert(event)">
+          Shopping Cart
+          <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>Premium Tech & Analytics Products</h1>
+    <p>Discover industry-leading solutions for your business growth</p>
+    <button class="hero-btn">Explore Premium Deals</button>
+  </div>
+
+  <div class="container">
+    <aside class="sidebar">
+      <div class="filter-group">
+        <h4>Category</h4>
+        <div class="filter-option">
+          <input type="checkbox" id="cat1" onchange="filterProducts()">
+          <label for="cat1">Analytics</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="cat2" onchange="filterProducts()">
+          <label for="cat2">Automation</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="cat3" onchange="filterProducts()">
+          <label for="cat3">Training</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Price Range</h4>
+        <div class="filter-option">
+          <input type="checkbox" id="price1" onchange="filterProducts()">
+          <label for="price1">Under 50K</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="price2" onchange="filterProducts()">
+          <label for="price2">50K - 100K</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="price3" onchange="filterProducts()">
+          <label for="price3">Above 100K</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Rating</h4>
+        <div class="filter-option">
+          <input type="checkbox" id="rating1" onchange="filterProducts()">
+          <label for="rating1">5 Stars</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="rating2" onchange="filterProducts()">
+          <label for="rating2">4 Stars & Up</label>
+        </div>
+      </div>
+    </aside>
+
+    <section class="products-section">
+      <div class="sort-bar">
+        <span style="font-weight: 700; color: #212121;">Showing 6 Products</span>
+        <select id="sortBy" onchange="sortProducts()">
+          <option value="popularity">Sort: Popularity</option>
+          <option value="priceLow">Sort: Price Low to High</option>
+          <option value="priceHigh">Sort: Price High to Low</option>
+          <option value="newest">Sort: Newest First</option>
+          <option value="rating">Sort: Highest Rated</option>
+        </select>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Products loaded dynamically -->
+      </div>
+    </section>
+  </div>
+
+  <section class="cta-section">
+    <h2>Ready to Upgrade Your Business?</h2>
+    <p>Choose the right solution and unlock data-driven excellence today</p>
+    <button class="cta-btn">Explore All Solutions</button>
+  </section>
+
+  <div id="productModal" class="modal-product">
+    <div class="modal-content-product">
+      <span class="close" onclick="closeProductModal()">&times;</span>
+      <div class="modal-details">
+        <div class="modal-img" id="modalImg">P</div>
+        <div class="modal-text">
+          <h3 id="modalName">Product Name</h3>
+          <div class="modal-price" id="modalPrice">0</div>
+          <p id="modalDesc">Product description here</p>
+          <div class="specs">
+            <div class="specs-item"><span>Category:</span> <strong>Premium</strong></div>
+            <div class="specs-item"><span>Support:</span> <strong>24/7 Available</strong></div>
+            <div class="specs-item"><span>License:</span> <strong>Perpetual + Updates</strong></div>
+          </div>
+          <div class="modal-actions">
+            <button class="buy-btn" onclick="handleBuyClick()">Add to Cart</button>
+            <button class="close-btn" onclick="closeProductModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 TechFlow Commerce | Premium Analytics & Automation Solutions | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: 1,
+        name: 'Analytics Pro Suite',
+        icon: 'A',
+        category: 'analytics',
+        price: 49000,
+        originalPrice: 59000,
+        rating: 5,
+        reviews: 240,
+        description: 'Real-time dashboard and advanced reporting suite for enterprise analytics.'
+      },
+      {
+        id: 2,
+        name: 'Automation Engine',
+        icon: 'E',
+        category: 'automation',
+        price: 75000,
+        originalPrice: 85000,
+        rating: 5,
+        reviews: 189,
+        description: 'Business process automation platform with workflow orchestration.'
+      },
+      {
+        id: 3,
+        name: 'Excel Mastery Course',
+        icon: 'C',
+        category: 'training',
+        price: 15000,
+        originalPrice: 25000,
+        rating: 5,
+        reviews: 512,
+        description: 'Complete 10-module interactive Excel training with hands-on projects.'
+      },
+      {
+        id: 4,
+        name: 'Enterprise Analytics',
+        icon: 'E',
+        category: 'analytics',
+        price: 125000,
+        originalPrice: 150000,
+        rating: 5,
+        reviews: 98,
+        description: 'Scalable enterprise platform with machine learning capabilities.'
+      },
+      {
+        id: 5,
+        name: 'Data Science Bootcamp',
+        icon: 'B',
+        category: 'training',
+        price: 35000,
+        originalPrice: 50000,
+        rating: 5,
+        reviews: 156,
+        description: 'Comprehensive Python and ML training with real-world projects.'
+      },
+      {
+        id: 6,
+        name: 'Advanced Workflow',
+        icon: 'W',
+        category: 'automation',
+        price: 95000,
+        originalPrice: 120000,
+        rating: 4,
+        reviews: 87,
+        description: 'Custom workflow orchestration engine with scheduling and monitoring.'
+      }
+    ];
+
+    let cart = 0;
+
+    function renderProducts(productsToShow) {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = productsToShow.map(product => `
+        <div class="product-item" onclick="addToCart('${product.name}', ${product.price}); openProductModal('${product.name}', ${product.price}, '${product.description}', '${product.icon}')">
+          <div class="product-image">${product.icon}</div>
+          <div class="product-info">
+            <div class="product-name">${product.name}</div>
+            <div class="product-rating">
+              <span class="stars">${'★'.repeat(product.rating)}</span>
+              <span class="rating-count">(${product.reviews})</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">₹${product.price.toLocaleString()}</span>
+              <span class="price-original">₹${product.originalPrice.toLocaleString()}</span>
+              <span class="discount">${Math.round((1 - product.price/product.originalPrice) * 100)}% OFF</span>
+            </div>
+            <div class="product-description">${product.description}</div>
+            <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price})">Add to Cart</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(name, price) {
+      cart++;
+      document.getElementById('cartBadge').textContent = cart;
+      showNotification(`✓ ${name} added to cart!`);
+    }
+
+    function showNotification(message) {
+      const notif = document.createElement('div');
+      notif.textContent = message;
+      notif.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #0d47a1, #1565c0);
+        color: #fff;
+        padding: 1.1rem 1.8rem;
+        border-radius: 8px;
+        z-index: 3000;
+        animation: slideInUp 0.4s ease, fadeOut 0.4s ease 1.6s forwards;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      `;
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 2000);
+    }
+
+    function filterProducts() {
+      renderProducts(products);
+    }
+
+    function sortProducts() {
+      const sortBy = document.getElementById('sortBy').value;
+      let sorted = [...products];
+      
+      if (sortBy === 'priceLow') sorted.sort((a, b) => a.price - b.price);
+      else if (sortBy === 'priceHigh') sorted.sort((a, b) => b.price - a.price);
+      else if (sortBy === 'rating') sorted.sort((a, b) => b.rating - a.rating);
+      
+      renderProducts(sorted);
+    }
+
+    function openProductModal(name, price, desc, icon) {
+      document.getElementById('modalName').textContent = name;
+      document.getElementById('modalPrice').textContent = '₹' + price.toLocaleString();
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('modalImg').textContent = icon;
+      document.getElementById('productModal').classList.add('active');
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModal').classList.remove('active');
+    }
+
+    function handleBuyClick() {
+      addToCart(document.getElementById('modalName').textContent, document.getElementById('modalPrice').textContent.replace('₹', '').replace(',', ''));
+      closeProductModal();
+    }
+
+    function showCartAlert(e) {
+      e.preventDefault();
+      if (cart === 0) {
+        alert('Your cart is empty. Add products to get started!');
+      } else {
+        alert(`Shopping Cart: ${cart} items. Proceed to checkout?`);
+      }
+    }
+
+    window.onclick = function(e) {
+      const modal = document.getElementById('productModal');
+      if (e.target === modal) modal.classList.remove('active');
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    renderProducts(products);
+  </script>
+</body>
+</html>

@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DataFlow Consulting - Advanced Analytics & AI Solutions</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #1a202c;
+      background: #fafbfc;
+    }
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #fff;
+      padding: 1.3rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 10px 40px rgba(30, 60, 114, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+    nav h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2.5px;
+      background: #00d4ff;
+      transition: width 0.4s ease;
+    }
+    nav a:hover::before { width: 100%; }
+    nav a:hover { color: #00d4ff; }
+    /* Back Button */
+    .back-btn {
+      background: rgba(255, 255, 255, 0.2) !important;
+      padding: 0.6rem 1.2rem !important;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.3) !important;
+    }
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(10px, 10px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+    /* Mobile Navigation */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 75px;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      animation: slideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+    }
+    .mobile-nav.active {
+      display: flex;
+    }
+    .mobile-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .mobile-nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      padding-left: 1.5rem;
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #fff;
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      line-height: 1.8;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      letter-spacing: 0.5px;
+    }
+    .btn-primary {
+      background: #00d4ff;
+      color: #1e3c72;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+    }
+    .btn-primary:active {
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+    }
+    .btn-secondary:hover {
+      background: #fff;
+      color: #1e3c72;
+      transform: translateY(-3px);
+    }
+    /* Section */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    section h2 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #1a202c;
+      position: relative;
+      padding-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+    }
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      border-radius: 2px;
+    }
+    section > p {
+      text-align: center;
+      font-size: 1.05rem;
+      color: #64748b;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .service-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+      border-radius: 12px;
+      padding: 2rem 1.8rem;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(30, 60, 114, 0.1);
+      cursor: pointer;
+      position: relative;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      transition: height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 1;
+      border-radius: 12px 12px 0 0;
+    }
+    .service-card:hover::before {
+      height: 4px;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(30, 60, 114, 0.2);
+      background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+    }
+    .service-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1.2rem;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    .service-card:hover .service-icon {
+      transform: scale(1.15) rotate(10deg);
+    }
+    .service-card h3 {
+      color: #1e3c72;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      font-weight: 800;
+      position: relative;
+      z-index: 2;
+    }
+    .service-card p {
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+    /* Carousel */
+    .carousel-container {
+      position: relative;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 900px;
+      margin: 2.5rem auto;
+      box-shadow: 0 12px 40px rgba(30, 60, 114, 0.2);
+    }
+    .carousel {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .carousel-item {
+      min-width: 100%;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 300px;
+    }
+    .carousel-item h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .carousel-item p {
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: 0.95;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border: none;
+      width: 50px;
+      height: 50px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    .carousel-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .carousel-prev { left: 15px; }
+    .carousel-next { right: 15px; }
+    /* Badges */
+    .expertise-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .badge {
+      background: linear-gradient(135deg, #1e3c7215, #2a529815);
+      color: #2a5298;
+      padding: 0.7rem 1.4rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 1px solid #2a529830;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .badge:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, #1e3c7230, #2a529830);
+      box-shadow: 0 8px 20px rgba(42, 82, 152, 0.15);
+    }
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .team-member {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(30, 60, 114, 0.2);
+    }
+    .team-img {
+      height: 160px;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-img::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+      transform: translateX(-100%);
+      animation: shimmer 2s infinite;
+    }
+    .team-info {
+      padding: 1.5rem;
+    }
+    .team-info h4 {
+      color: #1e3c72;
+      margin-bottom: 0.4rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+    .team-info p {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.6;
+    }
+    .team-role {
+      color: #2a5298;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #fff;
+      padding: 3.5rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 3rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(30, 60, 114, 0.2);
+    }
+    .cta-section h3 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      font-weight: 900;
+      position: relative;
+      z-index: 2;
+      letter-spacing: -0.5px;
+    }
+    .cta-section p {
+      font-size: 1rem;
+      margin-bottom: 1.8rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 2;
+      line-height: 1.7;
+    }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.3s ease;
+      overflow-y: auto;
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background-color: #fff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideInUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .modal-content h3 {
+      color: #1e3c72;
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+    }
+    .close {
+      color: #999;
+      float: right;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      line-height: 1;
+    }
+    .close:hover {
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: #1a202c;
+      font-size: 0.95rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #2a5298;
+      box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+    }
+    .form-group button {
+      width: 100%;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #fff;
+      padding: 0.9rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      letter-spacing: 0.3px;
+    }
+    .form-group button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(42, 82, 152, 0.3);
+    }
+    /* Footer */
+    footer {
+      background: #1a202c;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+    /* Animations */
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(15px); }
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .hero {
+        padding: 3rem 1.5rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .btn {
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+      }
+      section {
+        padding: 2.5rem 1.5rem;
+      }
+      section h2 {
+        font-size: 1.8rem;
+      }
+      section > p {
+        font-size: 0.95rem;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .service-card {
+        padding: 1.5rem 1.2rem;
+      }
+      .service-icon {
+        font-size: 2.2rem;
+      }
+      .carousel-item {
+        padding: 2rem 1.5rem;
+        min-height: 250px;
+      }
+      .carousel-item h3 {
+        font-size: 1.3rem;
+      }
+      .carousel-item p {
+        font-size: 0.9rem;
+      }
+      .carousel-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+      .carousel-prev {
+        left: 10px;
+      }
+      .carousel-next {
+        right: 10px;
+      }
+      .expertise-badges {
+        gap: 0.6rem;
+      }
+      .badge {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+      }
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .team-img {
+        height: 140px;
+        font-size: 2.5rem;
+      }
+      .team-info {
+        padding: 1.2rem;
+      }
+      .cta-section {
+        padding: 2.5rem 1.5rem;
+      }
+      .cta-section h3 {
+        font-size: 1.6rem;
+      }
+      .cta-section p {
+        font-size: 0.95rem;
+      }
+      .modal-content {
+        padding: 2rem;
+        width: 95%;
+      }
+      .modal-content h3 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <h2>DataFlow</h2>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="index.html" class="back-btn">Back</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#services">Services</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#team">Team</a>
+      <a href="index.html">Back Home</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Transform Your Business with Data-Driven Strategy</h1>
+      <p>We unlock competitive advantages through advanced analytics, machine learning, and strategic AI solutions</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="openModal()">Schedule Consultation</button>
+        <button class="btn btn-secondary">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <p>Comprehensive analytics solutions tailored to your business needs</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">B</div>
+        <h3>Business Analytics</h3>
+        <p>Deep-dive analytics uncovering hidden patterns, market trends, and customer behaviors to drive strategic decisions with confidence.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">M</div>
+        <h3>ML Solutions</h3>
+        <p>Custom machine learning models from churn prediction to pricing optimization, deployed to production with monitoring.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">D</div>
+        <h3>Data Strategy</h3>
+        <p>Blueprint your data infrastructure, capability roadmap, and governance framework for scalable digital transformation.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">T</div>
+        <h3>Training & Enablement</h3>
+        <p>Hands-on courses in analytics, Python, SQL, and data visualization to empower your team independently.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Section -->
+  <section id="expertise">
+    <h2>Our Expertise</h2>
+    <p>Deep specialization across key industries and analytics domains</p>
+    <div class="carousel-container">
+      <div class="carousel" id="carousel">
+        <div class="carousel-item">
+          <h3>Retail & E-commerce</h3>
+          <p>Optimize pricing, inventory, customer lifetime value, and personalization through data-driven strategies.</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Telecommunications</h3>
+          <p>Reduce churn, predict demand, maximize revenue with advanced predictive and prescriptive analytics.</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Financial Services</h3>
+          <p>Risk assessment, fraud detection, customer segmentation powered by machine learning and behavioral analytics.</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Healthcare</h3>
+          <p>Patient analytics, operational efficiency, clinical insights through advanced data integration and analysis.</p>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&lt;</button>
+      <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&gt;</button>
+    </div>
+    <div class="expertise-badges">
+      <span class="badge">Python & SQL</span>
+      <span class="badge">Tableau & Power BI</span>
+      <span class="badge">Azure & AWS</span>
+      <span class="badge">Statistical Modeling</span>
+      <span class="badge">Machine Learning</span>
+      <span class="badge">Big Data</span>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team">
+    <h2>Our Team</h2>
+    <p>Expert consultants with decades of combined experience</p>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="team-img">L</div>
+        <div class="team-info">
+          <h4>Lead Consultant</h4>
+          <p>Analytics & Strategy</p>
+          <div class="team-role">6+ years in data science</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="team-img">E</div>
+        <div class="team-info">
+          <h4>Data Science Team</h4>
+          <p>ML Engineers & Analysts</p>
+          <div class="team-role">Specialized expertise</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="team-img">S</div>
+        <div class="team-info">
+          <h4>Strategy Partners</h4>
+          <p>Business Advisors</p>
+          <div class="team-role">Strategic alignment</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h3>Ready to Drive Business Impact?</h3>
+    <p>Let's discuss how advanced analytics can transform your organization</p>
+    <button class="btn btn-primary" onclick="openModal()">Schedule Free Consultation</button>
+  </section>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Schedule Your Consultation</h3>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" placeholder="Your Company" required>
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" placeholder="you@company.com" required>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <button type="submit">Book Consultation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 DataFlow Consulting | Transforming Data into Strategic Advantage</p>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    });
+
+    // Close mobile menu when link is clicked
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('header')) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+      }
+    });
+
+    // Carousel Navigation
+    let carouselIdx = 0;
+    const carouselItems = 4;
+
+    function moveCarousel(n) {
+      carouselIdx += n;
+      if (carouselIdx >= carouselItems) carouselIdx = 0;
+      if (carouselIdx < 0) carouselIdx = carouselItems - 1;
+      document.getElementById('carousel').style.transform = `translateX(-${carouselIdx * 100}%)`;
+    }
+
+    // Modal Functions
+    function openModal() {
+      document.getElementById('bookingModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('bookingModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = function(e) {
+      const modal = document.getElementById('bookingModal');
+      if (e.target === modal) {
+        closeModal();
+      }
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! We will contact you shortly to confirm your consultation.');
+      closeModal();
+      e.target.reset();
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Business Dashboards - Analytics & KPI Monitoring</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      color: #2d3748;
+    }
+    header {
+      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+      color: #fff;
+      padding: 2rem 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: slideInDown 0.8s ease;
+    }
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      position: relative;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: #4299e1;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2.5px;
+      background: #4299e1;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .hero {
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      color: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
+      animation: slideInDown 0.8s ease 0.2s backwards;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    main {
+      max-width: 1400px;
+      margin: 3.5rem auto;
+      padding: 0 2rem;
+    }
+    .section-title {
+      font-size: 2.3rem;
+      margin-bottom: 2.5rem;
+      color: #2d3748;
+      font-weight: 900;
+      animation: slideInDown 0.8s ease;
+      letter-spacing: 0.5px;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.2rem;
+      margin-bottom: 4rem;
+    }
+    .dashboard-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      animation: fadeInUp 0.7s ease;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .dashboard-card:nth-child(1) { animation-delay: 0.1s; }
+    .dashboard-card:nth-child(2) { animation-delay: 0.15s; }
+    .dashboard-card:nth-child(3) { animation-delay: 0.2s; }
+    .dashboard-card:nth-child(4) { animation-delay: 0.25s; }
+    .dashboard-card:nth-child(5) { animation-delay: 0.3s; }
+    .dashboard-card:nth-child(6) { animation-delay: 0.35s; }
+    .dashboard-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: linear-gradient(90deg, #4299e1 20%, #3182ce 75%, #4299e1 100%);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+    .dashboard-card:hover::before {
+      height: 6px;
+      opacity: 1;
+    }
+    .dashboard-card:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 25px 70px rgba(66, 153, 225, 0.25);
+    }
+    .dashboard-preview {
+      height: 220px;
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+    .dashboard-preview::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220"><defs><pattern id="dashgrid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect width="400" height="220" fill="%234299e1"/><rect width="400" height="220" fill="url(%23dashgrid)"/></svg>');
+      opacity: 0.4;
+    }
+    .dashboard-preview::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+      transform: translateX(-100%);
+      animation: shimmer 2.5s infinite;
+    }
+    .dashboard-info {
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .dashboard-info h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.8rem;
+      color: #2d3748;
+      font-weight: 800;
+    }
+    .dashboard-info p {
+      color: #64748b;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .dashboard-btn {
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+    .dashboard-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(66, 153, 225, 0.3);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background-color: #fff;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+      animation: slideInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .modal-header {
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      color: #fff;
+      padding: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 20px 20px 0 0;
+    }
+    .modal-header h2 {
+      font-size: 1.9rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+    .modal-close {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: rotate(90deg);
+    }
+    .modal-dashboard {
+      height: 400px;
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+    .modal-dashboard::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+      transform: translateX(-100%);
+      animation: shimmer 2.5s infinite;
+    }
+    .modal-body {
+      padding: 2.5rem;
+    }
+    .modal-body h3 {
+      font-size: 1.6rem;
+      color: #2d3748;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+    .benefit-item {
+      background: #f7fafc;
+      padding: 1.8rem;
+      border-radius: 12px;
+      border-left: 5px solid #4299e1;
+      transition: all 0.4s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .benefit-item:hover {
+      background: #edf2f7;
+      transform: translateX(8px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+    .benefit-item h4 {
+      color: #2d3748;
+      margin-bottom: 0.8rem;
+      font-weight: 800;
+    }
+    .benefit-item p {
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+    .kpi-card {
+      background: linear-gradient(135deg, #e6fffa 0%, #f0f7ff 100%);
+      padding: 1.8rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1.5px solid #bee3f8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .kpi-value {
+      font-size: 2rem;
+      color: #2d3748;
+      font-weight: 900;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+    .kpi-label {
+      color: #4299e1;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+    .use-cases {
+      background: #f7fafc;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .use-cases h4 {
+      color: #2d3748;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .use-cases ul {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+    .use-cases li {
+      color: #64748b;
+      padding-left: 2rem;
+      position: relative;
+      line-height: 1.7;
+    }
+    .use-cases li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #4299e1;
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+    footer {
+      background: #2d3748;
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem;
+      margin-top: 5rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; gap: 1.5rem; }
+      .nav-links { flex-direction: column; gap: 1rem; text-align: center; }
+      .hero h1 { font-size: 2rem; }
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .modal-content { width: 95%; max-height: 95vh; }
+      .modal-header { padding: 1.5rem; }
+      .modal-body { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">Dashboard Hub</div>
+      <nav class="nav-links">
+        <a href="index.html">Back Home</a>
+        <a href="#sales">Sales</a>
+        <a href="#finance">Finance</a>
+        <a href="#marketing">Marketing</a>
+        <a href="#hr">HR</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>Interactive Business Dashboards</h1>
+    <p>Explore powerful analytics dashboards designed to drive revenue, reduce costs, and optimize operations. Click any dashboard to see detailed features and applications.</p>
+  </div>
+
+  <main>
+    <section id="sales">
+      <h2 class="section-title">Revenue & Sales Dashboards</h2>
+      <div class="dashboard-grid">
+        <div class="dashboard-card" onclick="openModal('Sales Pipeline')">
+          <div class="dashboard-preview">S</div>
+          <div class="dashboard-info">
+            <h3>Sales Pipeline</h3>
+            <p>Track deals, conversion rates, and revenue forecasts in real-time for effective sales management.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+        <div class="dashboard-card" onclick="openModal('Revenue Growth')">
+          <div class="dashboard-preview">R</div>
+          <div class="dashboard-info">
+            <h3>Revenue Growth</h3>
+            <p>Monitor revenue trends, MRR, and growth metrics across regions and customer segments.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+        <div class="dashboard-card" onclick="openModal('Customer Analytics')">
+          <div class="dashboard-preview">C</div>
+          <div class="dashboard-info">
+            <h3>Customer Analytics</h3>
+            <p>Analyze LTV, churn, acquisition costs, and customer segments for strategic planning.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="finance">
+      <h2 class="section-title">Financial & Cost Optimization</h2>
+      <div class="dashboard-grid">
+        <div class="dashboard-card" onclick="openModal('Expense Tracker')">
+          <div class="dashboard-preview">E</div>
+          <div class="dashboard-info">
+            <h3>Expense Tracker</h3>
+            <p>Real-time expense monitoring and budget vs actual analysis for financial control.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+        <div class="dashboard-card" onclick="openModal('Cash Flow')">
+          <div class="dashboard-preview">F</div>
+          <div class="dashboard-info">
+            <h3>Cash Flow Forecasting</h3>
+            <p>Predict cash flow, manage liquidity, and plan financial needs for stability.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+        <div class="dashboard-card" onclick="openModal('Profitability')">
+          <div class="dashboard-preview">P</div>
+          <div class="dashboard-info">
+            <h3>Profitability Analysis</h3>
+            <p>Deep dive into margins, costs, and profit optimization opportunities.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="marketing">
+      <h2 class="section-title">Marketing & Campaign Performance</h2>
+      <div class="dashboard-grid">
+        <div class="dashboard-card" onclick="openModal('Marketing ROI')">
+          <div class="dashboard-preview">M</div>
+          <div class="dashboard-info">
+            <h3>Marketing ROI</h3>
+            <p>Track campaign performance, CAC, ROAS, and conversion rates for optimization.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+        <div class="dashboard-card" onclick="openModal('Lead Generation')">
+          <div class="dashboard-preview">L</div>
+          <div class="dashboard-info">
+            <h3>Lead Generation</h3>
+            <p>Monitor lead flow, quality scoring, and sales-ready leads tracking.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+        <div class="dashboard-card" onclick="openModal('Social Analytics')">
+          <div class="dashboard-preview">A</div>
+          <div class="dashboard-info">
+            <h3>Social Media Analytics</h3>
+            <p>Engagement, reach, follower growth across all social platforms.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hr">
+      <h2 class="section-title">HR & Operations</h2>
+      <div class="dashboard-grid">
+        <div class="dashboard-card" onclick="openModal('Employee Performance')">
+          <div class="dashboard-preview">T</div>
+          <div class="dashboard-info">
+            <h3>Employee Performance</h3>
+            <p>Track KPIs, productivity, and performance metrics by team and individual.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+        <div class="dashboard-card" onclick="openModal('Attendance')">
+          <div class="dashboard-preview">A</div>
+          <div class="dashboard-info">
+            <h3>Attendance & Time</h3>
+            <p>Real-time attendance, leave tracking, and time optimization monitoring.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+        <div class="dashboard-card" onclick="openModal('Recruitment')">
+          <div class="dashboard-preview">H</div>
+          <div class="dashboard-info">
+            <h3>Recruitment Pipeline</h3>
+            <p>Hiring progress, funnel analysis, and talent acquisition metrics tracking.</p>
+            <button class="dashboard-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="dashboardModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Dashboard Name</h2>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-dashboard" id="modalDashboard">D</div>
+      <div class="modal-body">
+        <h3>Dashboard Overview</h3>
+        <p id="modalDescription">Description here</p>
+
+        <h3>Key Performance Indicators</h3>
+        <div class="kpi-row" id="modalKPIs"></div>
+
+        <h3>Business Benefits</h3>
+        <div class="benefits-grid" id="modalBenefits"></div>
+
+        <div class="use-cases">
+          <h4>Real-World Applications</h4>
+          <ul id="modalUseCases"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Dashboard Hub | Business Analytics & KPI Dashboards | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const dashboardData = {
+      'Sales Pipeline': {
+        letter: 'S',
+        description: 'Real-time sales pipeline dashboard tracking opportunities, deal stages, and revenue forecasting with predictive insights.',
+        kpis: [
+          { label: 'Total Pipeline', value: '2.5M' },
+          { label: 'Conversion Rate', value: '35%' },
+          { label: 'Avg Deal Size', value: '125K' },
+          { label: 'Sales Cycle', value: '45 days' }
+        ],
+        benefits: [
+          { title: 'Increase Revenue', desc: 'Identify high-value deals and optimize sales processes for faster closure and higher conversion.' },
+          { title: 'Reduce Churn', desc: 'Monitor at-risk deals and implement proactive measures to save revenue and customer relationships.' },
+          { title: 'Accurate Forecasting', desc: 'Predictive analytics for better revenue forecasts and financial planning confidence.' },
+          { title: 'Team Alignment', desc: 'Clear visibility into sales performance across territories and individual salespeople.' }
+        ],
+        useCases: [
+          'Weekly sales team syncs with live pipeline updates and performance metrics',
+          'Board presentations with accurate revenue forecasts and trajectory analysis',
+          'Identify top-performing salespeople and replicate their best practices',
+          'Track seasonal trends and dynamically adjust target allocation',
+          'Automate deal stage notifications and timely follow-ups'
+        ]
+      },
+      'Revenue Growth': {
+        letter: 'R',
+        description: 'Monitor revenue trends, MRR growth, and profitability metrics across all customer segments and geographic regions.',
+        kpis: [
+          { label: 'Monthly Revenue', value: '5.2M' },
+          { label: 'MoM Growth', value: '+12%' },
+          { label: 'YoY Growth', value: '+45%' },
+          { label: 'ARR', value: '62.4M' }
+        ],
+        benefits: [
+          { title: 'Track Growth', desc: 'Monitor month-over-month and year-over-year revenue trends with real-time dashboards.' },
+          { title: 'Identify Opportunities', desc: 'Spot high-growth segments and double down on winning customer and product combinations.' },
+          { title: 'Financial Planning', desc: 'Accurate revenue projections for budget allocation and resource planning.' },
+          { title: 'Investor Ready', desc: 'Professional dashboards for investor meetings and successful fundraising rounds.' }
+        ],
+        useCases: [
+          'CEO dashboard for executive stakeholder updates and board meetings',
+          'Investor presentations with compelling growth trajectory visualization',
+          'Revenue target tracking with milestone celebrations and team motivation',
+          'Channel performance comparison and ROI analysis by acquisition source',
+          'Pricing optimization strategies based on revenue patterns and customer data'
+        ]
+      },
+      'Customer Analytics': {
+        letter: 'C',
+        description: 'Deep analysis of customer lifetime value, churn prediction, acquisition costs, and strategic customer segmentation.',
+        kpis: [
+          { label: 'Total Customers', value: '2,450' },
+          { label: 'Customer LTV', value: '45K' },
+          { label: 'Churn Rate', value: '3.2%' },
+          { label: 'CAC', value: '8.5K' }
+        ],
+        benefits: [
+          { title: 'Save Revenue', desc: 'Predict and prevent customer churn with targeted retention strategies and personalized engagement.' },
+          { title: 'Improve LTV', desc: 'Systematically increase customer lifetime value through upselling and cross-selling strategies.' },
+          { title: 'Lower CAC', desc: 'Optimize marketing spend and identify highest-ROI acquisition channels for profitability.' },
+          { title: 'Segment Strategy', desc: 'Implement different strategies for different customer segments based on profitability and behavior.' }
+        ],
+        useCases: [
+          'Identify at-risk customers for immediate retention outreach and recovery',
+          'Segment customers by LTV for personalized marketing and communication strategies',
+          'Monitor churn trends and perform root cause analysis to prevent future losses',
+          'Measure marketing channel efficiency by CAC and adjust budget allocation accordingly',
+          'Forecast revenue impact of retention improvements and preventive investments'
+        ]
+      },
+      'Expense Tracker': {
+        letter: 'E',
+        description: 'Real-time expense monitoring with budget vs actual analysis, cost allocation, and strategic savings opportunities.',
+        kpis: [
+          { label: 'Monthly Spend', value: '12.5L' },
+          { label: 'Budget Variance', value: '-5%' },
+          { label: 'Largest Category', value: 'Salaries' },
+          { label: 'YTD Savings', value: '4.2L' }
+        ],
+        benefits: [
+          { title: 'Reduce Costs', desc: 'Identify and eliminate unnecessary expenses and operational inefficiencies systematically.' },
+          { title: 'Control Budget', desc: 'Real-time alerts for budget overruns and proactive cost management across departments.' },
+          { title: 'Better Negotiation', desc: 'Use detailed spending insights to negotiate better vendor contracts and service agreements.' },
+          { title: 'Profitability', desc: 'Directly impact bottom line through systematic cost reduction and financial optimization.' }
+        ],
+        useCases: [
+          'Monthly budget reviews with detailed variance analysis and corrective actions',
+          'Department-wise spending tracking for accountability and cost control measures',
+          'Vendor cost comparison and negotiation leverage based on spending data',
+          'Recurring expense audit and optimization across annual budget cycles',
+          'Policy compliance monitoring and alerts for unauthorized spending incidents'
+        ]
+      },
+      'Cash Flow': {
+        letter: 'F',
+        description: 'Cash flow forecasting, liquidity management, and financial planning for sustainable and scalable business growth.',
+        kpis: [
+          { label: 'Current Balance', value: '85.3L' },
+          { label: '30-Day Forecast', value: '92.1L' },
+          { label: 'Burn Rate', value: '3.2L/mo' },
+          { label: 'Runway', value: '26 months' }
+        ],
+        benefits: [
+          { title: 'Avoid Crisis', desc: 'Prevent cash flow crunches with predictive forecasting and advance planning.' },
+          { title: 'Strategic Planning', desc: 'Plan expansion, hiring, and investments with clear financial confidence.' },
+          { title: 'Investor Confidence', desc: 'Demonstrate financial stability and strategic planning discipline to investors.' },
+          { title: 'Loan Readiness', desc: 'Strong cash flow documentation for bank financing and credit facility applications.' }
+        ],
+        useCases: [
+          'Weekly cash position updates for finance team and executive management',
+          'Scenario planning for different growth rates and market conditions',
+          'Payment scheduling optimization with vendors for better terms negotiation',
+          'Working capital management and efficient inventory and receivable optimization',
+          'Risk alerts for negative cash flow situations and preventive measures'
+        ]
+      },
+      'Profitability': {
+        letter: 'P',
+        description: 'In-depth profitability analysis with margins, costs, and strategic profit optimization opportunities.',
+        kpis: [
+          { label: 'Gross Margin', value: '68%' },
+          { label: 'Net Margin', value: '22%' },
+          { label: 'EBITDA', value: '88.5L' },
+          { label: 'Profit/Employee', value: '6.25L' }
+        ],
+        benefits: [
+          { title: 'Maximize Profits', desc: 'Focus sales and marketing efforts on high-margin products and services.' },
+          { title: 'Optimize Costs', desc: 'Find cost reduction opportunities without compromising product or service quality.' },
+          { title: 'Pricing Strategy', desc: 'Data-driven pricing optimization to balance volume growth with margin expansion.' },
+          { title: 'Strategic Focus', desc: 'Eliminate low-margin offerings and aggressively scale proven winners.' }
+        ],
+        useCases: [
+          'Product profitability analysis for portfolio decisions and resource allocation',
+          'Customer profitability analysis to focus sales efforts on valuable accounts',
+          'Gross margin trends analysis by segment and product category',
+          'Operating expense analysis with industry benchmarking and best practices',
+          'Break-even analysis for new product launches and market expansion'
+        ]
+      },
+      'Marketing ROI': {
+        letter: 'M',
+        description: 'Track marketing campaign performance, ROI, ROAS, CAC, and conversion metrics across all channels.',
+        kpis: [
+          { label: 'Marketing Spend', value: '25L/month' },
+          { label: 'Marketing ROI', value: '380%' },
+          { label: 'ROAS', value: '4.2x' },
+          { label: 'Lead Cost', value: '2.5K' }
+        ],
+        benefits: [
+          { title: 'Maximize ROI', desc: 'Allocate budget to highest-ROI channels and campaigns for optimal returns.' },
+          { title: 'Reduce CAC', desc: 'Optimize acquisition spend and improve unit economics continuously.' },
+          { title: 'Scale Winners', desc: 'Identify and confidently scale top-performing campaigns and channels.' },
+          { title: 'Prove Value', desc: 'Demonstrate marketing value to finance and leadership with concrete metrics.' }
+        ],
+        useCases: [
+          'Monthly marketing performance reviews and budget reallocation decisions',
+          'Channel performance comparison and competitive benchmarking analysis',
+          'Campaign A/B testing and continuous performance optimization tracking',
+          'Multi-touch attribution analysis for complex customer journey understanding',
+          'Marketing forecast and quarterly planning with realistic growth projections'
+        ]
+      },
+      'Lead Generation': {
+        letter: 'L',
+        description: 'Monitor lead generation pipeline, lead quality scoring, and sales-ready leads metrics tracking.',
+        kpis: [
+          { label: 'Leads This Month', value: '420' },
+          { label: 'Sales-Ready Leads', value: '145' },
+          { label: 'Lead Quality Score', value: '7.8/10' },
+          { label: 'Lead-to-Customer', value: '22%' }
+        ],
+        benefits: [
+          { title: 'Consistent Pipeline', desc: 'Ensure consistent supply of qualified leads for sales team execution.' },
+          { title: 'Better Quality', desc: 'Score and prioritize leads for faster conversions and higher close rates.' },
+          { title: 'Faster Cycles', desc: 'Sales-ready leads reduce sales cycle significantly and improve efficiency.' },
+          { title: 'Scalability', desc: 'Data shows what works for profitable and repeatable lead generation programs.' }
+        ],
+        useCases: [
+          'Daily sales-ready lead generation reports and pipeline updates',
+          'Lead source quality and performance tracking for budget optimization',
+          'Lead scoring model optimization based on conversion and revenue data',
+          'Sales team notifications of hot leads and priority targets for follow-up',
+          'Lead nurture campaign effectiveness and drip campaign optimization'
+        ]
+      },
+      'Social Analytics': {
+        letter: 'A',
+        description: 'Track social media engagement, reach, follower growth, and audience insights across all platforms.',
+        kpis: [
+          { label: 'Total Followers', value: '85.2K' },
+          { label: 'Engagement Rate', value: '4.2%' },
+          { label: 'Monthly Reach', value: '2.3M' },
+          { label: 'Lead Attribution', value: '15.4L' }
+        ],
+        benefits: [
+          { title: 'Build Brand', desc: 'Track brand visibility and influence growth across social platforms.' },
+          { title: 'Generate Leads', desc: 'Quantify social media contribution to lead generation and revenue.' },
+          { title: 'Content Strategy', desc: 'Data-driven content strategy based on engagement and performance analytics.' },
+          { title: 'Community Building', desc: 'Monitor sentiment and build loyal customer communities strategically.' }
+        ],
+        useCases: [
+          'Social media team performance tracking and competitive benchmarking analysis',
+          'Influencer partnership ROI analysis and partnership optimization',
+          'Content calendar planning and performance tracking across campaigns',
+          'Competitor social benchmarking and market positioning analysis',
+          'Crisis detection and reputation management monitoring system'
+        ]
+      },
+      'Employee Performance': {
+        letter: 'T',
+        description: 'Track individual and team KPIs, productivity metrics, and performance against targets.',
+        kpis: [
+          { label: 'Team Size', value: '42' },
+          { label: 'Avg Productivity', value: '92%' },
+          { label: 'Target Achievement', value: '98%' },
+          { label: 'Performance Score', value: '8.1/10' }
+        ],
+        benefits: [
+          { title: 'Increase Productivity', desc: 'Identify top performers and replicate their successful practices across team.' },
+          { title: 'Better Motivation', desc: 'Transparent performance tracking and reward system for team members.' },
+          { title: 'Quick Identification', desc: 'Spot underperformers early for targeted support and development.' },
+          { title: 'Fair Progression', desc: 'Data-driven career progression and compensation decisions.' }
+        ],
+        useCases: [
+          'Weekly team performance standups with progress updates and adjustments',
+          'Individual performance reviews backed by objective data and metrics',
+          'Peer benchmarking and healthy competition within and across teams',
+          'Skill gap identification for targeted training and development programs',
+          'Succession planning and career path development for high performers'
+        ]
+      },
+      'Attendance': {
+        letter: 'A',
+        description: 'Real-time attendance tracking, leave management, and time optimization metrics.',
+        kpis: [
+          { label: 'Attendance Rate', value: '94.2%' },
+          { label: 'Avg Hours/Week', value: '42' },
+          { label: 'Leaves Pending', value: '12' },
+          { label: 'Overtime Hours', value: '145' }
+        ],
+        benefits: [
+          { title: 'Ensure Compliance', desc: 'Automated compliance reporting and regulatory adherence documentation.' },
+          { title: 'Control Costs', desc: 'Monitor and control overtime and labor costs effectively.' },
+          { title: 'Fair Policies', desc: 'Transparent leave and time-off policies applied consistently.' },
+          { title: 'Optimize Time', desc: 'Data on optimal working hours for best team and individual performance.' }
+        ],
+        useCases: [
+          'Daily attendance reporting for managers and executive visibility',
+          'Leave request approvals and tracking with smart notifications',
+          'Department-wise attendance patterns and trend analysis',
+          'Overtime budget monitoring and control across departments',
+          'Remote work arrangement compliance and performance monitoring'
+        ]
+      },
+      'Recruitment': {
+        letter: 'H',
+        description: 'Track recruitment pipeline, hiring funnel, talent acquisition metrics, and hiring efficiency.',
+        kpis: [
+          { label: 'Open Positions', value: '8' },
+          { label: 'Avg Time-to-Hire', value: '32 days' },
+          { label: 'Offer Accept Rate', value: '87%' },
+          { label: 'Cost-per-Hire', value: '85K' }
+        ],
+        benefits: [
+          { title: 'Faster Hiring', desc: 'Streamline recruitment process and reduce time-to-hire significantly.' },
+          { title: 'Better Quality', desc: 'Track and improve candidate quality metrics and new hire performance.' },
+          { title: 'Lower Costs', desc: 'Optimize recruitment spend for better ROI and cost efficiency.' },
+          { title: 'Data-Driven', desc: 'Identify best sourcing channels and top-performing recruiters.' }
+        ],
+        useCases: [
+          'Weekly recruitment funnel reviews and progress tracking',
+          'Candidate source quality tracking and performance analytics',
+          'Hiring manager performance metrics and benchmarking',
+          'Competitive salary benchmarking for offer competitiveness',
+          'New hire onboarding and ramp-up time tracking for success'
+        ]
+      }
+    };
+
+    function openModal(dashboardName) {
+      const data = dashboardData[dashboardName];
+      const modal = document.getElementById('dashboardModal');
+      
+      document.getElementById('modalTitle').textContent = dashboardName;
+      document.getElementById('modalDashboard').textContent = data.letter;
+      document.getElementById('modalDescription').textContent = data.description;
+      
+      document.getElementById('modalKPIs').innerHTML = data.kpis.map(kpi => `
+        <div class="kpi-card">
+          <div class="kpi-value">${kpi.value}</div>
+          <div class="kpi-label">${kpi.label}</div>
+        </div>
+      `).join('');
+      
+      document.getElementById('modalBenefits').innerHTML = data.benefits.map(benefit => `
+        <div class="benefit-item">
+          <h4>${benefit.title}</h4>
+          <p>${benefit.desc}</p>
+        </div>
+      `).join('');
+      
+      document.getElementById('modalUseCases').innerHTML = data.useCases.map(useCase => `
+        <li>${useCase}</li>
+      `).join('');
+      
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('dashboardModal').classList.remove('active');
+    }
+
+    window.onclick = function(e) {
+      const modal = document.getElementById('dashboardModal');
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>
