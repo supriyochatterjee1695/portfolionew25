@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CSeametry</title>
-      
+
   <link rel="icon" type="image/png" href="assets\logo.png">
   <style>
     * {
@@ -12,15 +13,18 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     html {
       scroll-behavior: smooth;
     }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
       background: #fafafa;
       color: #2c3e50;
       line-height: 1.6;
     }
+
     /* Header */
     header {
       background: #ffffff;
@@ -32,6 +36,7 @@
       backdrop-filter: blur(10px);
       background-color: rgba(255, 255, 255, 0.95);
     }
+
     .header-container {
       max-width: 1200px;
       margin: 0;
@@ -41,6 +46,7 @@
       align-items: center;
       max-width: 100%;
     }
+
     .logo {
       font-size: 1.5rem;
       font-weight: 600;
@@ -49,30 +55,35 @@
       cursor: pointer;
       transition: color 0.3s ease;
       display: flex;
-            align-items: center;
-            color: var(--white);
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-            max-height: 60px;
-        }
+      align-items: center;
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      max-height: 60px;
+    }
 
     .logo img {
-        height: 90px;          /* increase/decrease as needed */
-        width: auto;           /* maintain aspect ratio */
-        object-fit: contain;   /* keep full logo visible */
-        display: block;
-        }
+      height: 90px;
+      /* increase/decrease as needed */
+      width: auto;
+      /* maintain aspect ratio */
+      object-fit: contain;
+      /* keep full logo visible */
+      display: block;
+    }
 
 
     .logo:hover {
       color: #3498db;
     }
+
     nav {
       display: flex;
       gap: 3rem;
       align-items: center;
     }
+
     nav a {
       text-decoration: none;
       color: #2c3e50;
@@ -82,6 +93,7 @@
       transition: color 0.3s ease;
       cursor: pointer;
     }
+
     nav a::after {
       content: '';
       position: absolute;
@@ -92,12 +104,15 @@
       background: #3498db;
       transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     nav a:hover {
       color: #3498db;
     }
+
     nav a:hover::after {
       width: 100%;
     }
+
     /* Hero Section */
     .hero {
       min-height: 100vh;
@@ -109,6 +124,7 @@
       overflow: hidden;
       padding: 2rem;
     }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -119,6 +135,7 @@
       top: -100px;
       right: -100px;
     }
+
     .hero::after {
       content: '';
       position: absolute;
@@ -129,12 +146,14 @@
       bottom: -50px;
       left: -100px;
     }
+
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 700px;
       text-align: center;
     }
+
     .hero h1 {
       font-size: 3.5rem;
       font-weight: 700;
@@ -143,12 +162,14 @@
       line-height: 1.2;
       letter-spacing: -1px;
     }
+
     .hero h1 span {
       background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .hero-subtitle {
       font-size: 1.2rem;
       color: #7f8c8d;
@@ -156,12 +177,14 @@
       font-weight: 300;
       line-height: 1.8;
     }
+
     .hero-buttons {
       display: flex;
       gap: 1.5rem;
       justify-content: center;
       flex-wrap: wrap;
     }
+
     .btn {
       display: inline-block;
       padding: 1rem 1rem;
@@ -175,11 +198,13 @@
       position: relative;
       overflow: hidden;
     }
+
     .btn-primary {
       background: #3498db;
       color: #fff;
       box-shadow: 0 8px 20px rgba(52, 152, 219, 0.2);
     }
+
     .btn-primary:hover {
       border: #2c3e50 2px solid;
       background: #fff;
@@ -187,30 +212,36 @@
       transform: translateY(-3px);
       box-shadow: 0 12px 30px rgba(52, 152, 219, 0.3);
     }
+
     .btn-primary:active {
       transform: translateY(-1px);
     }
+
     .btn-secondary {
       background: transparent;
       color: #3498db;
       border: 2px solid #3498db;
       transition: all 0.3s ease;
     }
+
     .btn-secondary:hover {
       background: #3498db;
       color: #fff;
       transform: translateY(-3px);
     }
+
     /* Main Content */
     main {
       max-width: 1200px;
       margin: 0 auto;
       padding: 6rem 2rem;
     }
+
     .section-header {
       text-align: center;
       margin-bottom: 4rem;
     }
+
     .section-header h2 {
       font-size: 2.5rem;
       color: #2c3e50;
@@ -218,6 +249,7 @@
       font-weight: 700;
       letter-spacing: -0.5px;
     }
+
     .section-header p {
       font-size: 1.1rem;
       color: #7f8c8d;
@@ -226,12 +258,14 @@
       line-height: 1.8;
       font-weight: 300;
     }
+
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
       margin-bottom: 2rem;
     }
+
     .card {
       background: #ffffff;
       border-radius: 12px;
@@ -242,6 +276,7 @@
       border: 1px solid #f0f0f0;
       position: relative;
     }
+
     .card::before {
       content: '';
       position: absolute;
@@ -253,14 +288,17 @@
       transition: height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       z-index: 1;
     }
+
     .card:hover::before {
       height: 4px;
     }
+
     .card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 40px rgba(52, 152, 219, 0.15);
       border-color: #e8f4f8;
     }
+
     .card-icon {
       width: 100%;
       height: 180px;
@@ -275,23 +313,28 @@
       z-index: 2;
       transition: all 0.4s ease;
     }
+
     .card:hover .card-icon {
       background: linear-gradient(135deg, #e8f4f8 0%, #f0f7fa 100%);
       color: #2ecc71;
       transform: scale(1.05);
     }
+
     .card.ngo .card-icon {
       color: #27ae60;
       background: linear-gradient(135deg, #e8f8f5 0%, #f0f9f7 100%);
     }
+
     .card.ngo:hover .card-icon {
       color: #229954;
     }
+
     .card-content {
       padding: 2rem;
       position: relative;
       z-index: 2;
     }
+
     .card-title {
       font-size: 1.3rem;
       color: #2c3e50;
@@ -299,12 +342,15 @@
       font-weight: 700;
       transition: color 0.3s ease;
     }
+
     .card:hover .card-title {
       color: #3498db;
     }
+
     .card.ngo:hover .card-title {
       color: #27ae60;
     }
+
     .card-description {
       color: #7f8c8d;
       font-size: 0.95rem;
@@ -312,6 +358,7 @@
       margin-bottom: 1.5rem;
       font-weight: 300;
     }
+
     .card-link {
       display: inline-flex;
       align-items: center;
@@ -323,22 +370,28 @@
       transition: all 0.3s ease;
       position: relative;
     }
+
     .card.ngo .card-link {
       color: #27ae60;
     }
+
     .card-link::after {
       content: '→';
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     .card:hover .card-link::after {
       transform: translateX(5px);
     }
+
     .card:hover .card-link {
       color: #2ecc71;
     }
+
     .card.ngo:hover .card-link {
       color: #16a34a;
     }
+
     /* Badge */
     .badge {
       display: inline-block;
@@ -351,10 +404,11 @@
       margin-bottom: 1rem;
       letter-spacing: 1px;
     }
+
     .badge.social {
       background: linear-gradient(135deg, #27ae60, #229954);
     }
-    
+
     /* Pricing Section */
     .pricing-section {
       background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -363,6 +417,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .pricing-section::before {
       content: '';
       position: absolute;
@@ -373,16 +428,19 @@
       top: -100px;
       left: -100px;
     }
+
     .pricing-container {
       max-width: 1200px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
     }
+
     .pricing-header {
       text-align: center;
       margin-bottom: 4rem;
     }
+
     .pricing-header h2 {
       font-size: 2.8rem;
       color: #2c3e50;
@@ -390,6 +448,7 @@
       font-weight: 700;
       letter-spacing: -0.5px;
     }
+
     .pricing-header p {
       font-size: 1.15rem;
       color: #7f8c8d;
@@ -398,12 +457,14 @@
       line-height: 1.8;
       font-weight: 300;
     }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2.5rem;
       margin-bottom: 3rem;
     }
+
     .pricing-card {
       background: #ffffff;
       border-radius: 16px;
@@ -414,6 +475,7 @@
       border: 2px solid transparent;
       overflow: hidden;
     }
+
     .pricing-card::before {
       content: '';
       position: absolute;
@@ -425,37 +487,46 @@
       transform: scaleX(0);
       transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     .pricing-card:hover::before {
       transform: scaleX(1);
     }
+
     .pricing-card:hover {
       transform: translateY(-12px);
       box-shadow: 0 20px 50px rgba(52, 152, 219, 0.2);
       border-color: #e8f4f8;
     }
+
     .pricing-card.popular {
       border-color: #3498db;
       background: linear-gradient(135deg, rgba(52, 152, 219, 0.02) 0%, #ffffff 100%);
     }
+
     .pricing-card.popular::before {
       transform: scaleX(1);
     }
+
     .pricing-card.premium {
       background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
       color: #ffffff;
       border-color: #2c3e50;
     }
+
     .pricing-card.premium::before {
       background: linear-gradient(90deg, #2ecc71, #27ae60);
     }
+
     .pricing-card.premium .tier-name,
     .pricing-card.premium .price,
     .pricing-card.premium .feature-item {
       color: #ffffff;
     }
+
     .pricing-card.premium .price-alt {
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
     }
+
     .popular-badge {
       position: absolute;
       top: -12px;
@@ -469,6 +540,7 @@
       letter-spacing: 1px;
       box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
     }
+
     .premium-badge {
       position: absolute;
       top: -12px;
@@ -482,12 +554,14 @@
       letter-spacing: 1px;
       box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
     }
+
     .tier-name {
       font-size: 1.8rem;
       font-weight: 700;
       color: #2c3e50;
       margin-bottom: 1rem;
     }
+
     .tier-type {
       font-size: 0.9rem;
       color: #7f8c8d;
@@ -496,17 +570,21 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+
     .pricing-card.premium .tier-type {
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
     }
+
     .price-wrapper {
       margin-bottom: 2rem;
       padding-bottom: 2rem;
       border-bottom: 2px solid #f0f0f0;
     }
+
     .pricing-card.premium .price-wrapper {
-      border-bottom-color: rgba(255,255,255,0.1);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
     }
+
     .price {
       font-size: 2.8rem;
       font-weight: 800;
@@ -514,18 +592,22 @@
       margin-bottom: 0.5rem;
       letter-spacing: -1px;
     }
+
     .pricing-card.premium .price {
       color: #2ecc71;
     }
+
     .price-alt {
       font-size: 1rem;
       color: #95a5a6;
       font-weight: 500;
     }
+
     .features-list {
       list-style: none;
       margin-bottom: 2rem;
     }
+
     .feature-item {
       padding: 0.75rem 0;
       padding-left: 2rem;
@@ -534,6 +616,7 @@
       font-size: 0.95rem;
       line-height: 1.6;
     }
+
     .feature-item::before {
       content: '✓';
       position: absolute;
@@ -542,9 +625,11 @@
       font-weight: 700;
       font-size: 1.1rem;
     }
+
     .pricing-card.premium .feature-item::before {
       color: #2ecc71;
     }
+
     .pricing-btn {
       display: block;
       width: 100%;
@@ -559,25 +644,31 @@
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
     }
+
     .pricing-btn:hover {
       background: #2980b9;
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
     }
+
     .pricing-card.popular .pricing-btn {
       background: linear-gradient(135deg, #3498db, #2ecc71);
     }
+
     .pricing-card.popular .pricing-btn:hover {
       background: linear-gradient(135deg, #2980b9, #27ae60);
     }
+
     .pricing-card.premium .pricing-btn {
       background: #2ecc71;
       color: #2c3e50;
     }
+
     .pricing-card.premium .pricing-btn:hover {
       background: #27ae60;
       color: #ffffff;
     }
+
     .pricing-cta {
       text-align: center;
       margin-top: 4rem;
@@ -585,18 +676,20 @@
       background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, rgba(46, 204, 113, 0.05) 100%);
       border-radius: 16px;
     }
+
     .pricing-cta h3 {
       font-size: 2rem;
       color: #2c3e50;
       margin-bottom: 1rem;
       font-weight: 700;
     }
+
     .pricing-cta p {
       font-size: 1.1rem;
       color: #7f8c8d;
       margin-bottom: 2rem;
     }
-    
+
     /* Footer */
     footer {
       background: #2c3e50;
@@ -607,91 +700,140 @@
       font-size: 0.9rem;
       letter-spacing: 0.3px;
     }
+
     footer a {
       color: #3498db;
       text-decoration: none;
       transition: color 0.3s ease;
     }
+
     footer a:hover {
       color: #2ecc71;
     }
+
     /* Scroll reveal effect */
-    .card, .pricing-card {
+    .card,
+    .pricing-card {
       opacity: 0;
       transform: translateY(30px);
     }
-    .card.visible, .pricing-card.visible {
+
+    .card.visible,
+    .pricing-card.visible {
       animation: revealCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
-    .card:nth-child(1).visible, .pricing-card:nth-child(1).visible { animation-delay: 0s; }
-    .card:nth-child(2).visible, .pricing-card:nth-child(2).visible { animation-delay: 0.1s; }
-    .card:nth-child(3).visible, .pricing-card:nth-child(3).visible { animation-delay: 0.2s; }
-    .card:nth-child(4).visible, .pricing-card:nth-child(4).visible { animation-delay: 0.3s; }
-    .card:nth-child(5).visible { animation-delay: 0.4s; }
-    .card:nth-child(6).visible { animation-delay: 0.5s; }
-    .card:nth-child(7).visible { animation-delay: 0.6s; }
+
+    .card:nth-child(1).visible,
+    .pricing-card:nth-child(1).visible {
+      animation-delay: 0s;
+    }
+
+    .card:nth-child(2).visible,
+    .pricing-card:nth-child(2).visible {
+      animation-delay: 0.1s;
+    }
+
+    .card:nth-child(3).visible,
+    .pricing-card:nth-child(3).visible {
+      animation-delay: 0.2s;
+    }
+
+    .card:nth-child(4).visible,
+    .pricing-card:nth-child(4).visible {
+      animation-delay: 0.3s;
+    }
+
+    .card:nth-child(5).visible {
+      animation-delay: 0.4s;
+    }
+
+    .card:nth-child(6).visible {
+      animation-delay: 0.5s;
+    }
+
+    .card:nth-child(7).visible {
+      animation-delay: 0.6s;
+    }
+
     @keyframes revealCard {
       from {
         opacity: 0;
         transform: translateY(30px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
     /* Responsive */
     @media (max-width: 768px) {
       nav {
         gap: 1.5rem;
       }
+
       .hero h1 {
         font-size: 2.2rem;
       }
+
       .hero-subtitle {
         font-size: 1rem;
       }
-      .section-header h2, .pricing-header h2 {
+
+      .section-header h2,
+      .pricing-header h2 {
         font-size: 1.8rem;
       }
-      .cards-grid, .pricing-grid {
+
+      .cards-grid,
+      .pricing-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
+
       .hero-buttons {
         flex-direction: column;
       }
+
       .btn {
         width: 100%;
         text-align: center;
 
       }
+
       .pricing-section {
         padding: 4rem 1rem;
       }
+
       .pricing-card {
         padding: 2rem;
       }
+
       .tier-name {
         font-size: 1.5rem;
       }
+
       .price {
         font-size: 2.2rem;
       }
     }
   </style>
 </head>
+
 <body>
   <!-- Header -->
   <header>
     <div class="header-container">
-      <a href="index.html" style="text-decoration: none;"><div class="logo">
-        <img src="assets\logoo-removebg-preview (1).png" alt="Company Logo">CSeametry
-      </div></a>
+      <a href="index.html" style="text-decoration: none;">
+        <div class="logo">
+          <img src="assets\logoo-removebg-preview (1).png" alt="Company Logo">CSeametry
+        </div>
+      </a>
       <nav>
         <a href="#work">Web Templates</a>
         <a href="#pricing">Pricing</a>
-        
+
       </nav>
     </div>
   </header>
@@ -701,7 +843,8 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Cymmetri<span style="color: red;">X</span> Web<span> Solutions</span></h1>
-      <p class="hero-subtitle">Explore expertly crafted websites showcasing modern design, smooth interactions, and production-ready code</p>
+      <p class="hero-subtitle">Explore expertly crafted websites showcasing modern design, smooth interactions, and
+        production-ready code</p>
       <div class="hero-buttons">
         <a href="#work" class="btn btn-primary">Explore Work</a>
         <a href="index.html#contact" class="btn btn-secondary">Get in Touch</a>
@@ -721,10 +864,12 @@
     <div class="cards-grid">
       <!-- Portfolio Card -->
       <div class="card">
-        <div class="card-icon"> <img src="assets\corporate.png" alt="Portfolio Icon" style="width:80px;height:80px;"></div>
+        <div class="card-icon"> <img src="assets\corporate.png" alt="Portfolio Icon" style="width:80px;height:80px;">
+        </div>
         <div class="card-content">
           <h3 class="card-title">Portfolio Website</h3>
-          <p class="card-description">Professional portfolio with animated profile, skills showcase, project gallery, client testimonials, and contact integration.</p>
+          <p class="card-description">Professional portfolio with animated profile, skills showcase, project gallery,
+            client testimonials, and contact integration.</p>
           <a href="port.html" class="card-link">View Project</a>
         </div>
       </div>
@@ -732,10 +877,12 @@
 
       <!-- Consulting Card -->
       <div class="card">
-        <div class="card-icon"><img src="assets\consulting2.png" alt="Consulting Icon" style="width:80px;height:80px;"></div>
+        <div class="card-icon"><img src="assets\consulting2.png" alt="Consulting Icon" style="width:80px;height:80px;">
+        </div>
         <div class="card-content">
           <h3 class="card-title">Consultancy Website</h3>
-          <p class="card-description">Business-focused platform with service carousel, expertise showcase, team profiles, testimonials, and booking system.</p>
+          <p class="card-description">Business-focused platform with service carousel, expertise showcase, team
+            profiles, testimonials, and booking system.</p>
           <a href="consulting.html" class="card-link">View Project</a>
         </div>
       </div>
@@ -743,10 +890,12 @@
 
       <!-- E-Commerce Card -->
       <div class="card">
-        <div class="card-icon"><img src="assets\ecommerce.png" alt="E-Commerce Icon" style="width:80px;height:80px;"></div>
+        <div class="card-icon"><img src="assets\ecommerce.png" alt="E-Commerce Icon" style="width:80px;height:80px;">
+        </div>
         <div class="card-content">
           <h3 class="card-title">E-Commerce Platform</h3>
-          <p class="card-description">Modern shopping experience with product grid, real-time filters, detailed modals, cart system, and checkout flow.</p>
+          <p class="card-description">Modern shopping experience with product grid, real-time filters, detailed modals,
+            cart system, and checkout flow.</p>
           <a href="product.html" class="card-link">View Project</a>
         </div>
       </div>
@@ -754,10 +903,12 @@
 
       <!-- Landing Page Card -->
       <div class="card">
-        <div class="card-icon"><img src="assets\landing.png" alt="Landing Page Icon" style="width:80px;height:80px;"></div>
+        <div class="card-icon"><img src="assets\landing.png" alt="Landing Page Icon" style="width:80px;height:80px;">
+        </div>
         <div class="card-content">
           <h3 class="card-title">Landing Page</h3>
-          <p class="card-description">Conversion-optimized landing with hero animation, benefit sections, pricing table, FAQ accordion, and newsletter signup.</p>
+          <p class="card-description">Conversion-optimized landing with hero animation, benefit sections, pricing table,
+            FAQ accordion, and newsletter signup.</p>
           <a href="landing.html" class="card-link">View Project</a>
         </div>
       </div>
@@ -768,7 +919,8 @@
         <div class="card-icon"><img src="assets\kpi.png" alt="Dashboard Icon" style="width:80px;height:80px;"></div>
         <div class="card-content">
           <h3 class="card-title">Business Dashboards</h3>
-          <p class="card-description">Interactive analytics dashboards with real-time KPIs, sales metrics, financial data, marketing insights, and HR tracking.</p>
+          <p class="card-description">Interactive analytics dashboards with real-time KPIs, sales metrics, financial
+            data, marketing insights, and HR tracking.</p>
           <a href="dashboard.html" class="card-link">View Project</a>
         </div>
       </div>
@@ -776,11 +928,12 @@
 
       <!-- Premium Card -->
       <div class="card">
-        
+
         <div class="card-icon"><img src="assets\soumi.png" alt="Premium Icon" style="width:80px;height:80px;"></div>
         <div class="card-content">
           <h3 class="card-title">Soumi Basu Porfolio</h3>
-          <p class="card-description">Premium showcase with advanced interactive features, cutting-edge design patterns, and comprehensive components.</p>
+          <p class="card-description">Premium showcase with advanced interactive features, cutting-edge design patterns,
+            and comprehensive components.</p>
           <a href="soumi.html" class="card-link">View Project</a>
         </div>
       </div>
@@ -792,7 +945,8 @@
         <div class="card-icon"><img src="assets\ngo.png" alt="NGO Icon" style="width:80px;height:80px;"></div>
         <div class="card-content">
           <h3 class="card-title">NGO</h3>
-          <p class="card-description">Comprehensive NGO website for educational NGO with LMS integration, program showcase, impact statistics, and community engagement features.</p>
+          <p class="card-description">Comprehensive NGO website for educational NGO with LMS integration, program
+            showcase, impact statistics, and community engagement features.</p>
           <a href="sankalp-global.html" class="card-link">View Project</a>
         </div>
       </div>
@@ -804,34 +958,50 @@
         <div class="card-icon"><img src="assets\sankalp.jpg" alt="NGO Icon" style="width:80px;height:80px;"></div>
         <div class="card-content">
           <h3 class="card-title">Sankalp Finance and Sankalp Global</h3>
-          <p class="card-description">Sankalp Finance helps individuals and businesses access personal, home, business loans and Sankalp Global website for educational NGO with LMS integration, program showcase, impact statistics, and community engagement features..</p>
+          <p class="card-description">Sankalp Finance helps individuals and businesses access personal, home, business
+            loans and Sankalp Global website for educational NGO with LMS integration, program showcase, impact
+            statistics, and community engagement features..</p>
           <a href="test.html" class="card-link">View Project</a>
         </div>
       </div>
 
 
       <!-- Course Card -->
-       <div class="card ngo">
+      <div class="card ngo">
         <span class="badge social">Course Platform</span>
         <div class="card-icon"><img src="assets\ngo.png" alt="NGO Icon" style="width:80px;height:80px;"></div>
         <div class="card-content">
           <h3 class="card-title">Courses Platform</h3>
-          <p class="card-description">Comprehensive NGO website for educational NGO with LMS integration, program showcase, impact statistics, and community engagement features.</p>
+          <p class="card-description">Comprehensive NGO website for educational NGO with LMS integration, program
+            showcase, impact statistics, and community engagement features.</p>
           <a href="course.html" class="card-link">View Project</a>
         </div>
       </div>
+
+      <!-- Market Card -->
+      <div class="card ngo">
+        <span class="badge social">Finance and Market</span>
+        <div class="card-icon"><img src="assets\kpi.png" alt="Finance and Market" style="width:80px;height:80px;"></div>
+        <div class="card-content">
+          <h3 class="card-title">Finance and Market</h3>
+          <p class="card-description">Finance and Market Application to Track and Convert Leads</p>
+          <a href="MVP2.html" class="card-link">View Project</a>
+        </div>
+      </div>
+
     </div>
   </main>
 
 
 
-  
+
   <!-- Pricing Section -->
   <section class="pricing-section" id="pricing">
     <div class="pricing-container">
       <div class="pricing-header">
         <h2>Website Development Pricing</h2>
-        <p>Choose the perfect package for your web project. From template-based solutions to fully custom web applications</p>
+        <p>Choose the perfect package for your web project. From template-based solutions to fully custom web
+          applications</p>
       </div>
 
       <div class="pricing-grid">
@@ -938,7 +1108,8 @@
 
   <!-- Footer -->
   <footer id="contact">
-    <p>&copy; Supriyo Chatterjee, Chartered Engineer (India) | <a href="mailto:supriyo.chatterjee1695@gmail.com">supriyo.chatterjee1695@gmail.com</a></p>
+    <p>&copy; Supriyo Chatterjee, Chartered Engineer (India) | <a
+        href="mailto:supriyo.chatterjee1695@gmail.com">supriyo.chatterjee1695@gmail.com</a></p>
   </footer>
 
 
@@ -950,7 +1121,7 @@
     };
 
 
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(function (entries) {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
@@ -967,7 +1138,7 @@
 
     // Smooth scroll behavior
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -977,4 +1148,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script>
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .glass-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .drawer {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 100%;
+            max-width: 500px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .drawer.open {
+            right: 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .carousel {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel img {
+            scroll-snap-align: start;
+            min-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .drawer {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-md z-50 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">Finance Product MVP</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" onclick="navigate('home')" class="text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#mf" onclick="navigate('mf')" class="text-gray-700 hover:text-blue-600">Mutual Funds</a>
+                <a href="#bonds" onclick="navigate('bonds')" class="text-gray-700 hover:text-blue-600">Bonds</a>
+                <a href="#insurance" onclick="navigate('insurance')"
+                    class="text-gray-700 hover:text-blue-600">Insurance</a>
+                <a href="#realestate" onclick="navigate('realestate')" class="text-gray-700 hover:text-blue-600">Real
+                    Estate</a>
+            </div>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700 text-3xl">☰</button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="#home" onclick="navigate('home'); toggleMobileMenu()"
+                class="block text-gray-700 hover:text-blue-600 py-2">Home</a>
+            <a href="#mf" onclick="navigate('mf'); toggleMobileMenu()"
+                class="block text-gray-700 hover:text-blue-600 py-2">Mutual Funds</a>
+            <a href="#bonds" onclick="navigate('bonds'); toggleMobileMenu()"
+                class="block text-gray-700 hover:text-blue-600 py-2">Bonds</a>
+            <a href="#insurance" onclick="navigate('insurance'); toggleMobileMenu()"
+                class="block text-gray-700 hover:text-blue-600 py-2">Insurance</a>
+            <a href="#realestate" onclick="navigate('realestate'); toggleMobileMenu()"
+                class="block text-gray-700 hover:text-blue-600 py-2">Real Estate</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="app-content" class="max-w-7xl mx-auto px-4 pb-20 pt-24"></div>
+
+    <!-- Drawer -->
+    <div id="drawer" class="drawer"></div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="glass-card p-8 max-w-md w-full mx-4"></div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Footer -->
+    <footer class="glass-card mx-4 mb-4 p-6 mt-20">
+        <div class="max-w-7xl mx-auto text-center text-gray-700">
+            <p>&copy; 2026. Lead generation platform for financial products.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Config
+        const GSHEET_WEBAPP_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+        const MFAPI_BASE_URL = 'https://api.mfapi.in/mf';
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Sample Data
+        const MF_DATA = [
+            {
+                id: 1, name: 'HDFC Flexi Cap Fund', amc: 'HDFC', category: 'Flexi Cap', nav: 856.23, change: 2.3, schemeCode: '119551', navHistory: {
+                    '1M': [{ date: '2026-02-06', nav: 856.23 }, { date: '2026-01-06', nav: 795.67 }],
+                    '3M': [{ date: '2026-02-06', nav: 856.23 }, { date: '2025-11-06', nav: 720.34 }],
+                    '6M': [{ date: '2026-02-06', nav: 856.23 }, { date: '2025-08-06', nav: 680.12 }],
+                    '1Y': [{ date: '2026-02-06', nav: 856.23 }, { date: '2025-02-06', nav: 620.45 }],
+                    '3Y': [{ date: '2026-02-06', nav: 856.23 }, { date: '2023-02-06', nav: 450.78 }]
+                }
+            },
+            {
+                id: 2, name: 'ICICI Bluechip Fund', amc: 'ICICI', category: 'Large Cap', nav: 1245.67, change: 1.8, schemeCode: '120503', navHistory: {
+                    '1M': [{ date: '2026-02-06', nav: 1245.67 }, { date: '2026-01-06', nav: 1156.78 }],
+                    '3M': [{ date: '2026-02-06', nav: 1245.67 }, { date: '2025-11-06', nav: 1089.45 }],
+                    '6M': [{ date: '2026-02-06', nav: 1245.67 }, { date: '2025-08-06', nav: 1020.34 }],
+                    '1Y': [{ date: '2026-02-06', nav: 1245.67 }, { date: '2025-02-06', nav: 945.23 }],
+                    '3Y': [{ date: '2026-02-06', nav: 1245.67 }, { date: '2023-02-06', nav: 680.56 }]
+                }
+            },
+            {
+                id: 3, name: 'SBI Small Cap Fund', amc: 'SBI', category: 'Small Cap', nav: 432.89, change: -1.2, schemeCode: '119597', navHistory: {
+                    '1M': [{ date: '2026-02-06', nav: 432.89 }, { date: '2026-01-06', nav: 420.34 }],
+                    '3M': [{ date: '2026-02-06', nav: 432.89 }, { date: '2025-11-06', nav: 390.45 }],
+                    '6M': [{ date: '2026-02-06', nav: 432.89 }, { date: '2025-08-06', nav: 365.78 }],
+                    '1Y': [{ date: '2026-02-06', nav: 432.89 }, { date: '2025-02-06', nav: 320.56 }],
+                    '3Y': [{ date: '2026-02-06', nav: 432.89 }, { date: '2023-02-06', nav: 180.34 }]
+                }
+            },
+            {
+                id: 4, name: 'Axis Midcap Fund', amc: 'Axis', category: 'Mid Cap', nav: 678.45, change: 3.1, schemeCode: '120716', navHistory: {
+                    '1M': [{ date: '2026-02-06', nav: 678.45 }, { date: '2026-01-06', nav: 598.34 }],
+                    '3M': [{ date: '2026-02-06', nav: 678.45 }, { date: '2025-11-06', nav: 545.67 }],
+                    '6M': [{ date: '2026-02-06', nav: 678.45 }, { date: '2025-08-06', nav: 498.23 }],
+                    '1Y': [{ date: '2026-02-06', nav: 678.45 }, { date: '2025-02-06', nav: 445.78 }],
+                    '3Y': [{ date: '2026-02-06', nav: 678.45 }, { date: '2023-02-06', nav: 280.89 }]
+                }
+            }
+        ];
+
+        const BONDS_DATA = [
+            { id: 1, name: 'SBI 7.5% 2030', issuer: 'State Bank of India', coupon: 7.5, tenure: '2030', rating: 'AAA', minInvest: '10,000', details: 'Secure government-backed bonds with quarterly interest payouts.' },
+            { id: 2, name: 'HDFC AAA Bond 2028', issuer: 'HDFC Bank', coupon: 7.2, tenure: '2028', rating: 'AAA', minInvest: '25,000', details: 'Top-rated corporate bonds with semi-annual coupon payments.' },
+            { id: 3, name: 'ICICI Infrastructure Bond', issuer: 'ICICI Bank', coupon: 8.0, tenure: '2032', rating: 'AA+', minInvest: '50,000', details: 'Infrastructure bonds eligible for tax benefits under section 80CCF.' },
+            { id: 4, name: 'Tata Power 6.8% Bond', issuer: 'Tata Power', coupon: 6.8, tenure: '2027', rating: 'AA', minInvest: '15,000', details: 'Utility sector bonds with stable returns and moderate risk.' }
+        ];
+
+        const INSURANCE_DATA = [
+            { id: 1, name: 'Max Life Term Plan', insurer: 'Max Life', type: 'Term', premium: '₹500-2000/mo', sumAssured: '₹50L-2Cr', details: 'Pure term insurance with 99.1% claim settlement ratio.' },
+            { id: 2, name: 'HDFC Health Shield', insurer: 'HDFC Ergo', type: 'Health', premium: '₹800-3500/mo', sumAssured: '₹5L-50L', details: 'Comprehensive health coverage with no room rent capping.' },
+            { id: 3, name: 'LIC Jeevan Anand', insurer: 'LIC', type: 'Endowment', premium: '₹1200-5000/mo', sumAssured: '₹10L-1Cr', details: 'Traditional plan combining insurance and savings with guaranteed returns.' },
+            { id: 4, name: 'ICICI Pension Plan', insurer: 'ICICI Prudential', type: 'Pension', premium: '₹2000-10000/mo', sumAssured: 'Variable', details: 'Retirement solution with tax benefits under 80C and annuity options.' }
+        ];
+
+        const PROPERTIES_DATA = [
+            { id: 1, title: '2BHK New Town', city: 'Kolkata', size: '1050 sqft', price: '₹45L-55L', images: ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800'], details: 'Modern 2BHK in prime New Town location with 24/7 security, clubhouse, and parking.' },
+            { id: 2, title: '3BHK Whitefield', city: 'Bangalore', size: '1550 sqft', price: '₹1.2Cr-1.5Cr', images: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800', 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800'], details: 'Spacious 3BHK near IT corridor with swimming pool and gym facilities.' },
+            { id: 3, title: '1BHK Andheri', city: 'Mumbai', size: '650 sqft', price: '₹85L-95L', images: ['https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800', 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800'], details: 'Compact 1BHK with excellent connectivity to Western Express Highway.' },
+            { id: 4, title: '2BHK Greater Noida', city: 'Delhi NCR', size: '1200 sqft', price: '₹42L-52L', images: ['https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800', 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800'], details: 'Ready-to-move 2BHK with modular kitchen and premium fittings.' }
+        ];
+
+        // State
+        let currentPage = 'home';
+        let selectedMF = [];
+        let currentFilters = { mf: { amc: 'all', category: 'all' }, re: { city: 'all', size: 'all' } };
+
+        // Navigation
+        function navigate(page) {
+            currentPage = page;
+            closeDrawer();
+            closeModal();
+            render();
+        }
+
+        // Render functions
+        async function render() {
+            const content = document.getElementById('app-content');
+
+            switch (currentPage) {
+                case 'home':
+                    content.innerHTML = renderHome();
+                    break;
+                case 'mf':
+                    content.innerHTML = '<div class="text-center py-20"><div class="text-gray-600">Loading mutual funds data...</div></div>';
+                    content.innerHTML = await renderMutualFunds();
+                    attachMFHandlers();
+                    break;
+                case 'bonds':
+                    content.innerHTML = renderBonds();
+                    attachBondsHandlers();
+                    break;
+                case 'insurance':
+                    content.innerHTML = renderInsurance();
+                    attachInsuranceHandlers();
+                    break;
+                case 'realestate':
+                    content.innerHTML = renderRealEstate();
+                    attachREHandlers();
+                    break;
+            }
+        }
+
+        function renderHome() {
+            return `
+                <div class="glass-card p-12 mb-12 text-center bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-4">Build Your Wealth, Secure Your Future</h1>
+                    <p class="text-xl md:text-2xl mb-8">Make smarter investments. Achieve financial freedom. Live your dreams.</p>
+                    <button onclick="navigate('mf')" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">Start Investing Now</button>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="text-center">
+                        <div class="text-5xl font-bold text-blue-600 mb-2">12%+</div>
+                        <div class="text-gray-600">Average Annual Returns</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-bold text-blue-600 mb-2">10,000+</div>
+                        <div class="text-gray-600">Happy Investors</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-bold text-blue-600 mb-2">₹500Cr+</div>
+                        <div class="text-gray-600">Assets Under Management</div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Explore Investment Opportunities</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="glass-card p-8 cursor-pointer" onclick="navigate('mf')">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">Mutual Funds</h3>
+                            <p class="text-gray-600 mb-4">Browse, compare and invest in top-performing mutual funds with expert-backed strategies</p>
+                            <div class="text-blue-600 font-semibold">Explore Funds →</div>
+                        </div>
+                        <div class="glass-card p-8 cursor-pointer" onclick="navigate('bonds')">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">Bonds</h3>
+                            <p class="text-gray-600 mb-4">Secure fixed-income investments with guaranteed returns and tax benefits</p>
+                            <div class="text-blue-600 font-semibold">View Bonds →</div>
+                        </div>
+                        <div class="glass-card p-8 cursor-pointer" onclick="navigate('insurance')">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">Insurance</h3>
+                            <p class="text-gray-600 mb-4">Protect your family with comprehensive insurance plans from trusted providers</p>
+                            <div class="text-blue-600 font-semibold">Get Protected →</div>
+                        </div>
+                        <div class="glass-card p-8 cursor-pointer" onclick="navigate('realestate')">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">Real Estate</h3>
+                            <p class="text-gray-600 mb-4">Find your dream property across major Indian cities and invest in your future</p>
+                            <div class="text-blue-600 font-semibold">Discover Properties →</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-12 text-center bg-gradient-to-r from-green-600 to-green-800 text-white">
+                    <h2 class="text-4xl font-bold mb-4">Your Dream Home Awaits</h2>
+                    <p class="text-xl mb-6">Premium properties in Kolkata, Mumbai, Bangalore & Delhi NCR</p>
+                    <button onclick="navigate('realestate')" class="bg-white text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">Explore Properties</button>
+                </div>
+            `;
+        }
+
+        async function renderMutualFunds() {
+            const filtered = MF_DATA.filter(mf =>
+                (currentFilters.mf.amc === 'all' || mf.amc === currentFilters.mf.amc) &&
+                (currentFilters.mf.category === 'all' || mf.category === currentFilters.mf.category)
+            );
+
+            // Fetch live data for all filtered funds
+            const fundsWithLiveData = await Promise.all(
+                filtered.map(async (mf) => {
+                    if (mf.schemeCode) {
+                        return await loadLiveDataForMF({ ...mf });
+                    }
+                    return mf;
+                })
+            );
+
+            return `
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Mutual Funds</h2>
+                
+                <div class="glass-card p-4 mb-6">
+                    <div class="flex flex-wrap gap-4">
+                        <select onchange="updateMFFilter('amc', this.value)" class="px-4 py-2 rounded-lg border-0 focus:ring-2 focus:ring-blue-500">
+                            <option value="all" ${currentFilters.mf.amc === 'all' ? 'selected' : ''}>All AMCs</option>
+                            <option value="HDFC" ${currentFilters.mf.amc === 'HDFC' ? 'selected' : ''}>HDFC</option>
+                            <option value="ICICI" ${currentFilters.mf.amc === 'ICICI' ? 'selected' : ''}>ICICI</option>
+                            <option value="SBI" ${currentFilters.mf.amc === 'SBI' ? 'selected' : ''}>SBI</option>
+                            <option value="Axis" ${currentFilters.mf.amc === 'Axis' ? 'selected' : ''}>Axis</option>
+                        </select>
+                        <select onchange="updateMFFilter('category', this.value)" class="px-4 py-2 rounded-lg border-0 focus:ring-2 focus:ring-blue-500">
+                            <option value="all" ${currentFilters.mf.category === 'all' ? 'selected' : ''}>All Categories</option>
+                            <option value="Large Cap" ${currentFilters.mf.category === 'Large Cap' ? 'selected' : ''}>Large Cap</option>
+                            <option value="Mid Cap" ${currentFilters.mf.category === 'Mid Cap' ? 'selected' : ''}>Mid Cap</option>
+                            <option value="Small Cap" ${currentFilters.mf.category === 'Small Cap' ? 'selected' : ''}>Small Cap</option>
+                            <option value="Flexi Cap" ${currentFilters.mf.category === 'Flexi Cap' ? 'selected' : ''}>Flexi Cap</option>
+                        </select>
+                    </div>
+                </div>
+
+                ${selectedMF.length > 0 ? `
+                    <div class="glass-card p-4 mb-6">
+                        <div class="flex justify-between items-center">
+                            <div class="font-semibold text-gray-900">Comparing: ${selectedMF.map(id => MF_DATA.find(m => m.id === id).name).join(' vs ')}</div>
+                            <button onclick="compareSchemes()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Compare</button>
+                        </div>
+                    </div>
+                ` : ''}
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${fundsWithLiveData.map(mf => `
+                        <div class="glass-card p-6 cursor-pointer" onclick="openMFDrawer(${mf.id})">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">${mf.name}</h3>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <div class="text-2xl font-bold text-gray-900">₹${mf.nav.toFixed(2)}</div>
+                                    <div class="text-sm text-gray-600">${mf.category}</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-lg font-bold ${mf.change >= 0 ? 'text-green-600' : 'text-red-600'}">
+                                        ${mf.change >= 0 ? '↑' : '↓'} ${Math.abs(mf.change)}%
+                                    </div>
+                                    <div class="text-xs text-gray-600">1D Change</div>
+                                </div>
+                            </div>
+                            <div class="pill bg-blue-100 text-blue-700">${mf.amc}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderBonds() {
+            return `
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Bonds</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    ${BONDS_DATA.map(bond => `
+                        <div class="glass-card p-6 cursor-pointer" onclick="openBondDetail(${bond.id})">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">${bond.name}</h3>
+                            <div class="mb-4">
+                                <div class="text-sm text-gray-600 mb-2">Issuer: ${bond.issuer}</div>
+                                <div class="flex gap-2 mb-2">
+                                    <span class="pill bg-green-100 text-green-700">Coupon: ${bond.coupon}%</span>
+                                    <span class="pill bg-blue-100 text-blue-700">Tenure: ${bond.tenure}</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span class="pill bg-yellow-100 text-yellow-700">Rating: ${bond.rating}</span>
+                                    <span class="pill bg-gray-100 text-gray-700">Min: ₹${bond.minInvest}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderInsurance() {
+            return `
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Insurance Plans</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    ${INSURANCE_DATA.map(ins => `
+                        <div class="glass-card p-6 cursor-pointer" onclick="openInsuranceDetail(${ins.id})">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">${ins.name}</h3>
+                            <div class="mb-4">
+                                <div class="text-sm text-gray-600 mb-2">Provider: ${ins.insurer}</div>
+                                <div class="flex gap-2 mb-2">
+                                    <span class="pill bg-blue-100 text-blue-700">${ins.type}</span>
+                                    <span class="pill bg-green-100 text-green-700">${ins.premium}</span>
+                                </div>
+                                <div class="pill bg-gray-100 text-gray-700">Cover: ${ins.sumAssured}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderRealEstate() {
+            const filtered = PROPERTIES_DATA.filter(prop =>
+                (currentFilters.re.city === 'all' || prop.city === currentFilters.re.city) &&
+                (currentFilters.re.size === 'all' || prop.title.includes(currentFilters.re.size))
+            );
+
+            return `
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Real Estate Properties</h2>
+                
+                <div class="glass-card p-4 mb-6">
+                    <div class="flex flex-wrap gap-4">
+                        <select onchange="updateREFilter('city', this.value)" class="px-4 py-2 rounded-lg border-0 focus:ring-2 focus:ring-blue-500">
+                            <option value="all">All Cities</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi NCR">Delhi NCR</option>
+                        </select>
+                        <select onchange="updateREFilter('size', this.value)" class="px-4 py-2 rounded-lg border-0 focus:ring-2 focus:ring-blue-500">
+                            <option value="all">All Sizes</option>
+                            <option value="1BHK">1 BHK</option>
+                            <option value="2BHK">2 BHK</option>
+                            <option value="3BHK">3 BHK</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${filtered.map(prop => `
+                        <div class="glass-card p-0 overflow-hidden cursor-pointer" onclick="openPropertyDetail(${prop.id})">
+                            <img src="${prop.images[0]}" alt="${prop.title}" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">${prop.title}</h3>
+                                <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                    <span>Location: ${prop.city}</span>
+                                    <span>Size: ${prop.size}</span>
+                                </div>
+                                <div class="text-lg font-bold text-blue-600">${prop.price}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Handlers
+        function attachMFHandlers() {
+            // Already inline
+        }
+
+        function attachBondsHandlers() {
+            // Already inline
+        }
+
+        function attachInsuranceHandlers() {
+            // Already inline
+        }
+
+        function attachREHandlers() {
+            // Already inline
+        }
+
+        function updateMFFilter(type, value) {
+            currentFilters.mf[type] = value;
+            navigate('mf');
+        }
+
+        function updateREFilter(type, value) {
+            currentFilters.re[type] = value;
+            navigate('realestate');
+        }
+
+        async function fetchLiveMFData(schemeCode) {
+            try {
+                const response = await fetch(`${MFAPI_BASE_URL}/${schemeCode}`);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching MF data:', error);
+                return null;
+            }
+        }
+
+        async function loadLiveDataForMF(mf) {
+            if (!mf.schemeCode) return mf;
+
+            const liveData = await fetchLiveMFData(mf.schemeCode);
+            if (liveData && liveData.data && liveData.data.length > 0) {
+                const sortedData = liveData.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+                const latestNav = parseFloat(sortedData[0].nav);
+                const previousNav = sortedData.length > 1 ? parseFloat(sortedData[1].nav) : latestNav;
+                const change = ((latestNav - previousNav) / previousNav * 100).toFixed(2);
+
+                mf.nav = latestNav;
+                mf.change = parseFloat(change);
+
+                // Process historical data for different periods
+                const processHistoricalData = (days) => {
+                    const filtered = sortedData.slice(0, Math.min(days, sortedData.length));
+                    return filtered.map(d => ({ date: d.date, nav: parseFloat(d.nav) })).reverse();
+                };
+
+                mf.navHistory = {
+                    '1M': processHistoricalData(30),
+                    '3M': processHistoricalData(90),
+                    '6M': processHistoricalData(180),
+                    '1Y': processHistoricalData(365),
+                    '3Y': processHistoricalData(1095)
+                };
+            }
+            return mf;
+        }
+
+        async function openMFDrawer(id) {
+            let mf = MF_DATA.find(m => m.id === id);
+
+            // Show loading state
+            document.getElementById('drawer').innerHTML = '<div class="p-6 text-center"><div class="text-gray-600">Loading live data...</div></div>';
+            document.getElementById('drawer').classList.add('open');
+
+            // Fetch live data
+            mf = await loadLiveDataForMF(mf);
+
+            // Store for period changes
+            window.currentMFLiveData = mf;
+            window.currentChartPeriod = '1M';
+
+            let currentPeriod = '1M';
+
+            const drawerContent = `
+                <div class="p-6">
+                    <button onclick="closeDrawer()" class="text-3xl text-gray-600 hover:text-gray-900 mb-4 float-right">&times;</button>
+                    <div class="clear-both"></div>
+                    <h2 class="text-2xl font-bold mb-4">${mf.name}</h2>
+                    
+                    <div class="mb-4" id="nav-display">
+                        <div class="text-3xl font-bold text-gray-900">₹${mf.nav.toFixed(2)}</div>
+                        <div class="text-lg ${mf.change >= 0 ? 'text-green-600' : 'text-red-600'}">
+                            ${mf.change >= 0 ? '↑' : '↓'} ${Math.abs(mf.change)}%
+                        </div>
+                    </div>
+
+                    <div class="mb-4 flex flex-wrap gap-2" id="period-filters">
+                        ${['1M', '3M', '6M', '1Y', '3Y'].map(p =>
+                `<button onclick="changePeriod('${p}')" data-period="${p}" class="period-btn px-3 py-1 rounded ${p === currentPeriod ? 'bg-blue-500 text-white' : 'bg-gray-200'}">${p}</button>`
+            ).join('')}
+                    </div>
+
+                    <div id="chart-container" class="mb-6 bg-white p-4 rounded-lg" style="height: 320px;">
+                        <canvas id="mf-chart"></canvas>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" onchange="toggleCompare(${id})" ${selectedMF.includes(id) ? 'checked' : ''} class="mr-2">
+                            <span>Add to Compare</span>
+                        </label>
+                    </div>
+
+                    <button onclick="openCalculator(${id})" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 mb-4">
+                        Return Calculator
+                    </button>
+
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <div class="text-sm mb-2"><strong>AMC:</strong> ${mf.amc}</div>
+                        <div class="text-sm mb-2"><strong>Category:</strong> ${mf.category}</div>
+                        ${mf.schemeCode ? `<div class="text-xs text-gray-500 mt-2">Live data from MFAPI.in (Scheme: ${mf.schemeCode})</div>` : ''}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('drawer').innerHTML = drawerContent;
+            document.getElementById('drawer').classList.add('open');
+            renderMFChart(mf, currentPeriod);
+        }
+
+        function renderMFChart(mf, period) {
+            const ctx = document.getElementById('mf-chart');
+            if (!ctx) return;
+
+            const data = mf.navHistory[period];
+            const maxNav = Math.max(...data.map(d => d.nav));
+            const minNav = Math.min(...data.map(d => d.nav));
+            const range = maxNav - minNav;
+            const padding = range * 0.1;
+
+            // Create x-axis labels based on period
+            const xAxisLabels = [];
+            if (data.length > 0) {
+                const step = Math.max(1, Math.floor(data.length / 5)); // Show ~5 labels
+                for (let i = 0; i < data.length; i += step) {
+                    const date = new Date(data[i].date);
+                    // Skip if invalid date
+                    if (isNaN(date.getTime())) continue;
+                    const label = date.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
+                    xAxisLabels.push({ index: i, label: label });
+                }
+                // Always include the last point
+                if (xAxisLabels.length > 0 && xAxisLabels[xAxisLabels.length - 1].index !== data.length - 1) {
+                    const lastDate = new Date(data[data.length - 1].date);
+                    if (!isNaN(lastDate.getTime())) {
+                        const lastLabel = lastDate.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
+                        xAxisLabels.push({ index: data.length - 1, label: lastLabel });
+                    }
+                }
+            }
+
+            const chartHTML = `
+                <div style="position: relative; width: 100%; height: 280px;">
+                    <div id="chart-tooltip" style="position: absolute; display: none; background: rgba(0,0,0,0.9); color: white; padding: 8px 12px; border-radius: 6px; font-size: 12px; pointer-events: none; z-index: 1000; white-space: nowrap;"></div>
+                    <svg id="mf-svg" width="100%" height="280" style="border: 1px solid #e5e7eb; border-radius: 8px; background: white; cursor: crosshair;">
+                        <!-- Y-axis labels -->
+                        <text x="10" y="30" font-size="11" fill="#6b7280">₹${maxNav.toFixed(2)}</text>
+                        <text x="10" y="125" font-size="11" fill="#6b7280">₹${((maxNav + minNav) / 2).toFixed(2)}</text>
+                        <text x="10" y="220" font-size="11" fill="#6b7280">₹${minNav.toFixed(2)}</text>
+                        
+                        <!-- Grid lines -->
+                        <line x1="70" y1="30" x2="470" y2="30" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="70" y1="125" x2="470" y2="125" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="70" y1="215" x2="470" y2="215" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3,3"/>
+                        
+                        <!-- X-axis labels -->
+                        ${xAxisLabels.map(({ index, label }) => {
+                const x = (index / (data.length - 1)) * 400 + 70;
+                return `<text x="${x}" y="245" font-size="10" fill="#6b7280" text-anchor="middle">${label}</text>`;
+            }).join('')}
+                        
+                        <!-- Chart line -->
+                        <polyline
+                            fill="none"
+                            stroke="#3b82f6"
+                            stroke-width="3"
+                            points="${data.map((point, i) => {
+                const x = (i / (data.length - 1)) * 400 + 70;
+                const y = 215 - ((point.nav - minNav) / (range + padding)) * 185;
+                return `${x},${y}`;
+            }).join(' ')}"
+                        />
+                        
+                        <!-- Interactive overlay -->
+                        <rect id="chart-overlay" x="70" y="20" width="400" height="210" fill="transparent"/>
+                        
+                        <!-- Data points -->
+                        ${data.map((point, i) => {
+                const x = (i / (data.length - 1)) * 400 + 70;
+                const y = 215 - ((point.nav - minNav) / (range + padding)) * 185;
+                return `<circle class="chart-point" cx="${x}" cy="${y}" r="5" fill="#3b82f6" opacity="0" data-date="${point.date}" data-nav="${point.nav.toFixed(2)}" data-x="${x}" data-y="${y}"/>`;
+            }).join('')}
+                        
+                        <!-- Hover line -->
+                        <line id="hover-line" x1="0" y1="20" x2="0" y2="230" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4" opacity="0"/>
+                        
+                        <!-- Hover point -->
+                        <circle id="hover-point" cx="0" cy="0" r="6" fill="#3b82f6" stroke="white" stroke-width="2" opacity="0"/>
+                    </svg>
+                </div>
+            `;
+            ctx.parentElement.innerHTML = chartHTML;
+
+            // Add interactivity
+            setTimeout(() => {
+                const svg = document.getElementById('mf-svg');
+                const overlay = document.getElementById('chart-overlay');
+                const tooltip = document.getElementById('chart-tooltip');
+                const hoverLine = document.getElementById('hover-line');
+                const hoverPoint = document.getElementById('hover-point');
+                const points = document.querySelectorAll('.chart-point');
+
+                let currentPointIndex = -1;
+
+                function findNearestPoint(mouseX) {
+                    let nearest = 0;
+                    let minDist = Infinity;
+
+                    points.forEach((point, i) => {
+                        const x = parseFloat(point.getAttribute('data-x'));
+                        const dist = Math.abs(x - mouseX);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            nearest = i;
+                        }
+                    });
+
+                    return nearest;
+                }
+
+                function showTooltip(e) {
+                    const rect = svg.getBoundingClientRect();
+                    const mouseX = e.clientX - rect.left;
+                    const mouseY = e.clientY - rect.top;
+
+                    if (mouseX < 70 || mouseX > 470 || mouseY < 20 || mouseY > 230) {
+                        hideTooltip();
+                        return;
+                    }
+
+                    const pointIndex = findNearestPoint(mouseX);
+                    const point = points[pointIndex];
+
+                    if (pointIndex !== currentPointIndex) {
+                        currentPointIndex = pointIndex;
+
+                        const x = parseFloat(point.getAttribute('data-x'));
+                        const y = parseFloat(point.getAttribute('data-y'));
+                        const date = point.getAttribute('data-date');
+                        const nav = point.getAttribute('data-nav');
+
+                        // Update hover line
+                        hoverLine.setAttribute('x1', x);
+                        hoverLine.setAttribute('x2', x);
+                        hoverLine.setAttribute('opacity', '1');
+
+                        // Update hover point
+                        hoverPoint.setAttribute('cx', x);
+                        hoverPoint.setAttribute('cy', y);
+                        hoverPoint.setAttribute('opacity', '1');
+
+                        // Show all points slightly
+                        points.forEach(p => p.setAttribute('opacity', '0.3'));
+                        point.setAttribute('opacity', '1');
+
+                        // Update tooltip
+                        tooltip.innerHTML = `<strong>${date}</strong><br/>NAV: ₹${nav}`;
+                        tooltip.style.display = 'block';
+
+                        // Position tooltip
+                        const tooltipX = x + rect.left;
+                        const tooltipY = y + rect.top - 50;
+
+                        tooltip.style.left = (tooltipX - tooltip.offsetWidth / 2) + 'px';
+                        tooltip.style.top = tooltipY + 'px';
+                    }
+                }
+
+                function hideTooltip() {
+                    currentPointIndex = -1;
+                    tooltip.style.display = 'none';
+                    hoverLine.setAttribute('opacity', '0');
+                    hoverPoint.setAttribute('opacity', '0');
+                    points.forEach(p => p.setAttribute('opacity', '0'));
+                }
+
+                // Mouse events
+                overlay.addEventListener('mousemove', showTooltip);
+                overlay.addEventListener('mouseleave', hideTooltip);
+
+                // Touch events
+                overlay.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    showTooltip(e.touches[0]);
+                });
+
+                overlay.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    showTooltip(e.touches[0]);
+                });
+
+                overlay.addEventListener('touchend', hideTooltip);
+            }, 100);
+        }
+
+        function changePeriod(period) {
+            const mf = window.currentMFLiveData;
+            if (!mf) return;
+
+            // Store current period globally
+            window.currentChartPeriod = period;
+
+            // Calculate period-specific change
+            const data = mf.navHistory[period];
+            if (data && data.length > 1) {
+                const latestNav = data[data.length - 1].nav;
+                const earliestNav = data[0].nav;
+                const periodChange = ((latestNav - earliestNav) / earliestNav * 100).toFixed(2);
+
+                // Update NAV display with period-specific change
+                const navDisplay = document.getElementById('nav-display');
+                if (navDisplay) {
+                    navDisplay.innerHTML = `
+                        <div class="text-3xl font-bold text-gray-900">₹${latestNav.toFixed(2)}</div>
+                        <div class="text-lg ${periodChange >= 0 ? 'text-green-600' : 'text-red-600'}">
+                            ${periodChange >= 0 ? '↑' : '↓'} ${Math.abs(periodChange)}% (${period})
+                        </div>
+                    `;
+                }
+            }
+
+            renderMFChart(mf, period);
+
+            // Update button states
+            document.querySelectorAll('.period-btn').forEach(btn => {
+                if (btn.getAttribute('data-period') === period) {
+                    btn.className = 'period-btn px-3 py-1 rounded bg-blue-500 text-white';
+                } else {
+                    btn.className = 'period-btn px-3 py-1 rounded bg-gray-200';
+                }
+            });
+        }
+
+        function toggleCompare(id) {
+            if (selectedMF.includes(id)) {
+                selectedMF = selectedMF.filter(mid => mid !== id);
+            } else {
+                if (selectedMF.length >= 2) {
+                    showToast('Maximum 2 schemes can be compared');
+                    event.target.checked = false;
+                    return;
+                }
+                selectedMF.push(id);
+            }
+            render();
+        }
+
+        function compareSchemes() {
+            if (selectedMF.length !== 2) return;
+
+            const schemes = selectedMF.map(id => MF_DATA.find(m => m.id === id));
+            const modalContent = `
+                <div class="p-6">
+                    <button onclick="closeModal()" class="text-3xl text-gray-600 hover:text-gray-900 float-right">&times;</button>
+                    <div class="clear-both"></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Scheme Comparison</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full mb-4">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="text-left py-2">Metric</th>
+                                    <th class="text-left py-2">${schemes[0].name}</th>
+                                    <th class="text-left py-2">${schemes[1].name}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b"><td class="py-2">Current NAV</td><td>₹${schemes[0].nav}</td><td>₹${schemes[1].nav}</td></tr>
+                                <tr class="border-b"><td class="py-2">1D Change</td><td class="${schemes[0].change >= 0 ? 'text-green-500' : 'text-red-500'}">${schemes[0].change}%</td><td class="${schemes[1].change >= 0 ? 'text-green-500' : 'text-red-500'}">${schemes[1].change}%</td></tr>
+                                <tr class="border-b"><td class="py-2">Category</td><td>${schemes[0].category}</td><td>${schemes[1].category}</td></tr>
+                                <tr><td class="py-2">AMC</td><td>${schemes[0].amc}</td><td>${schemes[1].amc}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button onclick="closeModal()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Close</button>
+                </div>
+            `;
+
+            openModal(modalContent);
+        }
+
+        function openCalculator(id) {
+            const mf = MF_DATA.find(m => m.id === id);
+            const modalContent = `
+                <div class="p-6">
+                    <button onclick="closeModal()" class="text-3xl text-gray-600 hover:text-gray-900 float-right">&times;</button>
+                    <div class="clear-both"></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Unlock Return Calculator</h3>
+                    <p class="text-sm text-gray-600 mb-6">${mf.name}</p>
+                    
+                    <form id="calc-unlock-form" onsubmit="unlockCalculator(event, ${id})">
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold text-gray-700">Name *</label>
+                            <input type="text" name="name" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Your name">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold text-gray-700">Email *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="your@email.com">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold text-gray-700">Phone (Optional)</label>
+                            <input type="tel" name="phone" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="+91 XXXXXXXXXX">
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-semibold">
+                            Access Calculator
+                        </button>
+                    </form>
+                </div>
+            `;
+
+            openModal(modalContent);
+        }
+
+        function unlockCalculator(event, id) {
+            event.preventDefault();
+            const mf = MF_DATA.find(m => m.id === id);
+            const formData = new FormData(event.target);
+
+            // Store lead data
+            console.log('Calculator Access Lead:', {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone') || 'Not provided',
+                product_id: id,
+                action: 'calculator_access'
+            });
+
+            const modalContent = `
+                <div class="p-6">
+                    <button onclick="closeModal()" class="text-3xl text-gray-600 hover:text-gray-900 float-right">&times;</button>
+                    <div class="clear-both"></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Return Calculator</h3>
+                    <p class="text-sm text-gray-600 mb-4">${mf.name}</p>
+                    
+                    <div class="mb-4">
+                        <label class="block mb-2 font-semibold">Investment Type</label>
+                        <select id="calc-type" class="w-full px-4 py-2 rounded-lg border">
+                            <option value="lumpsum">Lump Sum</option>
+                            <option value="sip">SIP</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block mb-2 font-semibold">Amount (₹)</label>
+                        <input type="number" id="calc-amount" class="w-full px-4 py-2 rounded-lg border" placeholder="100000" value="100000">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block mb-2 font-semibold">Period (Years)</label>
+                        <input type="number" id="calc-period" class="w-full px-4 py-2 rounded-lg border" placeholder="5" value="5">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block mb-2 font-semibold">Expected Return (%)</label>
+                        <input type="number" id="calc-return" class="w-full px-4 py-2 rounded-lg border" placeholder="12" value="12" step="0.1">
+                    </div>
+                    
+                    <button onclick="calculateReturn(${id})" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 mb-2">
+                        Calculate
+                    </button>
+                    
+                    <div id="calc-result" class="bg-gray-100 p-4 rounded-lg hidden">
+                        <div class="text-lg font-bold mb-2">Estimated Returns</div>
+                        <div id="calc-output"></div>
+                    </div>
+                </div>
+            `;
+
+            openModal(modalContent);
+        }
+
+        function calculateReturn(id) {
+            const type = document.getElementById('calc-type').value;
+            const amount = parseFloat(document.getElementById('calc-amount').value);
+            const period = parseFloat(document.getElementById('calc-period').value);
+            const returnRate = parseFloat(document.getElementById('calc-return').value) / 100;
+
+            let futureValue;
+            if (type === 'lumpsum') {
+                futureValue = amount * Math.pow(1 + returnRate, period);
+            } else {
+                const monthlyRate = returnRate / 12;
+                const months = period * 12;
+                futureValue = amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+            }
+
+            const invested = type === 'lumpsum' ? amount : amount * period * 12;
+            const returns = futureValue - invested;
+
+            document.getElementById('calc-result').classList.remove('hidden');
+            document.getElementById('calc-output').innerHTML = `
+                <div class="mb-2 text-gray-700">Invested: <strong>₹${invested.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</strong></div>
+                <div class="mb-2 text-gray-700">Returns: <strong class="text-green-600">₹${returns.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</strong></div>
+                <div class="mb-4 text-gray-700">Total Value: <strong class="text-blue-600">₹${futureValue.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</strong></div>
+                <button onclick="showLeadForm('MF_CALC', ${id}, {type: '${type}', amount: ${amount}, period: ${period}, returnRate: ${returnRate * 100}})" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                    Get Personalized Plan
+                </button>
+            `;
+        }
+
+        function openBondDetail(id) {
+            const bond = BONDS_DATA.find(b => b.id === id);
+            const modalContent = `
+                <div class="p-6">
+                    <button onclick="closeModal()" class="text-3xl text-gray-600 hover:text-gray-900 float-right">&times;</button>
+                    <div class="clear-both"></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">${bond.name}</h3>
+                    <div class="mb-4">
+                        <div class="mb-2"><strong>Issuer:</strong> ${bond.issuer}</div>
+                        <div class="mb-2"><strong>Coupon Rate:</strong> ${bond.coupon}%</div>
+                        <div class="mb-2"><strong>Maturity:</strong> ${bond.tenure}</div>
+                        <div class="mb-2"><strong>Rating:</strong> ${bond.rating}</div>
+                        <div class="mb-2"><strong>Min Investment:</strong> ₹${bond.minInvest}</div>
+                    </div>
+                    <p class="text-sm mb-4 text-gray-600">${bond.details}</p>
+                    <button onclick="showLeadForm('BOND_ENQUIRY', ${id})" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+                        ENQUIRE NOW
+                    </button>
+                </div>
+            `;
+            openModal(modalContent);
+        }
+
+        function openInsuranceDetail(id) {
+            const ins = INSURANCE_DATA.find(i => i.id === id);
+            const modalContent = `
+                <div class="p-6">
+                    <button onclick="closeModal()" class="text-3xl text-gray-600 hover:text-gray-900 float-right">&times;</button>
+                    <div class="clear-both"></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">${ins.name}</h3>
+                    <div class="mb-4">
+                        <div class="mb-2"><strong>Provider:</strong> ${ins.insurer}</div>
+                        <div class="mb-2"><strong>Type:</strong> ${ins.type}</div>
+                        <div class="mb-2"><strong>Premium:</strong> ${ins.premium}</div>
+                        <div class="mb-2"><strong>Sum Assured:</strong> ${ins.sumAssured}</div>
+                    </div>
+                    <p class="text-sm mb-4 text-gray-600">${ins.details}</p>
+                    <button onclick="showLeadForm('INSURANCE_QUOTE', ${id})" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+                        GET QUOTE
+                    </button>
+                </div>
+            `;
+            openModal(modalContent);
+        }
+
+        function openPropertyDetail(id) {
+            const prop = PROPERTIES_DATA.find(p => p.id === id);
+            const drawerContent = `
+                <div class="p-6">
+                    <button onclick="closeDrawer()" class="text-3xl text-gray-600 hover:text-gray-900 mb-4 float-right">&times;</button>
+                    <div class="clear-both"></div>
+                    <h2 class="text-2xl font-bold mb-4">${prop.title}</h2>
+                    
+                    <div class="carousel mb-4 flex gap-2" style="scroll-snap-type: x mandatory;">
+                        ${prop.images.map(img => `<img src="${img}" alt="Property" class="w-full h-64 object-cover rounded-lg" style="scroll-snap-align: start;">`).join('')}
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="text-sm mb-2 text-gray-700"><strong>Location:</strong> ${prop.city}</div>
+                        <div class="text-sm mb-2 text-gray-700"><strong>Size:</strong> ${prop.size}</div>
+                        <div class="text-lg font-bold text-blue-600 mb-2">${prop.price}</div>
+                        <p class="text-sm text-gray-600">${prop.details}</p>
+                    </div>
+                    
+                    <button onclick="showLeadForm('RE_VISIT', ${id})" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+                        ENQUIRE FOR VISIT
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('drawer').innerHTML = drawerContent;
+            document.getElementById('drawer').classList.add('open');
+        }
+
+        function showLeadForm(leadType, productId, meta = {}) {
+            let product;
+            switch (leadType) {
+                case 'MF_CALC':
+                    product = MF_DATA.find(m => m.id === productId);
+                    break;
+                case 'BOND_ENQUIRY':
+                    product = BONDS_DATA.find(b => b.id === productId);
+                    break;
+                case 'INSURANCE_QUOTE':
+                    product = INSURANCE_DATA.find(i => i.id === productId);
+                    break;
+                case 'RE_VISIT':
+                    product = PROPERTIES_DATA.find(p => p.id === productId);
+                    break;
+            }
+
+            const modalContent = `
+                <div class="p-6">
+                    <button onclick="closeModal()" class="text-3xl text-gray-600 hover:text-gray-900 float-right">&times;</button>
+                    <div class="clear-both"></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Contact Details</h3>
+                    <p class="text-sm mb-4">We'll get back to you shortly</p>
+                    
+                    <form id="lead-form" onsubmit="submitLead(event, '${leadType}', ${productId}, ${JSON.stringify(meta).replace(/"/g, '&quot;')})">
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">Name *</label>
+                            <input type="text" name="name" required class="w-full px-4 py-2 rounded-lg border" placeholder="Your name">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">Email *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-2 rounded-lg border" placeholder="your@email.com">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">Phone *</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-2 rounded-lg border" placeholder="+91 XXXXXXXXXX">
+                        </div>
+                        
+                        ${leadType === 'INSURANCE_QUOTE' ? `
+                            <div class="mb-4">
+                                <label class="block mb-2 font-semibold">Age</label>
+                                <input type="number" name="age" class="w-full px-4 py-2 rounded-lg border" placeholder="35">
+                            </div>
+                        ` : ''}
+                        
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">Message</label>
+                            <textarea name="message" rows="3" class="w-full px-4 py-2 rounded-lg border" placeholder="Any specific requirements..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-semibold">
+                            Submit Enquiry
+                        </button>
+                    </form>
+                </div>
+            `;
+
+            openModal(modalContent);
+        }
+
+        function submitLead(event, leadType, productId, meta) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const payload = {
+                lead_type: leadType,
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message') || '',
+                meta: {
+                    product_id: productId,
+                    source_page: currentPage,
+                    timestamp: new Date().toISOString(),
+                    ...meta
+                }
+            };
+
+            if (formData.get('age')) {
+                payload.meta.age = formData.get('age');
+            }
+
+            console.log('Lead Payload:', payload);
+
+            // Uncomment when you have actual Google Sheets URL
+            // fetch(GSHEET_WEBAPP_URL, {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(payload)
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     showToast('✅ Lead submitted! We\'ll call you shortly');
+            //     closeModal();
+            // })
+            // .catch(error => {
+            //     showToast('❌ Error submitting lead. Please try again.');
+            //     console.error(error);
+            // });
+
+            // Demo mode - just show success
+            showToast('✅ Lead submitted! We\'ll call you shortly');
+            closeModal();
+
+            return false;
+        }
+
+        // UI Controls
+        function openModal(content) {
+            const modal = document.getElementById('modal');
+            modal.querySelector('.glass-card').innerHTML = content;
+            modal.classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('open');
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawer').classList.remove('open');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize
+        render();
+    </script>
+</body>
+
+</html>
