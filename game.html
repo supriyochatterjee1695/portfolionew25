@@ -1,0 +1,588 @@
+html <!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Quantum Playground: Visual Physics Lab</title> <script src="https://cdn.tailwindcss.com"></script> <style> @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+
+    body {
+        font-family: 'Outfit', sans-serif;
+        margin: 0;
+        overflow: hidden;
+        background-color: #0f172a; /* Slate 900 */
+        touch-action: none; /* Prevent pull-to-refresh on mobile */
+    }
+
+    canvas {
+        display: block;
+    }
+
+    /* Custom Scrollbar for controls if needed */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+    }
+
+    .glass-panel {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .control-btn {
+        transition: all 0.2s ease;
+    }
+    .control-btn:active {
+        transform: scale(0.95);
+    }
+    .control-btn.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* CRT Scanline effect overlay */
+    .scanlines {
+        background: linear-gradient(
+            to bottom,
+            rgba(255,255,255,0),
+            rgba(255,255,255,0) 50%,
+            rgba(0,0,0,0.1) 50%,
+            rgba(0,0,0,0.1)
+        );
+        background-size: 100% 4px;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.3;
+    }
+    
+    .vignette {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
+        pointer-events: none;
+        z-index: 49;
+    }
+
+    /* Range Slider Styling */
+    input[type=range] {
+        -webkit-appearance: none;
+        width: 100%;
+        background: transparent;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+        margin-top: -6px;
+        box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 4px;
+        cursor: pointer;
+        background: rgba(255,255,255,0.2);
+        border-radius: 2px;
+    }
+</style>
+</head> <body class="text-white selection:bg-pink-500 selection:text-white">
+
+<!-- Visual Effects Overlays -->
+<div class="scanlines"></div>
+<div class="vignette"></div>
+
+<!-- Canvas Layer -->
+<canvas id="simCanvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+
+<!-- UI: Header / Title -->
+<div class="absolute top-4 left-6 z-40 pointer-events-none">
+    <h1 class="text-3xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-violet-400 drop-shadow-lg">
+        Quantum Playground
+    </h1>
+    <p class="text-sm text-slate-400 tracking-wide mt-1 opacity-80">Touch, Drag & Create Physics</p>
+</div>
+
+<!-- UI: Control Panel (Upper Right) -->
+<div class="absolute top-4 right-4 z-40 flex flex-col gap-3 items-end w-64">
+    
+    <!-- Mode Selector -->
+    <div class="glass-panel p-2 rounded-xl flex gap-2 w-full justify-between">
+        <button id="mode-lines" class="control-btn active flex-1 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border border-transparent hover:bg-white/10" onclick="setMode('lines')">Web</button>
+        <button id="mode-waves" class="control-btn flex-1 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border border-transparent hover:bg-white/10" onclick="setMode('waves')">Wave</button>
+        <button id="mode-particles" class="control-btn flex-1 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border border-transparent hover:bg-white/10" onclick="setMode('particles')">Burst</button>
+    </div>
+
+    <!-- Settings Container -->
+    <div class="glass-panel p-4 rounded-xl w-full transition-all duration-300 transform origin-top-right">
+        
+        <!-- Dynamic Controls based on Mode -->
+        <div id="controls-container" class="space-y-4">
+            <!-- Content injected via JS -->
+        </div>
+
+        <div class="h-px bg-white/10 my-4"></div>
+
+        <!-- Common Controls -->
+        <div class="space-y-3">
+            <div class="flex justify-between items-center text-xs text-slate-300">
+                <span>Particle Count</span>
+                <span id="count-val">100</span>
+            </div>
+            <input type="range" id="particle-count" min="20" max="300" value="100" step="10">
+
+            <div class="flex justify-between items-center text-xs text-slate-300">
+                <span>Gravity</span>
+                <span id="grav-val">Low</span>
+            </div>
+            <input type="range" id="gravity-slider" min="0" max="2" value="0.5" step="0.1">
+            
+            <div class="flex justify-between items-center text-xs text-slate-300">
+                <span>Friction</span>
+                <span id="fric-val">Air</span>
+            </div>
+            <input type="range" id="friction-slider" min="0.90" max="0.99" value="0.96" step="0.01">
+        </div>
+        
+        <div class="mt-4 flex gap-2">
+            <button onclick="resetSimulation()" class="flex-1 bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors border border-white/5">
+                Reset System
+            </button>
+            <button onclick="toggleColorTheme()" class="w-10 h-8 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/5" title="Change Colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Instructions Toast (Bottom) -->
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 glass-panel px-6 py-3 rounded-full pointer-events-none transition-opacity duration-500" id="toast">
+    <p class="text-sm font-medium text-white/90 flex items-center gap-2">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        <span id="instruction-text">Drag your mouse to attract particles</span>
+    </p>
+</div>
+
+<script>
+    /**
+     * QUANTUM PLAYGROUND - Interactive Simulation Engine
+     * 
+     * Features:
+     * - Particle Physics (Euler integration)
+     * - Dynamic Rendering Modes (Lines, Waves, Raw)
+     * - Interactive Forces (Mouse/Touch attraction/repulsion)
+     * - Configurable Parameters
+     */
+
+    // --- Configuration & State ---
+    const canvas = document.getElementById('simCanvas');
+    const ctx = canvas.getContext('2d', { alpha: false }); // Optimize for no transparency on base
+    
+    let width, height;
+    let animationId;
+    let mode = 'lines'; // 'lines', 'waves', 'particles'
+    
+    // Physics State
+    let particles = [];
+    let mouse = { x: -1000, y: -1000, isDown: false, vx: 0, vy: 0 };
+    let lastMouse = { x: 0, y: 0 };
+    
+    // Parameters
+    const params = {
+        count: 100,
+        connectionDist: 120,
+        mouseForce: 0.5,
+        gravity: 0.5,
+        friction: 0.96,
+        trail: 0.2, // 1 = no trail, 0.1 = long trails
+        colorTheme: 'neon'
+    };
+
+    // Color Palettes
+    const themes = {
+        neon: ['#f472b6', '#c084fc', '#22d3ee', '#34d399', '#fbbf24'], // Pink, Purple, Cyan, Green, Amber
+        fire: ['#fbbf24', '#f59e0b', '#ef4444', '#dc2626', '#7f1d1d'],
+        ocean: ['#e0f2fe', '#7dd3fc', '#0ea5e9', '#0284c7', '#0c4a6e'],
+        matrix: ['#22c55e', '#16a34a', '#15803d', '#166534', '#14532d']
+    };
+    let currentPalette = themes.neon;
+
+    // --- Initialization ---
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // --- Particle Class ---
+    class Particle {
+        constructor() {
+            this.reset();
+            // Randomize initial position slightly to prevent explosion on start
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+        }
+
+        reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 2;
+            this.vy = (Math.random() - 0.5) * 2;
+            this.radius = Math.random() * 2 + 1;
+            this.color = currentPalette[Math.floor(Math.random() * currentPalette.length)];
+            this.baseColor = this.color;
+            this.mass = this.radius;
+            this.angle = Math.random() * Math.PI * 2; // For wave mode
+            this.waveOffset = Math.random() * 100;
+        }
+
+        update() {
+            // 1. Apply Gravity
+            this.vy += params.gravity * 0.05;
+
+            // 2. Apply Mouse Interaction (Attraction)
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist < 300) {
+                const force = (300 - dist) / 300; // Stronger when closer
+                // If mouse is moving fast, add velocity
+                if (mouse.isDown) {
+                    this.vx += mouse.vx * 0.1;
+                    this.vy += mouse.vy * 0.1;
+                } else {
+                    // Gentle attraction
+                    this.vx += dx * 0.001 * params.mouseForce;
+                    this.vy += dy * 0.001 * params.mouseForce;
+                }
+            }
+
+            // 3. Apply Friction
+            this.vx *= params.friction;
+            this.vy *= params.friction;
+
+            // 4. Update Position
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // 5. Boundary Collision (Bounce)
+            if (this.x < 0) { this.x = 0; this.vx *= -0.8; }
+            if (this.x > width) { this.x = width; this.vx *= -0.8; }
+            if (this.y < 0) { this.y = 0; this.vy *= -0.8; }
+            if (this.y > height) { 
+                this.y = height; 
+                this.vy *= -0.6; // Floor bounce
+                // Friction on floor
+                this.vx *= 0.95;
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+
+    // --- Simulation Logic ---
+
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < params.count; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function updateMouseVelocity() {
+        mouse.vx = mouse.x - lastMouse.x;
+        mouse.vy = mouse.y - lastMouse.y;
+        lastMouse.x = mouse.x;
+        lastMouse.y = mouse.y;
+    }
+
+    // --- Rendering Modes ---
+
+    // Mode 1: Constellation (Lines)
+    function renderLines() {
+        // Clear with trail effect
+        ctx.fillStyle = `rgba(15, 23, 42, ${params.trail})`;
+        ctx.fillRect(0, 0, width, height);
+
+        // Update Physics
+        particles.forEach(p => p.update());
+
+        // Draw Connections
+        ctx.lineWidth = 1;
+        for (let i = 0; i < particles.length; i++) {
+            const p1 = particles[i];
+            
+            // Draw Particle
+            p1.draw();
+
+            // Connect to neighbors
+            for (let j = i + 1; j < particles.length; j++) {
+                const p2 = particles[j];
+                const dx = p1.x - p2.x;
+                const dy = p1.y - p2.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+
+                if (dist < params.connectionDist) {
+                    const opacity = 1 - (dist / params.connectionDist);
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.5})`;
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    // Mode 2: Wave Interference
+    function renderWaves() {
+        // Fade out slower for wave persistence
+        ctx.fillStyle = `rgba(15, 23, 42, 0.1)`; 
+        ctx.fillRect(0, 0, width, height);
+
+        const time = Date.now() * 0.002;
+
+        particles.forEach(p => {
+            // Wave physics override
+            // Reset velocity to avoid accumulation from other modes
+            p.vx = 0;
+            p.vy = 0;
+
+            // Create a wave motion based on X position and Time
+            const waveHeight = 50;
+            const frequency = 0.01;
+            const speed = 2;
+
+            // Target Y based on sine wave
+            const targetY = (height / 2) + Math.sin(p.x * frequency + time) * waveHeight;
+            
+            // Add secondary interference wave
+            const targetY2 = Math.sin(p.x * 0.02 - time * 1.5) * (waveHeight / 2);
+            
+            // Mouse disturbance
+            let mouseDisturbance = 0;
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if(dist < 200) {
+                mouseDisturbance = (200 - dist) * 0.5;
+            }
+
+            const finalY = targetY + targetY2 + mouseDisturbance;
+
+            // Move particle towards wave position smoothly
+            p.y += (finalY - p.y) * 0.1;
+            
+            // Slight X drift
+            p.x += Math.sin(time + p.waveOffset) * 0.5;
+            
+            // Wrap X
+            if (p.x > width) p.x = 0;
+            if (p.x < 0) p.x = width;
+
+            // Draw
+            p.draw();
+        });
+    }
+
+    // Mode 3: Raw Particles (Fireworks/Burst)
+    function renderParticles() {
+        // Darker trail for neon pop
+        ctx.fillStyle = `rgba(15, 23, 42, 0.4)`;
+        ctx.fillRect(0, 0, width, height);
+
+        // Enable additive blending for glow
+        ctx.globalCompositeOperation = 'lighter';
+
+        particles.forEach(p => {
+            p.update();
+            
+            // Visual variation
+            p.radius = (Math.sin(Date.now() * 0.01 + p.waveOffset) + 2); // Pulsating size
+
+            // Color shift based on velocity
+            const speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
+            if (speed > 5) p.color = '#ffffff'; // High speed = white hot
+            else p.color = p.baseColor;
+
+            p.draw();
+        });
+
+        ctx.globalCompositeOperation = 'source-over'; // Reset
+    }
+
+    // Main Loop
+    function animate() {
+        updateMouseVelocity();
+
+        if (mode === 'lines') renderLines();
+        else if (mode === 'waves') renderWaves();
+        else if (mode === 'particles') renderParticles();
+
+        animationId = requestAnimationFrame(animate);
+    }
+
+    // --- Interaction Handlers ---
+
+    function handleInputMove(e) {
+        if(e.touches) {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+        } else {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        }
+    }
+
+    function handleInputDown(e) {
+        mouse.isDown = true;
+        handleInputMove(e);
+        // Explosion effect on click
+        if (mode === 'particles') {
+            particles.forEach(p => {
+                const dx = p.x - mouse.x;
+                const dy = p.y - mouse.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < 200) {
+                    const force = (200 - dist) * 0.5;
+                    const angle = Math.atan2(dy, dx);
+                    p.vx += Math.cos(angle) * force;
+                    p.vy += Math.sin(angle) * force;
+                }
+            });
+        }
+    }
+
+    function handleInputUp() {
+        mouse.isDown = false;
+    }
+
+    window.addEventListener('mousemove', handleInputMove);
+    window.addEventListener('mousedown', handleInputDown);
+    window.addEventListener('mouseup', handleInputUp);
+    
+    window.addEventListener('touchmove', handleInputMove, {passive: false});
+    window.addEventListener('touchstart', handleInputDown, {passive: false});
+    window.addEventListener('touchend', handleInputUp);
+
+    // --- UI Logic ---
+
+    function setMode(newMode) {
+        mode = newMode;
+        
+        // Update UI Buttons
+        document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(`mode-${newMode}`).classList.add('active');
+
+        // Update Instructions
+        const toast = document.getElementById('instruction-text');
+        if (mode === 'lines') toast.innerText = "Drag to pull the web. Particles connect when close.";
+        if (mode === 'waves') toast.innerText = "Touch to disturb the water. Watch the waves flow.";
+        if (mode === 'particles') toast.innerText = "Click/Tap to explode! Fast particles turn white.";
+
+        // Update Specific Controls Visibility
+        const container = document.getElementById('controls-container');
+        container.innerHTML = ''; // Clear
+
+        if (mode === 'lines') {
+            container.innerHTML = `
+                <div class="flex justify-between items-center text-xs text-slate-300">
+                    <span>Connection Distance</span>
+                    <span id="dist-val">120</span>
+                </div>
+                <input type="range" min="50" max="250" value="120" oninput="updateParam('connectionDist', this.value)">
+            `;
+        } else if (mode === 'waves') {
+            container.innerHTML = `
+                 <div class="p-2 bg-blue-500/20 rounded text-xs text-blue-200 text-center">
+                    Physics modified for fluid simulation
+                 </div>
+            `;
+        } else {
+             container.innerHTML = `
+                 <div class="flex justify-between items-center text-xs text-slate-300">
+                    <span>Trail Length</span>
+                    <span id="trail-val">Medium</span>
+                </div>
+                <input type="range" min="0.05" max="0.5" step="0.01" value="0.2" oninput="updateParam('trail', this.value)">
+            `;
+        }
+
+        // Reset particles for clean transition
+        initParticles();
+    }
+
+    function updateParam(key, value) {
+        params[key] = parseFloat(value);
+        
+        // Update Labels
+        if (key === 'connectionDist') document.getElementById('dist-val').innerText = value;
+        if (key === 'trail') {
+            const label = value < 0.1 ? 'Long' : (value > 0.3 ? 'Short' : 'Medium');
+            document.getElementById('trail-val').innerText = label;
+        }
+    }
+
+    function resetSimulation() {
+        initParticles();
+    }
+
+    function toggleColorTheme() {
+        const keys = Object.keys(themes);
+        let currentIndex = keys.findIndex(k => themes[k] === currentPalette);
+        let nextIndex = (currentIndex + 1) % keys.length;
+        currentPalette = themes[keys[nextIndex]];
+        
+        // Update existing particles
+        particles.forEach(p => {
+            p.baseColor = currentPalette[Math.floor(Math.random() * currentPalette.length)];
+        });
+    }
+
+    // --- Global Inputs Event Listeners ---
+    document.getElementById('particle-count').addEventListener('input', (e) => {
+        params.count = parseInt(e.target.value);
+        document.getElementById('count-val').innerText = params.count;
+        initParticles(); // Re-init to adjust count
+    });
+
+    document.getElementById('gravity-slider').addEventListener('input', (e) => {
+        params.gravity = parseFloat(e.target.value);
+        document.getElementById('grav-val').innerText = params.gravity === 0 ? 'Zero' : (params.gravity > 1 ? 'High' : 'Low');
+    });
+
+    document.getElementById('friction-slider').addEventListener('input', (e) => {
+        params.friction = parseFloat(e.target.value);
+    });
+
+    // Start
+    initParticles();
+    animate();
+
+    // Initial Toast Fade
+    setTimeout(() => {
+        const toast = document.getElementById('toast');
+        toast.style.opacity = '0';
+        // Show on hover near bottom? Nah, just hide it.
+    }, 5000);
+
+</script>
+</body> </html>
+
