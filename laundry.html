@@ -1,0 +1,1270 @@
+<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>FreshFold Laundry - Premium Laundry Services</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <style> :root { --primary: #2563eb; --primary-dark: #1d4ed8; --secondary: #06b6d4; --accent: #f59e0b; --dark: #1e293b; --light: #f8fafc; --gray: #64748b; --border: #e2e8f0; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+    }
+
+    /* Header Styles */
+    header {
+        background: white;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    .logo i {
+        color: var(--secondary);
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        list-style: none;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary);
+    }
+
+    .cart-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        transition: background 0.3s;
+        position: relative;
+    }
+
+    .cart-btn:hover {
+        background: var(--primary-dark);
+    }
+
+    .cart-count {
+        background: var(--accent);
+        color: white;
+        font-size: 0.75rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 1rem;
+        position: absolute;
+        top: -5px;
+        right: -5px;
+    }
+
+    /* Hero Section */
+    .hero {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+    }
+
+    .cta-btn {
+        background: white;
+        color: var(--primary);
+        padding: 1rem 2rem;
+        border-radius: 2rem;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    /* Main Container */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .section-title p {
+        color: var(--gray);
+        font-size: 1.1rem;
+    }
+
+    /* Filter Buttons */
+    .filters {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        padding: 0.5rem 1.5rem;
+        border: 2px solid var(--border);
+        background: white;
+        border-radius: 2rem;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+    }
+
+    /* Product Grid */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .product-card {
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .product-image {
+        height: 200px;
+        background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: var(--primary);
+    }
+
+    .product-info {
+        padding: 1.5rem;
+    }
+
+    .product-category {
+        color: var(--secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--dark);
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+        color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .product-price span {
+        font-size: 0.875rem;
+        color: var(--gray);
+        font-weight: 400;
+    }
+
+    .quick-view {
+        width: 100%;
+        padding: 0.75rem;
+        background: var(--light);
+        border: 2px solid var(--border);
+        border-radius: 0.5rem;
+        color: var(--dark);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .quick-view:hover {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    .modal.active {
+        display: flex;
+        animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .modal-content {
+        background: white;
+        border-radius: 1rem;
+        max-width: 800px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        animation: slideUp 0.3s;
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: var(--dark);
+        box-shadow: var(--shadow);
+        z-index: 10;
+        transition: all 0.3s;
+    }
+
+    .modal-close:hover {
+        background: var(--dark);
+        color: white;
+        transform: rotate(90deg);
+    }
+
+    .modal-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .modal-image {
+        background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+        color: var(--primary);
+        min-height: 400px;
+    }
+
+    .modal-details {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modal-category {
+        color: var(--secondary);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--dark);
+    }
+
+    .modal-price {
+        font-size: 2rem;
+        color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-description {
+        color: var(--gray);
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+    }
+
+    .features-list {
+        list-style: none;
+        margin-bottom: 2rem;
+    }
+
+    .features-list li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--dark);
+    }
+
+    .features-list i {
+        color: var(--secondary);
+    }
+
+    .quantity-selector {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: var(--light);
+        border-radius: 0.5rem;
+    }
+
+    .qty-btn {
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--border);
+        background: white;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1.25rem;
+        transition: all 0.3s;
+    }
+
+    .qty-btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+
+    .qty-value {
+        font-size: 1.25rem;
+        font-weight: 600;
+        min-width: 40px;
+        text-align: center;
+    }
+
+    .add-to-cart {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .add-to-cart:hover {
+        background: var(--primary-dark);
+    }
+
+    /* Cart Sidebar */
+    .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 400px;
+        height: 100%;
+        background: white;
+        box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+        z-index: 1001;
+        transition: right 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart-sidebar.active {
+        right: 0;
+    }
+
+    .cart-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cart-header h3 {
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .close-cart {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--gray);
+    }
+
+    .cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem;
+    }
+
+    .cart-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--light);
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        position: relative;
+    }
+
+    .cart-item-image {
+        width: 60px;
+        height: 60px;
+        background: white;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--primary);
+    }
+
+    .cart-item-details {
+        flex: 1;
+    }
+
+    .cart-item-title {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    .cart-item-price {
+        color: var(--primary);
+        font-weight: 600;
+    }
+
+    .remove-item {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: none;
+        border: none;
+        color: var(--gray);
+        cursor: pointer;
+        font-size: 1.25rem;
+    }
+
+    .cart-footer {
+        padding: 1.5rem;
+        border-top: 1px solid var(--border);
+        background: var(--light);
+    }
+
+    .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .checkout-btn {
+        width: 100%;
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .checkout-btn:hover {
+        background: #d97706;
+    }
+
+    .empty-cart {
+        text-align: center;
+        padding: 3rem;
+        color: var(--gray);
+    }
+
+    .empty-cart i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--border);
+    }
+
+    /* Overlay */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+
+    /* Footer */
+    footer {
+        background: var(--dark);
+        color: white;
+        padding: 3rem 2rem;
+        margin-top: 4rem;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .footer-section h4 {
+        margin-bottom: 1rem;
+        color: var(--secondary);
+    }
+
+    .footer-section p,
+    .footer-section a {
+        color: #94a3b8;
+        text-decoration: none;
+        line-height: 2;
+    }
+
+    .footer-section a:hover {
+        color: white;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+    }
+
+    .social-links a:hover {
+        background: var(--primary);
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 2rem auto 0;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
+        color: #64748b;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .modal-body {
+            grid-template-columns: 1fr;
+        }
+
+        .modal-image {
+            min-height: 200px;
+        }
+
+        .cart-sidebar {
+            width: 100%;
+            right: -100%;
+        }
+
+        .products-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Toast Notification */
+    .toast {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: var(--dark);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        box-shadow: var(--shadow-lg);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s;
+        z-index: 1002;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .toast i {
+        color: var(--secondary);
+    }
+</style>
+</head> <body>
+
+<!-- Header -->
+<header>
+    <nav>
+        <a href="#" class="logo">
+            <i class="fas fa-soap"></i>
+            FreshFold
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="cart-btn" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Cart</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Professional Laundry & Dry Cleaning</h1>
+    <p>Fresh, clean, and delivered to your doorstep. Experience the ultimate convenience in laundry care.</p>
+    <a href="#services" class="cta-btn">Explore Services</a>
+</section>
+
+<!-- Main Content -->
+<div class="container" id="services">
+    <div class="section-title">
+        <h2>Our Services</h2>
+        <p>Choose from our wide range of professional laundry services</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterProducts('all')">All Services</button>
+        <button class="filter-btn" onclick="filterProducts('wash-fold')">Wash & Fold</button>
+        <button class="filter-btn" onclick="filterProducts('dry-cleaning')">Dry Cleaning</button>
+        <button class="filter-btn" onclick="filterProducts('specialty')">Specialty Items</button>
+        <button class="filter-btn" onclick="filterProducts('subscription')">Subscriptions</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="productsGrid">
+        <!-- Products will be injected here by JavaScript -->
+    </div>
+</div>
+
+<!-- Product Modal -->
+<div class="modal" id="productModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-body">
+            <div class="modal-image" id="modalImage">
+                <i class="fas fa-tshirt"></i>
+            </div>
+            <div class="modal-details">
+                <span class="modal-category" id="modalCategory">Category</span>
+                <h3 class="modal-title" id="modalTitle">Product Title</h3>
+                <div class="modal-price" id="modalPrice">$0.00</div>
+                <p class="modal-description" id="modalDescription">
+                    Description goes here...
+                </p>
+                <ul class="features-list" id="modalFeatures">
+                    <!-- Features injected here -->
+                </ul>
+                <div class="quantity-selector">
+                    <span>Quantity:</span>
+                    <button class="qty-btn" onclick="updateQuantity(-1)">-</button>
+                    <span class="qty-value" id="quantity">1</span>
+                    <button class="qty-btn" onclick="updateQuantity(1)">+</button>
+                </div>
+                <button class="add-to-cart" onclick="addToCartFromModal()">
+                    <i class="fas fa-shopping-bag"></i>
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3><i class="fas fa-shopping-bag"></i> Your Cart</h3>
+        <button class="close-cart" onclick="toggleCart()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <!-- Cart items injected here -->
+    </div>
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">$0.00</span>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">
+            Proceed to Checkout
+        </button>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Item added to cart!</span>
+</div>
+
+<!-- Footer -->
+<footer id="contact">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>FreshFold Laundry</h4>
+            <p>Professional laundry services tailored to your needs. We wash, dry, fold, and deliver with care.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <p><a href="#">Services</a></p>
+            <p><a href="#">Pricing</a></p>
+            <p><a href="#">Schedule Pickup</a></p>
+            <p><a href="#">Track Order</a></p>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+            <p><i class="fas fa-envelope"></i> hello@freshfold.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Clean Street, Laundry City</p>
+        </div>
+        <div class="footer-section">
+            <h4>Business Hours</h4>
+            <p>Mon - Fri: 7:00 AM - 9:00 PM</p>
+            <p>Saturday: 8:00 AM - 6:00 PM</p>
+            <p>Sunday: 9:00 AM - 5:00 PM</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 FreshFold Laundry. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Product Data - 22 Items
+    const products = [
+        {
+            id: 1,
+            category: 'wash-fold',
+            title: 'Wash & Fold - Per Pound',
+            price: 2.49,
+            icon: 'fa-weight-hanging',
+            description: 'Our standard wash and fold service. Perfect for everyday laundry. We separate colors, use premium detergent, and fold everything neatly.',
+            features: ['Premium detergent included', 'Color separation', 'Neat folding', '48-hour turnaround', 'Free delivery over $25']
+        },
+        {
+            id: 2,
+            category: 'wash-fold',
+            title: 'Wash & Fold - Bulk (20 lbs)',
+            price: 45.00,
+            icon: 'fa-box',
+            description: 'Save money with our bulk option! Bring in up to 20 pounds of laundry and get everything washed, dried, and folded at a discounted rate.',
+            features: ['Up to 20 lbs included', 'Best value option', 'Eco-friendly detergent available', '48-hour service', 'Free pickup & delivery']
+        },
+        {
+            id: 3,
+            category: 'dry-cleaning',
+            title: 'Dry Cleaning - Dress Shirt',
+            price: 3.99,
+            icon: 'fa-user-tie',
+            description: 'Professional dry cleaning for dress shirts. Starched or soft finish options available. Perfect for business attire.',
+            features: ['Hand finished', 'Starch options', 'Collar & cuff treatment', '24-hour service', 'Hanger or boxed return']
+        },
+        {
+            id: 4,
+            category: 'dry-cleaning',
+            title: 'Dry Cleaning - Pants/Trousers',
+            price: 7.99,
+            icon: 'fa-user',
+            description: 'Expert cleaning for dress pants, slacks, and trousers. We remove stains and press creases for a crisp, professional look.',
+            features: ['Stain pre-treatment', 'Crease pressing', 'Color protection', '48-hour turnaround', 'Garment bag included']
+        },
+        {
+            id: 5,
+            category: 'dry-cleaning',
+            title: 'Dry Cleaning - 2-Piece Suit',
+            price: 18.99,
+            icon: 'fa-user-tie',
+            description: 'Complete care for your business or formal suit. Jacket and pants cleaned, pressed, and returned on hangers ready to wear.',
+            features: ['Jacket & pants included', 'Spot cleaning', 'Hand pressing', 'Odor elimination', 'Premium garment bag']
+        },
+        {
+            id: 6,
+            category: 'dry-cleaning',
+            title: 'Dry Cleaning - Dress/Blouse',
+            price: 12.99,
+            icon: 'fa-female',
+            description: 'Gentle cleaning for dresses and blouses. We handle delicate fabrics with care, including silk, chiffon, and lace.',
+            features: ['Delicate fabric care', 'Bead/sequin protection', 'Shape retention', '72-hour service', 'Individual packaging']
+        },
+        {
+            id: 7,
+            category: 'dry-cleaning',
+            title: 'Dry Cleaning - Winter Coat',
+            price: 25.99,
+            icon: 'fa-snowflake',
+            description: 'Heavy-duty cleaning for winter coats, parkas, and jackets. We remove salt stains and odors while preserving insulation.',
+            features: ['Down-safe cleaning', 'Waterproofing treatment', 'Odor removal', '5-day turnaround', 'Storage bag included']
+        },
+        {
+            id: 8,
+            category: 'specialty',
+            title: 'Ironing/Pressing Service',
+            price: 2.99,
+            icon: 'fa-tshirt',
+            description: 'Already washed but need pressing? We iron your clothes to perfection. Per item pricing with bulk discounts available.',
+            features: ['Steam pressing', 'Collar shaping', 'Wrinkle-free guarantee', 'Same-day available', 'Hang or fold options']
+        },
+        {
+            id: 9,
+            category: 'specialty',
+            title: 'Bedding - Sheet Set',
+            price: 19.99,
+            icon: 'fa-bed',
+            description: 'Complete cleaning for sheet sets (fitted, flat, and pillowcases). Fresh, crisp linens delivered to your door.',
+            features: ['All sizes welcome', 'Hypoallergenic options', 'High-heat sanitization', '72-hour service', 'Folded or on hangers']
+        },
+        {
+            id: 10,
+            category: 'specialty',
+            title: 'Bedding - Comforter/Duvet',
+            price: 35.00,
+            icon: 'fa-cloud',
+            description: 'Deep cleaning for comforters and duvets. We handle down, synthetic, and alternative fills with specialized equipment.',
+            features: ['Down & feather safe', 'Oversized capacity', 'Allergen removal', '5-day turnaround', 'Storage bag provided']
+        },
+        {
+            id: 11,
+            category: 'specialty',
+            title: 'Bedding - Pillow Cleaning',
+            price: 12.99,
+            icon: 'fa-cloud',
+            description: 'Refresh your pillows! We clean and sanitize bed pillows, decorative pillows, and throw pillows of all sizes.',
+            features: ['Dust mite elimination', 'Fluff restoration', 'All pillow types', '3-day service', 'Pair pricing available']
+        },
+        {
+            id: 12,
+            category: 'specialty',
+            title: 'Wedding Dress Preservation',
+            price: 249.99,
+            icon: 'fa-ring',
+            description: 'Expert cleaning and preservation for wedding gowns. Includes museum-quality boxing for long-term storage.',
+            features: ['Hand-cleaned', 'Stain removal', 'Acid-free boxing', 'Lifetime guarantee', 'Insurance documentation']
+        },
+        {
+            id: 13,
+            category: 'specialty',
+            title: 'Leather & Suede Cleaning',
+            price: 45.00,
+            icon: 'fa-vest',
+            description: 'Specialized cleaning for leather jackets, coats, and suede items. Conditioning treatment included to prevent cracking.',
+            features: ['Genuine & faux leather', 'Color restoration', 'Conditioning treatment', '7-day turnaround', 'Waterproofing available']
+        },
+        {
+            id: 14,
+            category: 'specialty',
+            title: 'Curtain & Drapery Cleaning',
+            price: 15.00,
+            icon: 'fa-border-all',
+            description: 'In-home removal and rehang service available. We clean all types of window treatments including sheers and blackout curtains.',
+            features: ['On-site removal available', 'Shrinkage prevention', 'UV damage treatment', '5-day service', 'Rehanging included']
+        },
+        {
+            id: 15,
+            category: 'specialty',
+            title: 'Rug Cleaning - Area Rug',
+            price: 3.50,
+            icon: 'fa-rug',
+            description: 'Per square foot pricing for area rug cleaning. We handle Persian, Oriental, wool, and synthetic rugs with care.',
+            features: ['Pick-up & delivery', 'Dust removal', 'Fiber-specific treatment', '7-10 day service', 'Padding cleaning available']
+        },
+        {
+            id: 16,
+            category: 'specialty',
+            title: 'Shoe Cleaning - Sneakers',
+            price: 25.00,
+            icon: 'fa-shoe-prints',
+            description: 'Deep cleaning and restoration for athletic shoes. We clean soles, laces, and upper materials including leather and mesh.',
+            features: ['Sole whitening', 'Odor elimination', 'Lace cleaning', '3-day service', 'Waterproofing optional']
+        },
+        {
+            id: 17,
+            category: 'specialty',
+            title: 'Shoe Shine & Polish',
+            price: 15.00,
+            icon: 'fa-shoe-prints',
+            description: 'Professional shine service for leather dress shoes. Includes conditioning, polishing, and buffing to a mirror finish.',
+            features: ['Hand-polished', 'Leather conditioning', 'Heel dressing', 'Same-day service', 'Multiple pairs discount']
+        },
+        {
+            id: 18,
+            category: 'subscription',
+            title: 'Weekly Laundry Plan',
+            price: 89.99,
+            icon: 'fa-calendar-week',
+            description: 'Weekly pickup and delivery for busy professionals. Up to 30 pounds per week with priority scheduling.',
+            features: ['30 lbs/week included', 'Priority scheduling', 'Dedicated bag provided', '20% savings', 'Cancel anytime']
+        },
+        {
+            id: 19,
+            category: 'subscription',
+            title: 'Bi-Weekly Family Plan',
+            price: 59.99,
+            icon: 'fa-calendar-alt',
+            description: 'Perfect for families! Bi-weekly service with up to 40 pounds per pickup. Includes all wash & fold services.',
+            features: ['40 lbs/pickup', 'Free stain treatment', 'Family size loads', '25% savings', 'Flexible scheduling']
+        },
+        {
+            id: 20,
+            category: 'subscription',
+            title: 'Unlimited Business Plan',
+            price: 149.99,
+            icon: 'fa-building',
+            description: 'Corporate account for small businesses. Unlimited shirts and pants with weekly pickup and delivery.',
+            features: ['Unlimited items', 'Corporate billing', 'Next-day turnaround', 'Garment tracking', 'Account manager']
+        },
+        {
+            id: 21,
+            category: 'wash-fold',
+            title: 'Express Same-Day Service',
+            price: 1.50,
+            icon: 'fa-bolt',
+            description: 'Per pound pricing for rush service. Drop off by 9 AM, pick up by 6 PM. Available Monday through Saturday.',
+            features: ['Same-day guarantee', 'Priority processing', 'Available 6 days/week', 'Text notifications', 'Minimum 10 lbs']
+        },
+        {
+            id: 22,
+            category: 'specialty',
+            title: 'Laundry Products Bundle',
+            price: 35.00,
+            icon: 'fa-pump-soap',
+            description: 'Take home our professional-grade products! Includes detergent, fabric softener, stain remover, and dryer sheets.',
+            features: ['Industrial strength', 'Eco-friendly options', '3-month supply', 'Free delivery', 'Subscription available']
+        }
+    ];
+
+    // State
+    let cart = [];
+    let currentModalProduct = null;
+    let currentQuantity = 1;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        renderProducts('all');
+        updateCartUI();
+    });
+
+    // Render Products
+    function renderProducts(filter) {
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = '';
+
+        const filtered = filter === 'all' 
+            ? products 
+            : products.filter(p => p.category === filter);
+
+        filtered.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.onclick = () => openModal(product);
+            
+            card.innerHTML = `
+                <div class="product-image">
+                    <i class="fas ${product.icon}"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">${formatCategory(product.category)}</div>
+                    <h3 class="product-title">${product.title}</h3>
+                    <div class="product-price">$${product.price.toFixed(2)} <span>per item</span></div>
+                    <button class="quick-view" onclick="event.stopPropagation(); openModal(products.find(p => p.id === ${product.id}))">
+                        Quick View
+                    </button>
+                </div>
+            `;
+            
+            grid.appendChild(card);
+        });
+    }
+
+    // Filter Products
+    function filterProducts(category) {
+        // Update active button
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.textContent.toLowerCase().includes(category.replace('-', ' ')) || 
+               (category === 'all' && btn.textContent === 'All Services')) {
+                btn.classList.add('active');
+            }
+        });
+        
+        renderProducts(category);
+    }
+
+    // Format Category Name
+    function formatCategory(cat) {
+        return cat.split('-').map(word => 
+            word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' & ');
+    }
+
+    // Modal Functions
+    function openModal(product) {
+        currentModalProduct = product;
+        currentQuantity = 1;
+        
+        document.getElementById('modalCategory').textContent = formatCategory(product.category);
+        document.getElementById('modalTitle').textContent = product.title;
+        document.getElementById('modalPrice').textContent = `$${product.price.toFixed(2)}`;
+        document.getElementById('modalDescription').textContent = product.description;
+        document.getElementById('quantity').textContent = currentQuantity;
+        
+        // Set icon
+        document.getElementById('modalImage').innerHTML = `<i class="fas ${product.icon}"></i>`;
+        
+        // Set features
+        const featuresList = document.getElementById('modalFeatures');
+        featuresList.innerHTML = product.features.map(f => 
+            `<li><i class="fas fa-check"></i> ${f}</li>`
+        ).join('');
+        
+        document.getElementById('productModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Quantity Functions
+    function updateQuantity(change) {
+        currentQuantity += change;
+        if(currentQuantity < 1) currentQuantity = 1;
+        document.getElementById('quantity').textContent = currentQuantity;
+    }
+
+    // Cart Functions
+    function addToCartFromModal() {
+        if(!currentModalProduct) return;
+        
+        const existingItem = cart.find(item => item.id === currentModalProduct.id);
+        
+        if(existingItem) {
+            existingItem.quantity += currentQuantity;
+        } else {
+            cart.push({
+                ...currentModalProduct,
+                quantity: currentQuantity
+            });
+        }
+        
+        updateCartUI();
+        closeModal();
+        showToast(`${currentModalProduct.title} added to cart!`);
+    }
+
+    function updateCartUI() {
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+        
+        if(cart.length === 0) {
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>Your cart is empty</p>
+                </div>
+            `;
+        } else {
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-image">
+                        <i class="fas ${item.icon}"></i>
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)} (${item.quantity}x)</div>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+    }
+
+    function removeFromCart(id) {
+        cart = cart.filter(item => item.id !== id);
+        updateCartUI();
+    }
+
+    function toggleCart() {
+        document.getElementById('cartSidebar').classList.toggle('active');
+        document.getElementById('overlay').classList.toggle('active');
+    }
+
+    function checkout() {
+        if(cart.length === 0) {
+            showToast('Your cart is empty!');
+            return;
+        }
+        alert('Thank you for your order! This would redirect to payment processing in a live store.\n\nTotal: $' + 
+              cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2));
+    }
+
+    // Toast Notification
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toastMessage').textContent = message;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // Close modal on outside click
+    document.getElementById('productModal').addEventListener('click', (e) => {
+        if(e.target.id === 'productModal') closeModal();
+    });
+</script>
+</body> 
+</html>
