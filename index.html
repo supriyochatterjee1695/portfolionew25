@@ -8,9 +8,9 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="CSeametry helps businesses transform data into growth with expert data analysis, AI solutions, custom dashboards, and corporate training. Book a free strategy call today.">
+        content="Building Affordable Data and AI/Automations Solutions for Small Businesses. We transform data into growth with expert data analysis, AI solutions, custom dashboards, and corporate training. Book a free strategy call today.">
     <meta name="keywords"
-        content="data analysis, AI solutions, business automation, corporate training, dashboard development, data consulting, business intelligence, machine learning, data analytics India">
+        content="Data Analysis, AI, AI/Automations, LLM, AI/ML, OpenAI, ChatGPT, Ollama, Claude, IT Solutions, business automation, corporate training, dashboard development, data consulting, business intelligence, BI, machine learning, data analytics India, Global, India">
     <meta name="author" content="CSeametry">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://www.cseametry.co.in/">
@@ -18,7 +18,8 @@
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.cseametry.co.in/">
-    <meta property="og:title" content="CSeametry | Transform Data into Growth">
+    <meta property="og:title"
+        content="CSeametry | Affordable Growth Systems for Small Businesses | Data Analytics, AI Solutions & Corporate Training">
     <meta property="og:description"
         content="Expert Data Analysis, AI Solutions & Corporate Training to Drive Your Business Forward. Chartered Engineer led consultancy.">
     <meta property="og:image" content="https://www.cseametry.co.in/assets/logoo-removebg-preview%20(1).png">
@@ -70,7 +71,7 @@
         "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "customer service",
-            "email": "supriyo.chatterjee1695@gmail.com"
+            "email": "supriyochatterjee@cseametry.co.in"
         },
         "sameAs": [
             "https://www.linkedin.com/in/supriyo-chatterjee-datascienceprofessional/"
@@ -87,16 +88,18 @@
     </script>
     <style>
         :root {
-            --navy: #0f172a;
-            --navy-light: #1e293b;
-            --coral: #e94560;
-            --coral-dark: #d63850;
+            --navy: #0a1024;
+            --navy-light: #131c34;
+            --coral: #6366f1;
+            --coral-dark: #4f46e5;
             --white: #ffffff;
             --light-gray: #f8fafc;
             --gray: #64748b;
             --dark-gray: #334155;
-            --accent: #38bdf8;
+            --accent: #8b5cf6;
             --gold: #fbbf24;
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            --gradient-glow: 0 0 20px rgba(99, 102, 241, 0.3);
         }
 
         * {
@@ -123,18 +126,25 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(10, 16, 36, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             padding: 1rem 2rem;
             z-index: 1000;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
         }
 
         header.scrolled {
             padding: 0.75rem 2rem;
-            background: rgba(15, 23, 42, 0.98);
+            background: rgba(10, 16, 36, 0.95);
+            box-shadow: 0 8px 40px rgba(99, 102, 241, 0.15);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        header.scrolled .logo {
+            font-size: 1.25rem;
         }
 
         nav {
@@ -143,7 +153,26 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            height: 50px;
+            height: 70px;
+            position: relative;
+        }
+
+        nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        header.scrolled nav::before {
+            opacity: 1;
         }
 
         .logo {
@@ -154,66 +183,185 @@
             font-weight: 700;
             text-decoration: none;
             gap: 0.75rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+        }
+
+        .logo:hover::after {
+            width: 100%;
         }
 
         .logo img {
-            height: 70px;
+            height: 50px;
             width: auto;
             object-fit: contain;
             display: block;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.3));
+        }
+
+        header.scrolled .logo img {
+            height: 40px;
+        }
+
+        header.scrolled .logo {
+            font-size: 1.3rem;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.05);
+            padding: 0.35rem;
+            border-radius: 50px;
+            gap: 0.25rem;
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.75);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            background: transparent;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 25px;
+            padding: 1px;
+            background: var(--gradient-primary);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 80%;
             height: 2px;
-            background: var(--coral);
-            transition: width 0.3s ease;
+            background: var(--gradient-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
         }
 
         .nav-links a:hover {
             color: var(--white);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+            box-shadow: var(--gradient-glow);
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
         }
 
         .nav-links a:hover::after {
-            width: 100%;
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-links a.active,
+        .nav-links a.active:hover {
+            color: var(--white);
+            background: var(--gradient-primary);
+            box-shadow: var(--gradient-glow);
+        }
+
+        .nav-links a.active::after {
+            display: none;
         }
 
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
-            gap: 5px;
+            gap: 6px;
+            padding: 8px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hamburger:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .hamburger.active {
+            background: rgba(99, 102, 241, 0.15);
+            box-shadow: var(--gradient-glow);
         }
 
         .hamburger span {
-            width: 25px;
+            width: 28px;
             height: 3px;
             background: var(--white);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 2px;
+            position: relative;
+            display: block;
+        }
+
+        .hamburger span::before,
+        .hamburger span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span::before {
+            top: -6px;
+        }
+
+        .hamburger span::after {
+            top: 6px;
         }
 
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+            transform: rotate(45deg) translate(4px, 5px);
+        }
+
+        .hamburger.active span:nth-child(1)::before {
+            transform: rotate(-90deg) translate(0, 6px);
+            width: 120%;
+        }
+
+        .hamburger.active span:nth-child(1)::after {
+            opacity: 0;
         }
 
         .hamburger.active span:nth-child(2) {
@@ -221,7 +369,16 @@
         }
 
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .hamburger.active span:nth-child(3)::before {
+            transform: rotate(90deg) translate(0, -6px);
+            width: 120%;
+        }
+
+        .hamburger.active span:nth-child(3)::after {
+            opacity: 0;
         }
 
         /* Hero Section - Elegant & High-Converting */
