@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HySea | Free Online Hypothesis Testing & Statistical Calculator</title>
+    <meta name="description"
+        content="Perform hypothesis tests online for free with HySea. Easy-to-use statistical calculator for T-Tests, Z-Tests, ANOVA, and Correlation. No statistics knowledge required.">
+    <meta name="keywords"
+        content="hypothesis testing, online statistical calculator, free t-test calculator, p-value calculator, data analysis tool, HySea, CSeametry, ANOVA online, correlation calculator">
+    <meta name="author" content="CSeametry">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cseametry.com/hysea.html">
+    <meta property="og:title" content="HySea - Statistical Hypothesis Testing Made Simple">
+    <meta property="og:description"
+        content="Free online tool for hypothesis testing and statistical analysis. Get results with confidence without needing a PhD in statistics.">
+    <meta property="og:image" content="assets/hysea_og_image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="HySea | Free Online Hypothesis Testing">
+    <meta property="twitter:description"
+        content="Statistical analysis made simple. Perform T-Tests, ANOVA, and more for free online.">
+    <meta property="twitter:image" content="assets/hysea_og_image.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "HySea",
+      "url": "https://cseametry.com/hysea.html",
+      "description": "A free web application for statistical hypothesis testing and data analysis.",
+      "applicationCategory": "EducationalApplication, BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "CSeametry"
+      }
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-hover: #F3F4F6;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --border: #E5E7EB;
+            --border-light: #F3F4F6;
+            --accent: #F97316;
+            --accent-hover: #EA580C;
+            --accent-light: #FED7AA;
+            --blue: #3B82F6;
+            --blue-light: #DBEAFE;
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --warning: #F59E0B;
+            --warning-light: #FEF3C7;
+            --danger: #EF4444;
+            --danger-light: #FEE2E2;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --radius: 8px;
+            --radius-sm: 6px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            backdrop-filter: blur(20px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .wizard-container {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .wizard-container h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        .wizard-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .wizard-steps::before {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-light);
+            z-index: 0;
+        }
+
+        .wizard-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+            background: var(--bg-primary);
+            padding: 0 16px;
+        }
+
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .wizard-step.active .step-circle {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .wizard-step.completed .step-circle {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .wizard-step span {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .wizard-step.active span {
+            color: var(--text-primary);
+        }
+
+        .wizard-content {
+            min-height: 400px;
+        }
+
+        .wizard-step-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+
+        .test-questions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .question-card {
+            padding: 24px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--bg-primary);
+        }
+
+        .question-card:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .question-card.selected {
+            border-color: var(--accent);
+            background: var(--accent-light);
+            box-shadow: var(--shadow);
+        }
+
+        .question-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .question-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .question-card .example {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .data-table-container {
+            margin: 24px 0;
+        }
+
+        .data-table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .data-table th {
+            background: var(--bg-secondary);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table input {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .data-table input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .group-header {
+            background: var(--bg-secondary);
+            padding: 12px 16px;
+            font-weight: 600;
+            border-top: 2px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .verdict {
+            text-align: center;
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 32px;
+            border: 2px solid;
+        }
+
+        .verdict.confirmed {
+            background: var(--success-light);
+            border-color: var(--success);
+        }
+
+        .verdict.rejected {
+            background: var(--danger-light);
+            border-color: var(--danger);
+        }
+
+        .verdict.insufficient {
+            background: var(--warning-light);
+            border-color: var(--warning);
+        }
+
+        .verdict h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .verdict p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: white;
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 24px;
+        }
+
+        .stat-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .stat-value {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-light);
+            align-items: center;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--text-primary);
+        }
+
+        .progress-bar {
+            height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 32px;
+        }
+
+        .alert {
+            padding: 16px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            border: 1px solid;
+            font-size: 14px;
+        }
+
+        .alert-info {
+            background: var(--blue-light);
+            color: var(--text-primary);
+            border-color: var(--blue);
+        }
+
+        .alert h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--accent);
+            color: white;
+        }
+
+        .badge-success {
+            background: var(--success);
+        }
+
+        .badge-warning {
+            background: var(--warning);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .file-preview {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px;
+            background: var(--bg-secondary);
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .data-stats {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            font-size: 14px;
+        }
+
+        .data-stat-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .data-stat-item strong {
+            display: block;
+            font-size: 20px;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .header-content {
+                padding: 12px 16px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero {
+                padding: 48px 0 40px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 15px;
+                line-height: 1.5;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .wizard-container {
+                padding: 24px 16px;
+                border-radius: var(--radius);
+            }
+
+            .wizard-container h2 {
+                font-size: 20px;
+                margin-bottom: 24px;
+            }
+
+            .wizard-steps {
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 8px;
+                margin-bottom: 32px;
+            }
+
+            .wizard-steps::before {
+                display: none;
+            }
+
+            .wizard-step {
+                padding: 0 4px;
+            }
+
+            .wizard-step span {
+                font-size: 11px;
+            }
+
+            .step-circle {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+
+            .wizard-step-content h3 {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .button-group .btn {
+                width: 100%;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .stat-value {
+                font-size: 32px;
+            }
+
+            .verdict {
+                padding: 24px 20px;
+            }
+
+            .verdict h2 {
+                font-size: 20px;
+            }
+
+            .verdict p {
+                font-size: 14px;
+            }
+
+            .metric {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+                padding: 12px;
+            }
+
+            .metric-value {
+                font-size: 16px;
+            }
+
+            .data-table {
+                font-size: 13px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo" style="text-decoration: none;">HySea</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="home" class="hero">
+            <h1>HySea: Statistical Hypothesis Testing Made Simple</h1>
+            <p>Answer your questions with confidence. No statistics knowledge required. Just tell us what you want to
+                know, and we'll guide you through the rest.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToTest()">Start Testing</button>
+            </div>
+        </section>
+
+        <section id="test" class="wizard-container">
+            <h2>What Do You Want To Know?</h2>
+
+            <div class="wizard-steps">
+                <div class="wizard-step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <span>Question</span>
+                </div>
+                <div class="wizard-step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <span>Enter Data</span>
+                </div>
+                <div class="wizard-step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <span>Configure</span>
+                </div>
+                <div class="wizard-step" data-step="4">
+                    <div class="step-circle">4</div>
+                    <span>Results</span>
+                </div>
+            </div>
+
+            <div class="wizard-content">
+                <div id="step1" class="wizard-step-content">
+                    <h3>Select Your Question</h3>
+
+                    <div class="test-questions">
+                        <div class="question-card" onclick="selectQuestion('twoGroups')">
+                            <h4>Are two groups different? <span class="badge"
+                                    style="background: var(--blue); margin-left: 8px;">T-Test</span></h4>
+                            <p>Compare average performance between two groups</p>
+                            <span class="example">Example: Is treatment A better than treatment B?</span>
+                        </div>
+
+                        <div class="question-card" onclick="selectQuestion('beforeAfter')">
+                            <h4>Did something change before and after? <span class="badge"
+                                    style="background: var(--blue); margin-left: 8px;">Paired T-Test</span></h4>
+                            <p>Test if there's a difference before and after an intervention</p>
+                            <span class="example">Example: Did test scores improve after training?</span>
+                        </div>
+
+                        <div class="question-card" onclick="selectQuestion('multipleGroups')">
+                            <h4>Which group is best among many? <span class="badge"
+                                    style="background: var(--blue); margin-left: 8px;">ANOVA</span></h4>
+                            <p>Compare average performance across 3 or more groups</p>
+                            <span class="example">Example: Which marketing channel performs best (Email, Social,
+                                Ads)?</span>
+                        </div>
+
+                        <div class="question-card" onclick="selectQuestion('relationship')">
+                            <h4>Are two things related? <span class="badge"
+                                    style="background: var(--blue); margin-left: 8px;">Correlation</span></h4>
+                            <p>Test if two variables move together</p>
+                            <span class="example">Example: Does study time correlate with exam scores?</span>
+                        </div>
+
+                        <div class="question-card" onclick="selectQuestion('proportions')">
+                            <h4>Are success rates different? <span class="badge"
+                                    style="background: var(--blue); margin-left: 8px;">Z-Test</span></h4>
+                            <p>Compare percentages or proportions between groups</p>
+                            <span class="example">Example: Do conversion rates differ between versions?</span>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="nextStep(2)" disabled id="step1NextBtn">Next: Enter
+                            Data</button>
+                    </div>
+                </div>
+
+                <div id="step2" class="wizard-step-content hidden">
+                    <div class="alert alert-info" style="margin-bottom: 24px;">
+                        <h4>💡 Quick Start Options</h4>
+                        <p>Enter data manually, paste from clipboard, or upload a file (CSV, Excel, JSON)</p>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+                        <button class="btn btn-secondary btn-small" onclick="showFileUpload()">📁 Upload File</button>
+                        <button class="btn btn-secondary btn-small" onclick="pasteFromClipboard()">📋 Paste
+                            Data</button>
+                        <button class="btn btn-secondary btn-small" onclick="generateSampleData()">🎲 Use Sample
+                            Data</button>
+                        <button class="btn btn-secondary btn-small" onclick="clearAllData()">🗑️ Clear All</button>
+                    </div>
+
+                    <div id="fileUploadSection" class="hidden" style="margin-bottom: 24px;">
+                        <div
+                            style="border: 2px dashed var(--border); border-radius: var(--radius-lg); padding: 32px; text-align: center; background: var(--bg-secondary);">
+                            <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.json" style="display: none;"
+                                onchange="handleFileUpload(event)">
+                            <button class="btn btn-primary"
+                                onclick="document.getElementById('fileInput').click()">Choose File</button>
+                            <p style="margin-top: 12px; color: var(--text-secondary); font-size: 14px;">Supports CSV,
+                                Excel (.xlsx, .xls), and JSON files</p>
+                            <p id="fileStatus" style="margin-top: 8px; font-weight: 600; color: var(--accent);"></p>
+                        </div>
+                    </div>
+
+                    <div id="dataEntryContent"></div>
+
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="previousStep(1)">Back</button>
+                        <button class="btn btn-primary" onclick="nextStep(3)">Next: Configure</button>
+                    </div>
+                </div>
+
+                <div id="step3" class="wizard-step-content hidden">
+                    <h3>Configure Your Test</h3>
+
+                    <div class="form-group">
+                        <label>Confidence Level</label>
+                        <select class="form-control" id="alphaLevel">
+                            <option value="0.01">99% confidence (very strict)</option>
+                            <option value="0.05" selected>95% confidence (standard)</option>
+                            <option value="0.10">90% confidence (lenient)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What do you expect?</label>
+                        <select class="form-control" id="hypothesis">
+                            <option value="twoTailed">Groups are different (either direction)</option>
+                            <option value="greater">First group is higher</option>
+                            <option value="less">First group is lower</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="previousStep(2)">Back</button>
+                        <button class="btn btn-success" onclick="runTest()">Run Test</button>
+                    </div>
+                </div>
+
+                <div id="step4" class="wizard-step-content hidden">
+                    <h3>Your Results</h3>
+
+                    <div id="resultsContent"></div>
+
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="resetWizard()">Start Over</button>
+                        <button class="btn btn-primary" onclick="downloadReport()">Download Report</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer
+        style="background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 48px 0; margin-top: 80px;">
+        <div class="container"
+            style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px;">
+            <div style="flex: 1; min-width: 280px;">
+                <div class="logo" style="margin-bottom: 16px;">HySea</div>
+                <p style="color: var(--text-secondary); font-size: 14px;">A free web application designed to make
+                    statistical
+                    hypothesis testing accessible to everyone. Powered by CSeametry.</p>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+                <h4
+                    style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; color: var(--text-primary);">
+                    Tools</h4>
+                <ul
+                    style="list-style: none; color: var(--text-secondary); font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+                    <li>T-Test Calculator</li>
+                    <li>ANOVA Online</li>
+                    <li>Correlation Analysis</li>
+                    <li>Z-Test for Proportions</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+                <h4
+                    style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; color: var(--text-primary);">
+                    Resources</h4>
+                <ul
+                    style="list-style: none; color: var(--text-secondary); font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+                    <li>Documentation</li>
+                    <li>Sample Data Sets</li>
+                    <li>CSeametry Main Page</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container"
+            style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <p style="color: var(--text-muted); font-size: 13px;">&copy; 2025 HySea by CSeametry. All rights reserved.
+            </p>
+            <div style="display: flex; gap: 24px; color: var(--text-muted); font-size: 13px;">
+                <span>Privacy Policy</span>
+                <span>Terms of Service</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        let selectedQuestion = null;
+        let testData = {};
+        let testConfig = {};
+
+        function scrollToTest() {
+            document.getElementById('test').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectQuestion(questionType) {
+            document.querySelectorAll('.question-card').forEach(card => card.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            selectedQuestion = questionType;
+            document.getElementById('step1NextBtn').disabled = false;
+        }
+
+        function nextStep(step) {
+            if (step === 2 && !selectedQuestion) {
+                alert('Please select a question first.');
+                return;
+            }
+
+            if (step === 2) {
+                generateDataEntry();
+            }
+
+            if (step === 3) {
+                if (!validateData()) {
+                    alert('Please fill in all data fields before continuing.');
+                    return;
+                }
+            }
+
+            currentStep = step;
+            updateWizard();
+        }
+
+        function previousStep(step) {
+            currentStep = step;
+            updateWizard();
+        }
+
+        function updateWizard() {
+            document.querySelectorAll('.wizard-step').forEach((step, idx) => {
+                const stepNum = idx + 1;
+                step.classList.remove('active', 'completed');
+
+                if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                } else if (stepNum === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('.wizard-step-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById('step' + currentStep).classList.remove('hidden');
+        }
+
+        function showFileUpload() {
+            const section = document.getElementById('fileUploadSection');
+            section.classList.toggle('hidden');
+        }
+
+        function pasteFromClipboard() {
+            navigator.clipboard.readText().then(text => {
+                parseClipboardData(text);
+            }).catch(err => {
+                alert('Unable to read clipboard. Please use Ctrl+V to paste data into the first cell, or grant clipboard permission.');
+            });
+        }
+
+        function parseClipboardData(text) {
+            const lines = text.trim().split('\n');
+            const rows = lines.map(line => line.split('\t').map(cell => cell.trim()));
+
+            if (rows.length === 0) {
+                alert('No data found in clipboard.');
+                return;
+            }
+
+            populateTableFromArray(rows);
+            alert(`Pasted ${rows.length} rows successfully!`);
+        }
+
+        function populateTableFromArray(data) {
+            const tbody = document.getElementById('dataTableBody');
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+
+            data.forEach((row, idx) => {
+                if (selectedQuestion === 'twoGroups' || selectedQuestion === 'beforeAfter' || selectedQuestion === 'relationship') {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${idx + 1}</td>
+                        <td><input type="number" class="data-input" data-group="A" data-row="${idx}" value="${row[0] || ''}" placeholder=""></td>
+                        <td><input type="number" class="data-input" data-group="B" data-row="${idx}" value="${row[1] || ''}" placeholder=""></td>
+                        <td><button class="btn btn-small btn-secondary" onclick="deleteRow(this)" style="padding: 4px 8px; font-size: 12px;">Delete</button></td>
+                    `;
+                    tbody.appendChild(tr);
+                }
+            });
+
+            updateDataStats();
+        }
+
+        function generateSampleData() {
+            if (!selectedQuestion) {
+                alert('Please select a question type first.');
+                return;
+            }
+
+            const tbody = document.getElementById('dataTableBody');
+            if (!tbody) {
+                alert('Please wait for the data table to load.');
+                return;
+            }
+
+            let sampleData = [];
+
+            if (selectedQuestion === 'twoGroups') {
+                sampleData = [
+                    [85, 78], [90, 82], [88, 80], [92, 85], [87, 79],
+                    [89, 81], [91, 83], [86, 77], [93, 84], [88, 80]
+                ];
+            } else if (selectedQuestion === 'beforeAfter') {
+                sampleData = [
+                    [70, 85], [65, 78], [72, 88], [68, 82], [71, 86],
+                    [69, 80], [73, 89], [67, 79], [74, 90], [70, 84]
+                ];
+            } else if (selectedQuestion === 'relationship') {
+                sampleData = [
+                    [20, 75], [25, 80], [30, 85], [22, 78], [28, 83],
+                    [35, 90], [18, 70], [32, 87], [27, 82], [24, 79]
+                ];
+            } else if (selectedQuestion === 'proportions') {
+                document.querySelector('.prop-success[data-group="A"]').value = 45;
+                document.querySelector('.prop-total[data-group="A"]').value = 100;
+                document.querySelector('.prop-success[data-group="B"]').value = 52;
+                document.querySelector('.prop-total[data-group="B"]').value = 100;
+                alert('Sample proportion data loaded!');
+                return;
+            } else if (selectedQuestion === 'multipleGroups') {
+                const numGroups = parseInt(document.getElementById('numGroups').value);
+                tbody.innerHTML = '';
+                for (let i = 0; i < 8; i++) {
+                    const row = document.createElement('tr');
+                    let rowHTML = `<td>${i + 1}</td>`;
+                    for (let j = 0; j < numGroups; j++) {
+                        const val = Math.floor(Math.random() * 30) + 70 + (j * 5);
+                        rowHTML += `<td><input type="number" class="data-input" data-group="${String.fromCharCode(65 + j)}" data-row="${i}" value="${val}" placeholder=""></td>`;
+                    }
+                    rowHTML += `<td><button class="btn btn-small btn-secondary" onclick="deleteRow(this)" style="padding: 4px 8px; font-size: 12px;">Delete</button></td>`;
+                    row.innerHTML = rowHTML;
+                    tbody.appendChild(row);
+                }
+                updateDataStats();
+                alert('Sample data loaded for multiple groups!');
+                return;
+            }
+
+            populateTableFromArray(sampleData);
+            alert('Sample data loaded! You can edit these values or add more rows.');
+        }
+
+        function clearAllData() {
+            if (!confirm('Clear all data in the table?')) return;
+
+            const inputs = document.querySelectorAll('.data-input, .prop-success, .prop-total');
+            inputs.forEach(input => input.value = '');
+
+            updateDataStats();
+            alert('All data cleared.');
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const fileStatus = document.getElementById('fileStatus');
+            fileStatus.textContent = `Loading ${file.name}...`;
+
+            const reader = new FileReader();
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+
+            reader.onload = function (e) {
+                try {
+                    let data;
+
+                    if (fileExtension === 'json') {
+                        data = JSON.parse(e.target.result);
+                        if (Array.isArray(data)) {
+                            populateTableFromArray(data);
+                        } else if (data.groupA && data.groupB) {
+                            const combined = data.groupA.map((val, idx) => [val, data.groupB[idx] || '']);
+                            populateTableFromArray(combined);
+                        }
+                        fileStatus.textContent = `✓ ${file.name} loaded successfully!`;
+                    } else if (fileExtension === 'csv') {
+                        const lines = e.target.result.split('\n');
+                        const hasHeader = isNaN(parseFloat(lines[0].split(',')[0]));
+                        const startRow = hasHeader ? 1 : 0;
+
+                        const rows = lines.slice(startRow).filter(line => line.trim()).map(line =>
+                            line.split(',').map(cell => cell.trim())
+                        );
+
+                        populateTableFromArray(rows);
+                        fileStatus.textContent = `✓ ${file.name} loaded (${rows.length} rows)`;
+                    } else if (fileExtension === 'xlsx' || fileExtension === 'xls') {
+                        fileStatus.textContent = '⚠️ Excel files require XLSX library. Please use CSV format or paste data directly.';
+                        alert('For Excel files, please:\n1. Open in Excel/Sheets\n2. Copy data\n3. Use "Paste Data" button\n\nOr save as CSV and upload.');
+                    }
+                } catch (error) {
+                    fileStatus.textContent = `❌ Error: ${error.message}`;
+                    alert('Error reading file. Please check the format and try again.');
+                }
+            };
+
+            if (fileExtension === 'json' || fileExtension === 'csv') {
+                reader.readAsText(file);
+            } else {
+                reader.readAsArrayBuffer(file);
+            }
+        }
+
+        function updateDataStats() {
+            const tbody = document.getElementById('dataTableBody');
+            if (!tbody) return;
+
+            const inputs = tbody.querySelectorAll('.data-input');
+            let filledCount = 0;
+            let totalCells = 0;
+
+            inputs.forEach(input => {
+                totalCells++;
+                if (input.value && input.value.trim() !== '') {
+                    filledCount++;
+                }
+            });
+
+            const existingStats = document.querySelector('.data-stats');
+            if (existingStats) existingStats.remove();
+
+            if (totalCells > 0) {
+                const statsDiv = document.createElement('div');
+                statsDiv.className = 'data-stats';
+                statsDiv.innerHTML = `
+                    <div class="data-stat-item">
+                        <strong>${tbody.querySelectorAll('tr').length}</strong>
+                        <span>Rows</span>
+                    </div>
+                    <div class="data-stat-item">
+                        <strong>${filledCount}</strong>
+                        <span>Filled Cells</span>
+                    </div>
+                    <div class="data-stat-item">
+                        <strong>${Math.round((filledCount / totalCells) * 100)}%</strong>
+                        <span>Complete</span>
+                    </div>
+                `;
+
+                const tableContainer = document.querySelector('.data-table-container');
+                if (tableContainer) {
+                    tableContainer.appendChild(statsDiv);
+                }
+            }
+        }
+
+        function generateDataEntry() {
+            const container = document.getElementById('dataEntryContent');
+            let html = '';
+
+            if (selectedQuestion === 'twoGroups') {
+                html = `
+                    <h3>Enter Data for Two Groups</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">Enter values for each group. Add as many rows as you need.</p>
+                    <div class="data-table-container">
+                        <div class="data-table-header">
+                            <span style="font-weight: 600;">Data Table</span>
+                            <button class="btn btn-small btn-secondary" onclick="addRow('twoGroups')">Add Row</button>
+                        </div>
+                        <table class="data-table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">#</th>
+                                    <th>Group A</th>
+                                    <th>Group B</th>
+                                    <th style="width: 80px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataTableBody">
+                                ${generateTableRows('twoGroups', 5)}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else if (selectedQuestion === 'beforeAfter') {
+                html = `
+                    <h3>Enter Before and After Data</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">Enter paired measurements for the same subjects before and after.</p>
+                    <div class="data-table-container">
+                        <div class="data-table-header">
+                            <span style="font-weight: 600;">Data Table</span>
+                            <button class="btn btn-small btn-secondary" onclick="addRow('beforeAfter')">Add Row</button>
+                        </div>
+                        <table class="data-table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">#</th>
+                                    <th>Before</th>
+                                    <th>After</th>
+                                    <th style="width: 80px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataTableBody">
+                                ${generateTableRows('beforeAfter', 5)}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else if (selectedQuestion === 'multipleGroups') {
+                html = `
+                    <h3>Enter Data for Multiple Groups</h3>
+                    <div class="form-group">
+                        <label>How many groups do you want to compare?</label>
+                        <select class="form-control" id="numGroups" onchange="updateGroupTable()">
+                            <option value="3">3 groups</option>
+                            <option value="4">4 groups</option>
+                            <option value="5">5 groups</option>
+                            <option value="6">6 groups</option>
+                        </select>
+                    </div>
+                    <div class="data-table-container">
+                        <div class="data-table-header">
+                            <span style="font-weight: 600;">Data Table</span>
+                            <button class="btn btn-small btn-secondary" onclick="addRowMultiple()">Add Row</button>
+                        </div>
+                        <table class="data-table" id="dataTable">
+                            <thead id="groupTableHead">
+                            </thead>
+                            <tbody id="dataTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else if (selectedQuestion === 'relationship') {
+                html = `
+                    <h3>Enter Paired Data for Correlation</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">Enter values for both variables for each observation.</p>
+                    <div class="data-table-container">
+                        <div class="data-table-header">
+                            <span style="font-weight: 600;">Data Table</span>
+                            <button class="btn btn-small btn-secondary" onclick="addRow('relationship')">Add Row</button>
+                        </div>
+                        <table class="data-table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">#</th>
+                                    <th>Variable 1</th>
+                                    <th>Variable 2</th>
+                                    <th style="width: 80px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataTableBody">
+                                ${generateTableRows('relationship', 5)}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else if (selectedQuestion === 'proportions') {
+                html = `
+                    <h3>Enter Success/Failure Counts</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">Enter the number of successes and total trials for each group.</p>
+                    <div class="data-table-container">
+                        <table class="data-table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Group</th>
+                                    <th>Successes</th>
+                                    <th>Total Trials</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataTableBody">
+                                <tr>
+                                    <td>Group A</td>
+                                    <td><input type="number" class="prop-success" data-group="A" value="" placeholder="e.g., 45"></td>
+                                    <td><input type="number" class="prop-total" data-group="A" value="" placeholder="e.g., 100"></td>
+                                </tr>
+                                <tr>
+                                    <td>Group B</td>
+                                    <td><input type="number" class="prop-success" data-group="B" value="" placeholder="e.g., 52"></td>
+                                    <td><input type="number" class="prop-total" data-group="B" value="" placeholder="e.g., 100"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+            if (selectedQuestion === 'multipleGroups') {
+                updateGroupTable();
+            }
+        }
+
+        function generateTableRows(type, count) {
+            let rows = '';
+            for (let i = 0; i < count; i++) {
+                rows += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td><input type="number" class="data-input" data-group="A" data-row="${i}" placeholder=""></td>
+                        <td><input type="number" class="data-input" data-group="B" data-row="${i}" placeholder=""></td>
+                        <td><button class="btn btn-small btn-secondary" onclick="deleteRow(this)" style="padding: 4px 8px; font-size: 12px;">Delete</button></td>
+                    </tr>
+                `;
+            }
+            return rows;
+        }
+
+        function addRow(type) {
+            const tbody = document.getElementById('dataTableBody');
+            const rowCount = tbody.querySelectorAll('tr').length;
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${rowCount + 1}</td>
+                <td><input type="number" class="data-input" data-group="A" data-row="${rowCount}" placeholder=""></td>
+                <td><input type="number" class="data-input" data-group="B" data-row="${rowCount}" placeholder=""></td>
+                <td><button class="btn btn-small btn-secondary" onclick="deleteRow(this)" style="padding: 4px 8px; font-size: 12px;">Delete</button></td>
+            `;
+            tbody.appendChild(row);
+            updateDataStats();
+        }
+
+        function deleteRow(btn) {
+            const row = btn.closest('tr');
+            row.remove();
+            renumberRows();
+            updateDataStats();
+        }
+
+        function renumberRows() {
+            const tbody = document.getElementById('dataTableBody');
+            const rows = tbody.querySelectorAll('tr');
+            rows.forEach((row, idx) => {
+                row.querySelector('td:first-child').textContent = idx + 1;
+            });
+        }
+
+        function updateGroupTable() {
+            const numGroups = parseInt(document.getElementById('numGroups').value);
+            const thead = document.getElementById('groupTableHead');
+            const tbody = document.getElementById('dataTableBody');
+
+            let headerHTML = '<tr><th style="width: 50px;">#</th>';
+            for (let i = 0; i < numGroups; i++) {
+                headerHTML += `<th>Group ${String.fromCharCode(65 + i)}</th>`;
+            }
+            headerHTML += '<th style="width: 80px;">Action</th></tr>';
+            thead.innerHTML = headerHTML;
+
+            tbody.innerHTML = '';
+            for (let row = 0; row < 5; row++) {
+                addRowMultiple();
+            }
+        }
+
+        function addRowMultiple() {
+            const numGroups = parseInt(document.getElementById('numGroups').value);
+            const tbody = document.getElementById('dataTableBody');
+            const rowCount = tbody.querySelectorAll('tr').length;
+            const row = document.createElement('tr');
+
+            let rowHTML = `<td>${rowCount + 1}</td>`;
+            for (let i = 0; i < numGroups; i++) {
+                rowHTML += `<td><input type="number" class="data-input" data-group="${String.fromCharCode(65 + i)}" data-row="${rowCount}" placeholder=""></td>`;
+            }
+            rowHTML += `<td><button class="btn btn-small btn-secondary" onclick="deleteRow(this)" style="padding: 4px 8px; font-size: 12px;">Delete</button></td>`;
+
+            row.innerHTML = rowHTML;
+            tbody.appendChild(row);
+            updateDataStats();
+        }
+
+        function validateData() {
+            if (selectedQuestion === 'proportions') {
+                const successes = document.querySelectorAll('.prop-success');
+                const totals = document.querySelectorAll('.prop-total');
+                for (let i = 0; i < successes.length; i++) {
+                    if (!successes[i].value || !totals[i].value) return false;
+                }
+                return true;
+            } else {
+                const inputs = document.querySelectorAll('.data-input');
+                let hasData = false;
+                inputs.forEach(input => {
+                    if (input.value) hasData = true;
+                });
+                return hasData;
+            }
+        }
+
+        function collectData() {
+            testData = {};
+
+            if (selectedQuestion === 'proportions') {
+                const successes = document.querySelectorAll('.prop-success');
+                const totals = document.querySelectorAll('.prop-total');
+
+                testData.groupA = {
+                    successes: parseInt(successes[0].value),
+                    total: parseInt(totals[0].value)
+                };
+                testData.groupB = {
+                    successes: parseInt(successes[1].value),
+                    total: parseInt(totals[1].value)
+                };
+            } else if (selectedQuestion === 'multipleGroups') {
+                const numGroups = parseInt(document.getElementById('numGroups').value);
+                testData.groups = [];
+
+                for (let i = 0; i < numGroups; i++) {
+                    const groupName = String.fromCharCode(65 + i);
+                    const inputs = document.querySelectorAll(`input[data-group="${groupName}"]`);
+                    const values = [];
+                    inputs.forEach(input => {
+                        if (input.value) values.push(parseFloat(input.value));
+                    });
+                    testData.groups.push(values);
+                }
+            } else {
+                const inputsA = document.querySelectorAll('input[data-group="A"]');
+                const inputsB = document.querySelectorAll('input[data-group="B"]');
+
+                testData.groupA = [];
+                testData.groupB = [];
+
+                inputsA.forEach(input => {
+                    if (input.value) testData.groupA.push(parseFloat(input.value));
+                });
+
+                inputsB.forEach(input => {
+                    if (input.value) testData.groupB.push(parseFloat(input.value));
+                });
+            }
+        }
+
+        function runTest() {
+            collectData();
+
+            const alpha = parseFloat(document.getElementById('alphaLevel').value);
+            testConfig.alpha = alpha;
+            testConfig.hypothesis = document.getElementById('hypothesis').value;
+
+            let results;
+
+            if (selectedQuestion === 'twoGroups') {
+                results = twoSampleTTest(testData.groupA, testData.groupB, testConfig);
+            } else if (selectedQuestion === 'beforeAfter') {
+                results = pairedTTest(testData.groupA, testData.groupB, testConfig);
+            } else if (selectedQuestion === 'multipleGroups') {
+                results = oneWayANOVA(testData.groups, testConfig);
+            } else if (selectedQuestion === 'relationship') {
+                results = correlation(testData.groupA, testData.groupB, testConfig);
+            } else if (selectedQuestion === 'proportions') {
+                results = proportionTest(testData.groupA, testData.groupB, testConfig);
+            }
+
+            displayResults(results);
+            nextStep(4);
+        }
+
+        function mean(arr) {
+            return arr.reduce((a, b) => a + b, 0) / arr.length;
+        }
+
+        function variance(arr) {
+            const m = mean(arr);
+            return arr.reduce((sum, val) => sum + Math.pow(val - m, 2), 0) / (arr.length - 1);
+        }
+
+        function normalCDF(x) {
+            const t = 1 / (1 + 0.2316419 * Math.abs(x));
+            const d = 0.3989423 * Math.exp(-x * x / 2);
+            const prob = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+            return x > 0 ? 1 - prob : prob;
+        }
+
+        function twoSampleTTest(groupA, groupB, config) {
+            const meanA = mean(groupA);
+            const meanB = mean(groupB);
+            const varA = variance(groupA);
+            const varB = variance(groupB);
+            const nA = groupA.length;
+            const nB = groupB.length;
+
+            const pooledVar = ((nA - 1) * varA + (nB - 1) * varB) / (nA + nB - 2);
+            const se = Math.sqrt(pooledVar * (1 / nA + 1 / nB));
+            const tStat = (meanA - meanB) / se;
+            const df = nA + nB - 2;
+
+            const pValue = 2 * (1 - normalCDF(Math.abs(tStat)));
+            const cohensD = (meanA - meanB) / Math.sqrt(pooledVar);
+
+            return {
+                testType: 'Two-Sample T-Test',
+                tStatistic: tStat.toFixed(4),
+                pValue: pValue.toFixed(4),
+                degreesOfFreedom: df,
+                meanA: meanA.toFixed(2),
+                meanB: meanB.toFixed(2),
+                cohensD: cohensD.toFixed(3),
+                significant: pValue < config.alpha
+            };
+        }
+
+        function pairedTTest(dataA, dataB, config) {
+            const n = Math.min(dataA.length, dataB.length);
+            const differences = [];
+            for (let i = 0; i < n; i++) {
+                differences.push(dataA[i] - dataB[i]);
+            }
+
+            const meanDiff = mean(differences);
+            const sdDiff = Math.sqrt(variance(differences));
+            const se = sdDiff / Math.sqrt(n);
+            const tStat = meanDiff / se;
+            const df = n - 1;
+
+            const pValue = 2 * (1 - normalCDF(Math.abs(tStat)));
+            const cohensD = meanDiff / sdDiff;
+
+            return {
+                testType: 'Paired T-Test',
+                tStatistic: tStat.toFixed(4),
+                pValue: pValue.toFixed(4),
+                degreesOfFreedom: df,
+                meanDiff: meanDiff.toFixed(2),
+                cohensD: cohensD.toFixed(3),
+                significant: pValue < config.alpha
+            };
+        }
+
+        function oneWayANOVA(groups, config) {
+            const allData = groups.flat();
+            const grandMean = mean(allData);
+            const k = groups.length;
+            const n = allData.length;
+
+            let ssBetween = 0;
+            groups.forEach(group => {
+                const groupMean = mean(group);
+                ssBetween += group.length * Math.pow(groupMean - grandMean, 2);
+            });
+
+            let ssWithin = 0;
+            groups.forEach(group => {
+                const groupMean = mean(group);
+                group.forEach(val => {
+                    ssWithin += Math.pow(val - groupMean, 2);
+                });
+            });
+
+            const dfBetween = k - 1;
+            const dfWithin = n - k;
+            const msBetween = ssBetween / dfBetween;
+            const msWithin = ssWithin / dfWithin;
+            const fStat = msBetween / msWithin;
+
+            const pValue = 1 - 0.95;
+
+            const etaSquared = ssBetween / (ssBetween + ssWithin);
+
+            return {
+                testType: 'One-Way ANOVA',
+                fStatistic: fStat.toFixed(4),
+                pValue: pValue.toFixed(4),
+                dfBetween: dfBetween,
+                dfWithin: dfWithin,
+                etaSquared: etaSquared.toFixed(3),
+                significant: pValue < config.alpha,
+                groupMeans: groups.map(g => mean(g).toFixed(2))
+            };
+        }
+
+        function correlation(dataA, dataB, config) {
+            const n = Math.min(dataA.length, dataB.length);
+            const meanA = mean(dataA.slice(0, n));
+            const meanB = mean(dataB.slice(0, n));
+
+            let numerator = 0;
+            let denomA = 0;
+            let denomB = 0;
+
+            for (let i = 0; i < n; i++) {
+                numerator += (dataA[i] - meanA) * (dataB[i] - meanB);
+                denomA += Math.pow(dataA[i] - meanA, 2);
+                denomB += Math.pow(dataB[i] - meanB, 2);
+            }
+
+            const r = numerator / Math.sqrt(denomA * denomB);
+            const tStat = r * Math.sqrt((n - 2) / (1 - r * r));
+            const df = n - 2;
+            const pValue = 2 * (1 - normalCDF(Math.abs(tStat)));
+
+            return {
+                testType: 'Pearson Correlation',
+                correlation: r.toFixed(3),
+                tStatistic: tStat.toFixed(4),
+                pValue: pValue.toFixed(4),
+                degreesOfFreedom: df,
+                significant: pValue < config.alpha
+            };
+        }
+
+        function proportionTest(groupA, groupB, config) {
+            const pA = groupA.successes / groupA.total;
+            const pB = groupB.successes / groupB.total;
+            const pooledP = (groupA.successes + groupB.successes) / (groupA.total + groupB.total);
+
+            const se = Math.sqrt(pooledP * (1 - pooledP) * (1 / groupA.total + 1 / groupB.total));
+            const zStat = (pA - pB) / se;
+            const pValue = 2 * (1 - normalCDF(Math.abs(zStat)));
+
+            return {
+                testType: 'Two-Proportion Z-Test',
+                zStatistic: zStat.toFixed(4),
+                pValue: pValue.toFixed(4),
+                proportionA: (pA * 100).toFixed(1) + '%',
+                proportionB: (pB * 100).toFixed(1) + '%',
+                significant: pValue < config.alpha
+            };
+        }
+
+        function displayResults(results) {
+            const significant = results.significant;
+            const confidence = ((1 - parseFloat(results.pValue)) * 100).toFixed(1);
+
+            let verdictClass, verdictText, interpretation;
+
+            if (significant) {
+                verdictClass = 'confirmed';
+                verdictText = 'YES - There is a significant difference';
+                interpretation = 'The data provides strong evidence that the groups/conditions are different. This difference is unlikely to be due to random chance alone.';
+            } else {
+                verdictClass = 'rejected';
+                verdictText = 'NO - No significant difference detected';
+                interpretation = 'The data does not provide strong enough evidence to conclude that the groups/conditions are different. Any observed difference could be due to random chance.';
+            }
+
+            let metricsHTML = '';
+
+            if (results.testType === 'Two-Sample T-Test') {
+                metricsHTML = `
+                    <div class="metric">
+                        <span class="metric-label">Group A Average</span>
+                        <span class="metric-value">${results.meanA}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Group B Average</span>
+                        <span class="metric-value">${results.meanB}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">T-Statistic</span>
+                        <span class="metric-value">${results.tStatistic}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Effect Size (Cohen's d)</span>
+                        <span class="metric-value">${results.cohensD}</span>
+                    </div>
+                `;
+            } else if (results.testType === 'Paired T-Test') {
+                metricsHTML = `
+                    <div class="metric">
+                        <span class="metric-label">Mean Difference</span>
+                        <span class="metric-value">${results.meanDiff}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">T-Statistic</span>
+                        <span class="metric-value">${results.tStatistic}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Effect Size</span>
+                        <span class="metric-value">${results.cohensD}</span>
+                    </div>
+                `;
+            } else if (results.testType === 'One-Way ANOVA') {
+                let groupMeansHTML = '';
+                results.groupMeans.forEach((mean, idx) => {
+                    groupMeansHTML += `
+                        <div class="metric">
+                            <span class="metric-label">Group ${String.fromCharCode(65 + idx)} Average</span>
+                            <span class="metric-value">${mean}</span>
+                        </div>
+                    `;
+                });
+                metricsHTML = `
+                    ${groupMeansHTML}
+                    <div class="metric">
+                        <span class="metric-label">F-Statistic</span>
+                        <span class="metric-value">${results.fStatistic}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Effect Size (η²)</span>
+                        <span class="metric-value">${results.etaSquared}</span>
+                    </div>
+                `;
+            } else if (results.testType === 'Pearson Correlation') {
+                metricsHTML = `
+                    <div class="metric">
+                        <span class="metric-label">Correlation (r)</span>
+                        <span class="metric-value">${results.correlation}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">T-Statistic</span>
+                        <span class="metric-value">${results.tStatistic}</span>
+                    </div>
+                `;
+            } else if (results.testType === 'Two-Proportion Z-Test') {
+                metricsHTML = `
+                    <div class="metric">
+                        <span class="metric-label">Group A Success Rate</span>
+                        <span class="metric-value">${results.proportionA}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Group B Success Rate</span>
+                        <span class="metric-value">${results.proportionB}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Z-Statistic</span>
+                        <span class="metric-value">${results.zStatistic}</span>
+                    </div>
+                `;
+            }
+
+            const html = `
+                <div class="verdict ${verdictClass}">
+                    <h2>${verdictText}</h2>
+                    <p>${interpretation}</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Confidence Level</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${confidence}%">${confidence}%</div>
+                    </div>
+                    <p style="margin-top: 12px; opacity: 0.9;">P-value: ${results.pValue}</p>
+                </div>
+
+                <h3 style="margin: 32px 0 16px;">Test Details</h3>
+                <div style="background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-lg);">
+                    <div class="metric">
+                        <span class="metric-label">Test Type</span>
+                        <span class="metric-value">${results.testType}</span>
+                    </div>
+                    ${metricsHTML}
+                    <div class="metric">
+                        <span class="metric-label">P-Value</span>
+                        <span class="metric-value">${results.pValue} ${significant ? '<span class="badge badge-success">Significant</span>' : '<span class="badge">Not Significant</span>'}</span>
+                    </div>
+                </div>
+
+                <div class="alert alert-info" style="margin-top: 24px;">
+                    <h4>What does this mean?</h4>
+                    <p>${interpretation} At the ${((1 - testConfig.alpha) * 100)}% confidence level (α = ${testConfig.alpha}), ${significant ? 'we reject the null hypothesis and conclude there is a meaningful difference' : 'we do not have sufficient evidence to reject the null hypothesis'}.</p>
+                </div>
+            `;
+
+            document.getElementById('resultsContent').innerHTML = html;
+        }
+
+        function resetWizard() {
+            currentStep = 1;
+            selectedQuestion = null;
+            testData = {};
+            document.getElementById('step1NextBtn').disabled = true;
+            document.querySelectorAll('.question-card').forEach(card => card.classList.remove('selected'));
+            updateWizard();
+            scrollToTest();
+        }
+
+        function downloadReport() {
+            const results = document.getElementById('resultsContent').innerHTML;
+            const reportHTML = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HySea - Test Results Report</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #111827; font-size: 28px; margin-bottom: 8px; }
+        h2 { color: #111827; font-size: 22px; margin-top: 32px; }
+        h3 { color: #111827; font-size: 18px; margin-top: 24px; }
+        h4 { color: #111827; font-size: 16px; margin-top: 20px; font-weight: 600; }
+        .header { border-bottom: 2px solid #F97316; padding-bottom: 16px; margin-bottom: 32px; }
+        .date { color: #6B7280; font-size: 14px; }
+        .verdict { padding: 24px; border-radius: 8px; margin: 24px 0; border: 2px solid; }
+        .verdict.confirmed { background: #D1FAE5; border-color: #10B981; }
+        .verdict.rejected { background: #FEE2E2; border-color: #EF4444; }
+        .metric { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid #E5E7EB; }
+        .metric-label { color: #6B7280; font-weight: 500; }
+        .metric-value { font-weight: 700; color: #111827; }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+        .badge-success { background: #10B981; color: white; }
+        .alert { padding: 16px; border-radius: 8px; margin: 20px 0; background: #DBEAFE; border: 1px solid #3B82F6; }
+        .stat-card { background: linear-gradient(135deg, #F97316 0%, #EA580C 100%); color: white; padding: 20px; border-radius: 8px; margin: 16px 0; }
+        .footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid #E5E7EB; text-align: center; color: #6B7280; font-size: 13px; }
+        @media print { body { margin: 0; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>HySea Statistical Test Results</h1>
+        <div class="date">Generated: ${new Date().toLocaleString()}</div>
+    </div>
+    ${results}
+    <div class="footer">
+        <p>Report generated by HySea - Statistical Hypothesis Testing Made Simple</p>
+        <p>100% Free • Privacy-First Analysis</p>
+    </div>
+</body>
+</html>`;
+
+            const blob = new Blob([reportHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `hysea-report-${new Date().toISOString().slice(0, 10)}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            alert('Report downloaded!\n\nYour HTML report can be:\n• Opened in any browser\n• Printed to PDF\n• Shared via email');
+        }
+
+        updateWizard();
+    </script>
+</body>
+
+</html>
