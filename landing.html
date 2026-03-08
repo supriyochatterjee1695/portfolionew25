@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Premium Solutions - Transform Your Business</title>
+  <link rel="icon" type="image/png" href="assets/logoo-removebg-preview%20(1).png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/logoo-removebg-preview%20(1).png">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     html {
       scroll-behavior: smooth;
     }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
       background: #fafbfc;
       color: #2c3e50;
       line-height: 1.6;
     }
+
     /* Header */
     header {
       background: #fff;
@@ -29,6 +35,7 @@
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
       backdrop-filter: blur(10px);
     }
+
     nav {
       max-width: 1200px;
       margin: 0 auto;
@@ -37,18 +44,21 @@
       align-items: center;
       padding: 0 2rem;
     }
+
     nav h2 {
       font-size: 1.5rem;
       font-weight: 800;
       color: #3498db;
       letter-spacing: -0.5px;
     }
+
     nav ul {
       list-style: none;
       display: flex;
       gap: 2.5rem;
       align-items: center;
     }
+
     nav a {
       color: #2c3e50;
       text-decoration: none;
@@ -58,6 +68,7 @@
       position: relative;
       padding: 0.5rem 0;
     }
+
     nav a::after {
       content: '';
       position: absolute;
@@ -68,12 +79,15 @@
       background: linear-gradient(90deg, #3498db, #2ecc71);
       transition: width 0.3s ease;
     }
+
     nav a:hover {
       color: #3498db;
     }
+
     nav a:hover::after {
       width: 100%;
     }
+
     .back-btn {
       background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%) !important;
       color: #fff !important;
@@ -81,13 +95,16 @@
       border-radius: 6px;
       transition: all 0.3s ease;
     }
+
     .back-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
     }
+
     .back-btn::after {
       display: none !important;
     }
+
     /* Hamburger */
     .hamburger {
       display: none;
@@ -96,6 +113,7 @@
       cursor: pointer;
       z-index: 1001;
     }
+
     .hamburger span {
       width: 24px;
       height: 2.5px;
@@ -103,15 +121,19 @@
       border-radius: 2px;
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     .hamburger.active span:nth-child(1) {
       transform: rotate(45deg) translate(10px, 10px);
     }
+
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
+
     .hamburger.active span:nth-child(3) {
       transform: rotate(-45deg) translate(8px, -8px);
     }
+
     /* Mobile Nav */
     .mobile-nav {
       display: none;
@@ -126,9 +148,11 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       animation: slideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     .mobile-nav.active {
       display: flex;
     }
+
     .mobile-nav a {
       color: #2c3e50;
       text-decoration: none;
@@ -137,20 +161,24 @@
       border-radius: 6px;
       transition: all 0.3s ease;
     }
+
     .mobile-nav a:hover {
       background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.1));
       color: #3498db;
     }
+
     @keyframes slideDown {
       from {
         opacity: 0;
         transform: translateY(-15px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
     /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #3498db 0%, #2ecc71 50%, #1abc9c 100%);
@@ -160,6 +188,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -171,6 +200,7 @@
       border-radius: 50%;
       animation: float 7s ease-in-out infinite;
     }
+
     .hero::after {
       content: '';
       position: absolute;
@@ -182,12 +212,14 @@
       border-radius: 50%;
       animation: float 8s ease-in-out infinite reverse;
     }
+
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 900px;
       margin: 0 auto;
     }
+
     .hero h1 {
       font-size: 3.2rem;
       margin-bottom: 1rem;
@@ -195,6 +227,7 @@
       letter-spacing: -1px;
       line-height: 1.2;
     }
+
     .hero p {
       font-size: 1.2rem;
       margin-bottom: 2.5rem;
@@ -202,12 +235,14 @@
       font-weight: 300;
       line-height: 1.8;
     }
+
     .hero-buttons {
       display: flex;
       gap: 1.5rem;
       justify-content: center;
       flex-wrap: wrap;
     }
+
     .cta {
       padding: 1.1rem 2.8rem;
       border-radius: 8px;
@@ -220,37 +255,52 @@
       letter-spacing: 0.5px;
       display: inline-block;
     }
+
     .cta-primary {
       background: #fff;
       color: #3498db;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
+
     .cta-primary:hover {
       transform: translateY(-4px);
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     }
+
     .cta-secondary {
       background: transparent;
       color: #fff;
       border: 2px solid #fff;
     }
+
     .cta-secondary:hover {
       background: rgba(255, 255, 255, 0.15);
       transform: translateY(-4px);
     }
+
     @keyframes float {
-      0%, 100% { transform: translateY(0px) translateX(0px); }
-      50% { transform: translateY(30px) translateX(20px); }
+
+      0%,
+      100% {
+        transform: translateY(0px) translateX(0px);
+      }
+
+      50% {
+        transform: translateY(30px) translateX(20px);
+      }
     }
+
     /* Main Content */
     main {
       max-width: 1200px;
       margin: 0 auto;
       padding: 5rem 2rem;
     }
+
     section {
       margin-bottom: 5rem;
     }
+
     section h2 {
       font-size: 2.6rem;
       margin-bottom: 1rem;
@@ -261,6 +311,7 @@
       position: relative;
       padding-bottom: 1.5rem;
     }
+
     section h2::after {
       content: '';
       position: absolute;
@@ -272,6 +323,7 @@
       background: linear-gradient(90deg, #3498db, #2ecc71);
       border-radius: 2px;
     }
+
     section p {
       text-align: center;
       color: #7f8c8d;
@@ -282,6 +334,7 @@
       margin-right: auto;
       line-height: 1.8;
     }
+
     /* Benefits Section - Gestalt Proximity */
     .benefits {
       display: grid;
@@ -289,6 +342,7 @@
       gap: 2rem;
       margin-bottom: 2rem;
     }
+
     .benefit-card {
       background: #fff;
       padding: 2.2rem;
@@ -299,6 +353,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .benefit-card::before {
       content: '';
       position: absolute;
@@ -310,13 +365,16 @@
       transition: height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       z-index: 1;
     }
+
     .benefit-card:hover::before {
       height: 4px;
     }
+
     .benefit-card:hover {
       transform: translateY(-12px);
       box-shadow: 0 18px 45px rgba(52, 152, 219, 0.2);
     }
+
     .benefit-icon {
       font-size: 3rem;
       margin-bottom: 1.2rem;
@@ -324,9 +382,11 @@
       position: relative;
       z-index: 2;
     }
+
     .benefit-card:hover .benefit-icon {
       transform: scale(1.2) rotate(10deg);
     }
+
     .benefit-card h3 {
       color: #2c3e50;
       margin-bottom: 0.8rem;
@@ -335,6 +395,7 @@
       position: relative;
       z-index: 2;
     }
+
     .benefit-card p {
       text-align: left;
       color: #64748b;
@@ -343,6 +404,7 @@
       position: relative;
       z-index: 2;
     }
+
     /* Pricing Section - Gestalt Similarity & Contrast */
     .pricing-wrapper {
       background: linear-gradient(135deg, #f0f4f8 0%, #f9fafc 100%);
@@ -351,6 +413,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .pricing-wrapper::before {
       content: '';
       position: absolute;
@@ -362,6 +425,7 @@
       border-radius: 50%;
       pointer-events: none;
     }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -370,6 +434,7 @@
       position: relative;
       z-index: 2;
     }
+
     .plan {
       background: #fff;
       padding: 2.5rem;
@@ -381,6 +446,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .plan::before {
       content: '';
       position: absolute;
@@ -391,14 +457,17 @@
       background: linear-gradient(90deg, #3498db, #2ecc71);
       transition: height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     .plan:hover::before {
       height: 4px;
     }
+
     .plan.featured {
       transform: scale(1.05);
       border-color: #3498db;
       box-shadow: 0 12px 35px rgba(52, 152, 219, 0.3);
     }
+
     .plan.featured::after {
       content: 'POPULAR';
       position: absolute;
@@ -414,35 +483,42 @@
       letter-spacing: 1px;
       z-index: 10;
     }
+
     .plan:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 40px rgba(52, 152, 219, 0.2);
     }
+
     .plan.featured:hover {
       transform: scale(1.05) translateY(-10px);
     }
+
     .plan-name {
       font-size: 1.3rem;
       color: #2c3e50;
       margin-bottom: 1rem;
       font-weight: 800;
     }
+
     .plan-price {
       font-size: 2.5rem;
       color: #3498db;
       margin-bottom: 0.5rem;
       font-weight: 900;
     }
+
     .plan-period {
       color: #7f8c8d;
       font-size: 0.9rem;
       margin-bottom: 2rem;
     }
+
     .plan-features {
       text-align: left;
       margin-bottom: 2rem;
       list-style: none;
     }
+
     .plan-features li {
       color: #64748b;
       margin-bottom: 0.9rem;
@@ -450,6 +526,7 @@
       position: relative;
       font-weight: 500;
     }
+
     .plan-features li::before {
       content: '✓';
       position: absolute;
@@ -458,6 +535,7 @@
       font-weight: 900;
       font-size: 1.1rem;
     }
+
     .plan-btn {
       width: 100%;
       background: linear-gradient(135deg, #3498db, #2ecc71);
@@ -471,13 +549,16 @@
       font-size: 0.95rem;
       letter-spacing: 0.5px;
     }
+
     .plan-btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
     }
+
     .plan-btn:active {
       transform: translateY(-1px);
     }
+
     /* CTA Banner */
     .cta-banner {
       background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
@@ -490,6 +571,7 @@
       overflow: hidden;
       box-shadow: 0 12px 40px rgba(52, 152, 219, 0.2);
     }
+
     .cta-banner::before {
       content: '';
       position: absolute;
@@ -500,6 +582,7 @@
       background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
       border-radius: 50%;
     }
+
     .cta-banner h3 {
       font-size: 2rem;
       margin-bottom: 1rem;
@@ -507,6 +590,7 @@
       position: relative;
       z-index: 2;
     }
+
     .cta-banner p {
       font-size: 1.1rem;
       margin-bottom: 2rem;
@@ -514,6 +598,7 @@
       position: relative;
       z-index: 2;
     }
+
     .cta-banner a {
       background: #fff;
       color: #3498db;
@@ -526,10 +611,12 @@
       position: relative;
       z-index: 2;
     }
+
     .cta-banner a:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
+
     /* Footer */
     footer {
       background: #2c3e50;
@@ -540,78 +627,100 @@
       font-size: 0.9rem;
       letter-spacing: 0.3px;
     }
+
     footer a {
       color: #3498db;
       text-decoration: none;
       transition: color 0.3s ease;
     }
+
     footer a:hover {
       color: #2ecc71;
     }
+
     /* Mobile Responsive */
     @media (max-width: 768px) {
       nav ul {
         display: none;
       }
+
       .hamburger {
         display: flex;
       }
+
       .hero {
         padding: 3.5rem 1.5rem;
       }
+
       .hero h1 {
         font-size: 2rem;
       }
+
       .hero p {
         font-size: 1rem;
       }
+
       .hero-buttons {
         flex-direction: column;
         gap: 1rem;
       }
+
       .cta {
         width: 100%;
       }
+
       main {
         padding: 3rem 1.5rem;
       }
+
       section h2 {
         font-size: 1.8rem;
       }
+
       section p {
         font-size: 0.95rem;
       }
+
       .benefits {
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
+
       .benefit-card {
         padding: 1.8rem;
       }
+
       .pricing-grid {
         grid-template-columns: 1fr;
       }
+
       .plan.featured {
         transform: scale(1);
       }
+
       .plan.featured:hover {
         transform: translateY(-10px);
       }
+
       .plan-price {
         font-size: 2rem;
       }
+
       .cta-banner {
         padding: 2.5rem 1.5rem;
       }
+
       .cta-banner h3 {
         font-size: 1.5rem;
       }
+
       .cta-banner p {
         font-size: 0.95rem;
       }
     }
   </style>
 </head>
+
 <body>
   <!-- Header -->
   <header>
@@ -657,7 +766,8 @@
         <div class="benefit-card">
           <div class="benefit-icon">⚡</div>
           <h3>Scalable</h3>
-          <p>Grow your business without limitations. Our platform scales effortlessly with your needs and handles millions of users.</p>
+          <p>Grow your business without limitations. Our platform scales effortlessly with your needs and handles
+            millions of users.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">🔒</div>
@@ -667,12 +777,14 @@
         <div class="benefit-card">
           <div class="benefit-icon">🛡️</div>
           <h3>Secure</h3>
-          <p>Enterprise-grade security with end-to-end encryption, compliance certifications, and regular security audits.</p>
+          <p>Enterprise-grade security with end-to-end encryption, compliance certifications, and regular security
+            audits.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">⚙️</div>
           <h3>Fast</h3>
-          <p>Lightning-quick performance optimized for every device. Sub-second load times and seamless user experience.</p>
+          <p>Lightning-quick performance optimized for every device. Sub-second load times and seamless user experience.
+          </p>
         </div>
       </div>
     </section>
@@ -736,7 +848,8 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Premium Solutions | All Rights Reserved | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    <p>&copy; 2025 Premium Solutions | All Rights Reserved | <a href="#">Privacy Policy</a> | <a href="#">Terms of
+        Service</a></p>
   </footer>
 
   <script>
@@ -744,21 +857,21 @@
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
 
-    hamburger.addEventListener('click', function() {
+    hamburger.addEventListener('click', function () {
       hamburger.classList.toggle('active');
       mobileNav.classList.toggle('active');
     });
 
     // Close mobile menu when link clicked
     document.querySelectorAll('.mobile-nav a').forEach(link => {
-      link.addEventListener('click', function() {
+      link.addEventListener('click', function () {
         hamburger.classList.remove('active');
         mobileNav.classList.remove('active');
       });
     });
 
     // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
       if (!event.target.closest('header')) {
         hamburger.classList.remove('active');
         mobileNav.classList.remove('active');
@@ -767,7 +880,7 @@
 
     // Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -785,7 +898,7 @@
       rootMargin: '0px 0px -100px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(function (entries) {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.style.opacity = '1';
@@ -803,7 +916,7 @@
 
     // Button click feedback
     document.querySelectorAll('.plan-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         this.textContent = 'Processing...';
         setTimeout(() => {
           this.textContent = this.textContent.includes('Contact') ? 'Contact Sales' : 'Choose Plan';
@@ -812,4 +925,5 @@
     });
   </script>
 </body>
+
 </html>
