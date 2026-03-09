@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HypSea Lab - Complete Hypothesis Testing Mastery</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-hover: #F3F4F6;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --border: #E5E7EB;
+            --border-light: #F3F4F6;
+            --accent: #F97316;
+            --accent-hover: #EA580C;
+            --accent-light: #FED7AA;
+            --blue: #3B82F6;
+            --blue-light: #DBEAFE;
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --warning: #F59E0B;
+            --warning-light: #FEF3C7;
+            --danger: #EF4444;
+            --danger-light: #FEE2E2;
+            --purple: #8B5CF6;
+            --purple-light: #EDE9FE;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --radius: 8px;
+            --radius-sm: 6px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-secondary);
+            padding: 4px;
+            border-radius: 999px;
+        }
+
+        .nav-tab {
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .nav-tab.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .progress-header {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            padding: 32px 0;
+            margin-bottom: 32px;
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .learning-path {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .path-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .path-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .path-card.completed {
+            border-color: var(--success);
+            background: var(--success-light);
+        }
+
+        .path-card.active {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .path-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .path-card.completed .path-number {
+            background: var(--success);
+        }
+
+        .path-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .path-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .path-progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .mini-progress {
+            flex: 1;
+            height: 4px;
+            background: var(--border-light);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .content-panel {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .theory-section {
+            margin-bottom: 32px;
+        }
+
+        .theory-heading {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theory-content {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .info-box {
+            background: var(--blue-light);
+            border-left: 4px solid var(--blue);
+            padding: 16px;
+            border-radius: var(--radius);
+            margin: 16px 0;
+        }
+
+        .info-box.warning {
+            background: var(--warning-light);
+            border-left-color: var(--warning);
+        }
+
+        .info-box.success {
+            background: var(--success-light);
+            border-left-color: var(--success);
+        }
+
+        .info-box.purple {
+            background: var(--purple-light);
+            border-left-color: var(--purple);
+        }
+
+        .info-box-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .info-box-text {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .formula-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-item {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 24px;
+        }
+
+        .step-item::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .example-box {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .example-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .interactive-demo {
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .demo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .demo-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .control-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .control-value {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border-light);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow);
+        }
+
+        .viz-container {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
+
+        .stats-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-card-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .quiz-container {
+            background: var(--purple-light);
+            border: 2px solid var(--purple);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .quiz-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--purple);
+        }
+
+        .quiz-xp {
+            background: var(--purple);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .quiz-question {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--purple);
+            background: var(--bg-hover);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: var(--success-light);
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--danger);
+            background: var(--danger-light);
+        }
+
+        .quiz-option.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .quiz-feedback {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: var(--radius);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .quiz-feedback.correct {
+            background: var(--success-light);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .quiz-feedback.incorrect {
+            background: var(--danger-light);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .code-section {
+            margin: 24px 0;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .code-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: var(--radius);
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+
+        .code-comment {
+            color: #6a9955;
+        }
+
+        .code-keyword {
+            color: #569cd6;
+        }
+
+        .code-string {
+            color: #ce9178;
+        }
+
+        .code-function {
+            color: #dcdcaa;
+        }
+
+        .code-number {
+            color: #b5cea8;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .comparison-table tr:hover {
+            background: var(--bg-hover);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            background: var(--accent-light);
+            color: var(--accent-hover);
+        }
+
+        .badge.success {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .badge.info {
+            background: var(--blue-light);
+            color: var(--blue);
+        }
+
+        .badge.warning {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .checkpoint-box {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .checkpoint-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .checkpoint-desc {
+            margin-bottom: 16px;
+            opacity: 0.95;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .header-content {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-tabs {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .nav-tab {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .progress-header {
+                padding: 24px 0;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .learning-path {
+                grid-template-columns: 1fr;
+            }
+
+            .content-panel {
+                padding: 20px 16px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .control-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-display {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span>HypSea</span>
+                <span>Learning</span>
+            </div>
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="switchTab('learn')">Learn</button>
+                <button class="nav-tab" onclick="switchTab('practice')">Practice</button>
+                <button class="nav-tab" onclick="switchTab('reference')">Reference</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-header">
+        <div class="container">
+            <div class="progress-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalXP">0</div>
+                    <div class="stat-label">Total XP</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="modulesCompleted">0/15</div>
+                    <div class="stat-label">Modules Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="quizzesCompleted">0/15</div>
+                    <div class="stat-label">Quizzes Passed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="currentLevel">Beginner</div>
+                    <div class="stat-label">Level</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- LEARN TAB -->
+        <section id="learnTab">
+            <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;">Complete
+                Learning Path</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 16px;">Master hypothesis testing
+                from fundamentals to advanced applications. Each module builds on the previous one.</p>
+
+            <div class="learning-path" id="learningPath">
+                <!-- Modules load here dynamically -->
+            </div>
+
+            <div id="moduleContent" class="hidden">
+                <!-- Selected module content loads here -->
+            </div>
+        </section>
+
+        <!-- PRACTICE TAB -->
+        <section id="practiceTab" class="hidden">
+            <div class="content-panel">
+                <h2 class="section-title">Practice Arena</h2>
+                <p class="section-subtitle">Apply your knowledge with real-world scenarios and challenges</p>
+
+                <div class="example-box">
+                    <div class="example-title">🎯 Scenario-Based Practice</div>
+                    <p style="margin-bottom: 16px;">Choose a test type and work through realistic problems step-by-step.
+                    </p>
+
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px;">
+                        <button class="btn btn-secondary" onclick="loadPracticeScenario('ttest')">t-Test
+                            Scenarios</button>
+                        <button class="btn btn-secondary" onclick="loadPracticeScenario('anova')">ANOVA
+                            Problems</button>
+                        <button class="btn btn-secondary" onclick="loadPracticeScenario('chi')">Chi-Square
+                            Tests</button>
+                        <button class="btn btn-secondary" onclick="loadPracticeScenario('regression')">Regression
+                            Analysis</button>
+                    </div>
+                </div>
+
+                <div id="practiceScenario" class="hidden" style="margin-top: 24px;">
+                    <!-- Practice scenarios load here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- REFERENCE TAB -->
+        <section id="referenceTab" class="hidden">
+            <div class="content-panel">
+                <h2 class="section-title">Quick Reference Guide</h2>
+                <p class="section-subtitle">Comprehensive comparison of all hypothesis tests</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Test Name</th>
+                            <th>Purpose</th>
+                            <th>Data Type</th>
+                            <th>Assumptions</th>
+                            <th>Python Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>One-Sample t-Test</strong></td>
+                            <td>Compare sample mean to known value</td>
+                            <td>Continuous</td>
+                            <td>Normal distribution</td>
+                            <td>stats.ttest_1samp()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Two-Sample t-Test</strong></td>
+                            <td>Compare two independent groups</td>
+                            <td>Continuous</td>
+                            <td>Normal, equal variance</td>
+                            <td>stats.ttest_ind()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Paired t-Test</strong></td>
+                            <td>Compare paired measurements</td>
+                            <td>Continuous</td>
+                            <td>Normal differences</td>
+                            <td>stats.ttest_rel()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>One-Way ANOVA</strong></td>
+                            <td>Compare 3+ independent groups</td>
+                            <td>Continuous</td>
+                            <td>Normal, homogeneity</td>
+                            <td>stats.f_oneway()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Two-Way ANOVA</strong></td>
+                            <td>Two factors, interaction effects</td>
+                            <td>Continuous</td>
+                            <td>Normal, homogeneity</td>
+                            <td>statsmodels.anova_lm()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chi-Square Test</strong></td>
+                            <td>Test independence in categories</td>
+                            <td>Categorical</td>
+                            <td>Expected freq > 5</td>
+                            <td>stats.chi2_contingency()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mann-Whitney U</strong></td>
+                            <td>Non-parametric two groups</td>
+                            <td>Ordinal/Non-normal</td>
+                            <td>None</td>
+                            <td>stats.mannwhitneyu()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wilcoxon Signed-Rank</strong></td>
+                            <td>Non-parametric paired test</td>
+                            <td>Ordinal/Non-normal</td>
+                            <td>None</td>
+                            <td>stats.wilcoxon()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kruskal-Wallis</strong></td>
+                            <td>Non-parametric 3+ groups</td>
+                            <td>Ordinal/Non-normal</td>
+                            <td>None</td>
+                            <td>stats.kruskal()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pearson Correlation</strong></td>
+                            <td>Linear relationship strength</td>
+                            <td>Continuous</td>
+                            <td>Linear, normal</td>
+                            <td>stats.pearsonr()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Spearman Correlation</strong></td>
+                            <td>Monotonic relationship</td>
+                            <td>Ordinal</td>
+                            <td>None</td>
+                            <td>stats.spearmanr()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Linear Regression</strong></td>
+                            <td>Predict continuous outcome</td>
+                            <td>Continuous</td>
+                            <td>Linearity, normality</td>
+                            <td>stats.linregress()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Logistic Regression</strong></td>
+                            <td>Predict binary outcome</td>
+                            <td>Mixed</td>
+                            <td>Independence</td>
+                            <td>sklearn.LogisticRegression()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fisher's Exact Test</strong></td>
+                            <td>2×2 contingency, small n</td>
+                            <td>Categorical</td>
+                            <td>None</td>
+                            <td>stats.fisher_exact()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Z-Test for Proportions</strong></td>
+                            <td>Compare proportions</td>
+                            <td>Binary</td>
+                            <td>Large sample</td>
+                            <td>proportions_ztest()</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box" style="margin-top: 24px;">
+                    <div class="info-box-title">💡 Pro Tip: Choosing the Right Test</div>
+                    <div class="info-box-text">
+                        <strong>Step 1:</strong> What type of data? (Continuous, categorical, ordinal)<br>
+                        <strong>Step 2:</strong> How many groups? (One, two, three+)<br>
+                        <strong>Step 3:</strong> Are groups independent or related?<br>
+                        <strong>Step 4:</strong> Do assumptions hold? (Normality, equal variance)<br>
+                        <strong>Step 5:</strong> If assumptions fail, use non-parametric alternative
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // ============================================
+        // STATE MANAGEMENT
+        // ============================================
+        const state = {
+            currentTab: 'learn',
+            currentModule: null,
+            xp: 0,
+            completedModules: new Set(),
+            completedQuizzes: new Set(),
+            moduleProgress: {}
+        };
+
+        // ============================================
+        // COMPREHENSIVE MODULE CURRICULUM
+        // ============================================
+        const modules = [
+            {
+                id: 'intro',
+                number: 1,
+                title: 'Introduction to Statistical Hypothesis Testing',
+                description: 'What is hypothesis testing and why do we need it?',
+                xp: 50,
+                content: {
+                    theory: `
+                        <div class="theory-section">
+                            <h3 class="theory-heading">🎯 What is Hypothesis Testing?</h3>
+                            <p class="theory-content">
+                                Hypothesis testing is a statistical method used to make decisions about a population based on sample data. 
+                                It's like being a detective: you have a theory (hypothesis) about how the world works, and you collect evidence (data) to see if your theory holds up.
+                            </p>
+
+                            <div class="info-box">
+                                <div class="info-box-title">Real-World Example</div>
+                                <div class="info-box-text">
+                                    A pharmaceutical company claims their new drug reduces blood pressure by 10 points on average. 
+                                    We collect data from patients and use hypothesis testing to determine if this claim is statistically supported.
+                                </div>
+                            </div>
+
+                            <h3 class="theory-heading">🔑 Key Components</h3>
+                            
+                            <div class="example-box">
+                                <div class="example-title">1. Null Hypothesis (H₀)</div>
+                                <p>The default assumption – "nothing special is happening" or "no effect exists"</p>
+                                <p style="color: var(--text-muted); font-style: italic;">Example: The drug has NO effect on blood pressure (μ = 0)</p>
+                            </div>
+
+                            <div class="example-box">
+                                <div class="example-title">2. Alternative Hypothesis (H₁ or Hₐ)</div>
+                                <p>What we want to prove – "something interesting is happening"</p>
+                                <p style="color: var(--text-muted); font-style: italic;">Example: The drug DOES reduce blood pressure (μ < 0)</p>
+                            </div>
+
+                            <div class="example-box">
+                                <div class="example-title">3. Significance Level (α)</div>
+                                <p>The probability of making a Type I error (rejecting true null hypothesis)</p>
+                                <p style="color: var(--text-muted); font-style: italic;">Common value: α = 0.05 (5% risk of false positive)</p>
+                            </div>
+
+                            <div class="example-box">
+                                <div class="example-title">4. P-value</div>
+                                <p>Probability of observing data as extreme as ours, assuming H₀ is true</p>
+                                <p style="color: var(--text-muted); font-style: italic;">If p-value < α, we reject H₀</p>
+                            </div>
+
+                            <h3 class="theory-heading">⚖️ Types of Errors</h3>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>H₀ is Actually True</th>
+                                        <th>H₀ is Actually False</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Reject H₀</strong></td>
+                                        <td style="background: var(--danger-light);">❌ Type I Error (α)</td>
+                                        <td style="background: var(--success-light);">✅ Correct Decision</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fail to Reject H₀</strong></td>
+                                        <td style="background: var(--success-light);">✅ Correct Decision</td>
+                                        <td style="background: var(--danger-light);">❌ Type II Error (β)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="info-box warning">
+                                <div class="info-box-title">⚠️ Important Concept</div>
+                                <div class="info-box-text">
+                                    We never "accept" the null hypothesis – we either reject it or "fail to reject" it. 
+                                    This is because absence of evidence is not evidence of absence!
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    quiz: {
+                        question: 'What does a p-value of 0.03 mean when α = 0.05?',
+                        options: [
+                            { text: 'We reject the null hypothesis because p < α', correct: true },
+                            { text: 'We accept the null hypothesis', correct: false },
+                            { text: 'There is a 3% chance the null hypothesis is true', correct: false },
+                            { text: 'We need to collect more data', correct: false }
+                        ],
+                        explanation: 'When p-value (0.03) is less than α (0.05), we reject the null hypothesis. The p-value represents the probability of observing our data if H₀ were true, not the probability that H₀ is true.'
+                    }
+                }
+            },
+            {
+                id: 'onesample-t',
+                number: 2,
+                title: 'One-Sample t-Test',
+                description: 'Compare a sample mean to a known population value',
+                xp: 75,
+                content: {
+                    theory: `
+                        <div class="theory-section">
+                            <h3 class="theory-heading">📊 When to Use One-Sample t-Test</h3>
+                            <p class="theory-content">
+                                Use this test when you want to compare the mean of a single sample to a known or hypothesized population mean.
+                            </p>
+
+                            <div class="info-box success">
+                                <div class="info-box-title">Perfect For</div>
+                                <div class="info-box-text">
+                                    • Testing if exam scores differ from national average<br>
+                                    • Checking if manufacturing process meets target specifications<br>
+                                    • Comparing blood pressure to clinical standards
+                                </div>
+                            </div>
+
+                            <h3 class="theory-heading">🔢 The Formula</h3>
+                            <div class="formula-box">
+                                t = (x̄ - μ₀) / (s / √n)
+                                <br><br>
+                                <span style="font-size: 13px;">
+                                x̄ = sample mean | μ₀ = hypothesized mean | s = sample std dev | n = sample size
+                                </span>
+                            </div>
+
+                            <h3 class="theory-heading">✅ Assumptions</h3>
+                            <ul class="step-list">
+                                <li class="step-item">
+                                    <div class="step-title">Data is continuous (numerical)</div>
+                                    <div>Examples: height, weight, temperature, test scores</div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-title">Data follows approximately normal distribution</div>
+                                    <div>Or sample size is large enough (n > 30) by Central Limit Theorem</div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-title">Observations are independent</div>
+                                    <div>Each measurement doesn't influence others</div>
+                                </li>
+                            </ul>
+
+                            <div class="example-box">
+                                <div class="example-title">💼 Real-World Example</div>
+                                <p><strong>Scenario:</strong> A coffee shop claims their large coffee contains 16 oz. You measure 20 random cups and want to test if they're really delivering 16 oz on average.</p>
+                                <p><strong>H₀:</strong> μ = 16 oz (claim is true)</p>
+                                <p><strong>H₁:</strong> μ ≠ 16 oz (claim is false)</p>
+                            </div>
+                        </div>
+                    `,
+                    interactive: {
+                        controls: [
+                            { id: 'sampleMean', label: 'Sample Mean', min: 10, max: 30, value: 16.5, step: 0.5 },
+                            { id: 'popMean', label: 'Population Mean (μ₀)', min: 10, max: 30, value: 16, step: 0.5 },
+                            { id: 'sampleSD', label: 'Sample Std Dev', min: 0.5, max: 5, value: 1.2, step: 0.1 },
+                            { id: 'sampleSize', label: 'Sample Size', min: 5, max: 100, value: 20, step: 5 }
+                        ]
+                    },
+                    code: `<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+<span class="code-keyword">from</span> scipy <span class="code-keyword">import</span> stats
+
+<span class="code-comment"># Sample data (e.g., coffee cup volumes in oz)</span>
+sample_data = np.array([<span class="code-number">15.8, 16.2, 16.5, 15.9, 16.3, 16.1, 16.4, 15.7, 16.0, 16.2</span>])
+
+<span class="code-comment"># Hypothesized population mean</span>
+pop_mean = <span class="code-number">16.0</span>
+
+<span class="code-comment"># Perform one-sample t-test</span>
+t_stat, p_value = stats.<span class="code-function">ttest_1samp</span>(sample_data, pop_mean)
+
+<span class="code-keyword">print</span>(<span class="code-string">f"Sample mean: {np.mean(sample_data):.2f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"t-statistic: {t_stat:.4f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"p-value: {p_value:.4f}"</span>)
+
+<span class="code-comment"># Interpret results</span>
+alpha = <span class="code-number">0.05</span>
+<span class="code-keyword">if</span> p_value < alpha:
+    <span class="code-keyword">print</span>(<span class="code-string">"Reject H₀: Sample mean differs significantly from population mean"</span>)
+<span class="code-keyword">else</span>:
+    <span class="code-keyword">print</span>(<span class="code-string">"Fail to reject H₀: No significant difference"</span>)`,
+                    quiz: {
+                        question: 'You test if average customer wait time (12.5 min) differs from target (10 min) with n=25, p=0.08. At α=0.05, what do you conclude?',
+                        options: [
+                            { text: 'Fail to reject H₀; wait times don\'t significantly differ from target', correct: true },
+                            { text: 'Reject H₀; wait times are significantly different', correct: false },
+                            { text: 'Accept H₀; wait times equal exactly 10 minutes', correct: false },
+                            { text: 'Insufficient data; need larger sample', correct: false }
+                        ],
+                        explanation: 'Since p-value (0.08) > α (0.05), we fail to reject H₀. This means we don\'t have sufficient evidence to conclude the wait times differ from the 10-minute target.'
+                    }
+                }
+            },
+            {
+                id: 'twosample-t',
+                number: 3,
+                title: 'Two-Sample t-Test',
+                description: 'Compare means of two independent groups',
+                xp: 100,
+                content: {
+                    theory: `
+                        <div class="theory-section">
+                            <h3 class="theory-heading">🔀 Independent Groups Comparison</h3>
+                            <p class="theory-content">
+                                The two-sample t-test (also called independent samples t-test) compares the means of two unrelated groups to determine if they differ significantly.
+                            </p>
+
+                            <div class="info-box">
+                                <div class="info-box-title">Classic Use Cases</div>
+                                <div class="info-box-text">
+                                    • A/B testing: Version A vs Version B<br>
+                                    • Treatment group vs Control group<br>
+                                    • Men vs Women performance<br>
+                                    • Product A vs Product B ratings
+                                </div>
+                            </div>
+
+                            <h3 class="theory-heading">🔢 Two Variants</h3>
+                            
+                            <div class="example-box">
+                                <div class="example-title">1. Equal Variances (Pooled t-test)</div>
+                                <div class="formula-box" style="margin-top: 12px;">
+                                    t = (x̄₁ - x̄₂) / √[s²ₚ(1/n₁ + 1/n₂)]
+                                </div>
+                                <p style="margin-top: 12px;">Used when both groups have similar spread (variance)</p>
+                            </div>
+
+                            <div class="example-box">
+                                <div class="example-title">2. Unequal Variances (Welch's t-test)</div>
+                                <div class="formula-box" style="margin-top: 12px;">
+                                    t = (x̄₁ - x̄₂) / √[(s₁²/n₁) + (s₂²/n₂)]
+                                </div>
+                                <p style="margin-top: 12px;">More robust when variances differ between groups</p>
+                            </div>
+
+                            <h3 class="theory-heading">📋 Step-by-Step Process</h3>
+                            <ul class="step-list">
+                                <li class="step-item">
+                                    <div class="step-title">State Hypotheses</div>
+                                    <div>H₀: μ₁ = μ₂ (means are equal) | H₁: μ₁ ≠ μ₂ (means differ)</div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-title">Check Assumptions</div>
+                                    <div>Normal distributions, independent samples, check equal variance</div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-title">Calculate t-statistic</div>
+                                    <div>Measure how many standard errors apart the means are</div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-title">Find p-value</div>
+                                    <div>Compare to α (usually 0.05) and make decision</div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-title">Calculate Effect Size (Cohen's d)</div>
+                                    <div>d = (x̄₁ - x̄₂) / s_pooled (measures practical significance)</div>
+                                </li>
+                            </ul>
+
+                            <div class="info-box purple">
+                                <div class="info-box-title">💡 Cohen's d Interpretation</div>
+                                <div class="info-box-text">
+                                    Small: d = 0.2 | Medium: d = 0.5 | Large: d = 0.8<br>
+                                    Statistical significance (p-value) tells if effect is real; effect size tells if it matters!
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    interactive: {
+                        controls: [
+                            { id: 'mean1', label: 'Group A Mean', min: 50, max: 150, value: 100, step: 5 },
+                            { id: 'mean2', label: 'Group B Mean', min: 50, max: 150, value: 110, step: 5 },
+                            { id: 'sd1', label: 'Group A Std Dev', min: 5, max: 30, value: 15, step: 1 },
+                            { id: 'sd2', label: 'Group B Std Dev', min: 5, max: 30, value: 15, step: 1 },
+                            { id: 'n1', label: 'Group A Size', min: 10, max: 100, value: 30, step: 5 },
+                            { id: 'n2', label: 'Group B Size', min: 10, max: 100, value: 30, step: 5 }
+                        ]
+                    },
+                    code: `<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+<span class="code-keyword">from</span> scipy <span class="code-keyword">import</span> stats
+
+<span class="code-comment"># Two independent groups</span>
+group_a = np.array([<span class="code-number">85, 90, 88, 92, 87, 89, 91, 86, 93, 88</span>])
+group_b = np.array([<span class="code-number">78, 82, 80, 85, 79, 81, 83, 77, 84, 80</span>])
+
+<span class="code-comment"># Perform two-sample t-test (assumes equal variances)</span>
+t_stat, p_value = stats.<span class="code-function">ttest_ind</span>(group_a, group_b)
+
+<span class="code-comment"># For unequal variances, use Welch's t-test</span>
+t_welch, p_welch = stats.<span class="code-function">ttest_ind</span>(group_a, group_b, equal_var=<span class="code-keyword">False</span>)
+
+<span class="code-comment"># Calculate effect size (Cohen's d)</span>
+pooled_std = np.<span class="code-function">sqrt</span>(((len(group_a)-<span class="code-number">1</span>)*np.<span class="code-function">std</span>(group_a, ddof=<span class="code-number">1</span>)**<span class="code-number">2</span> + 
+                         (len(group_b)-<span class="code-number">1</span>)*np.<span class="code-function">std</span>(group_b, ddof=<span class="code-number">1</span>)**<span class="code-number">2</span>) / 
+                        (len(group_a) + len(group_b) - <span class="code-number">2</span>))
+cohens_d = (np.<span class="code-function">mean</span>(group_a) - np.<span class="code-function">mean</span>(group_b)) / pooled_std
+
+<span class="code-keyword">print</span>(<span class="code-string">f"Group A mean: {np.mean(group_a):.2f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"Group B mean: {np.mean(group_b):.2f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"t-statistic: {t_stat:.4f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"p-value: {p_value:.4f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"Cohen's d: {cohens_d:.3f}"</span>)`,
+                    quiz: {
+                        question: 'You compare website conversion rates: Version A (n=50, mean=12%) vs Version B (n=50, mean=15%) with p=0.03. What can you conclude?',
+                        options: [
+                            { text: 'Version B has significantly higher conversion; implement it', correct: true },
+                            { text: 'No significant difference; keep Version A', correct: false },
+                            { text: 'Need to check effect size before deciding', correct: false },
+                            { text: 'Results are inconclusive', correct: false }
+                        ],
+                        explanation: 'With p=0.03 < 0.05, we reject H₀ and conclude Version B has significantly higher conversion. However, in practice, you should also consider effect size and business impact!'
+                    }
+                }
+            },
+            {
+                id: 'paired-t',
+                number: 4,
+                title: 'Paired t-Test',
+                description: 'Compare related measurements (before/after, matched pairs)',
+                xp: 100,
+                content: {
+                    theory: `
+                        <div class="theory-section">
+                            <h3 class="theory-heading">🔗 Related Samples</h3>
+                            <p class="theory-content">
+                                The paired t-test (or dependent samples t-test) compares measurements taken from the same subjects at two different times, or matched pairs of subjects.
+                            </p>
+
+                            <div class="info-box success">
+                                <div class="info-box-title">When to Use Paired t-Test</div>
+                                <div class="info-box-text">
+                                    ✅ Before and after treatment on same patients<br>
+                                    ✅ Twins or matched pairs (one gets treatment, one doesn't)<br>
+                                    ✅ Same product tested in two conditions<br>
+                                    ✅ Left hand vs right hand performance
+                                </div>
+                            </div>
+
+                            <h3 class="theory-heading">🎯 Key Advantage</h3>
+                            <p class="theory-content">
+                                By using each subject as their own control, we eliminate between-subject variability. This makes paired tests more powerful (better at detecting real effects) than independent t-tests.
+                            </p>
+
+                            <div class="example-box">
+                                <div class="example-title">Independent vs Paired: Which is Better?</div>
+                                <p><strong>Independent:</strong> Test 30 people on Drug A, different 30 people on Drug B</p>
+                                <p><strong>Paired:</strong> Test same 30 people before drug, then after drug</p>
+                                <p style="color: var(--success); font-weight: 600; margin-top: 8px;">→ Paired is more powerful! Each person is their own control.</p>
+                            </div>
+
+                            <h3 class="theory-heading">🔢 The Math</h3>
+                            <div class="formula-box">
+                                t = (d̄ - 0) / (sₐ / √n)
+                                <br><br>
+                                <span style="font-size: 13px;">
+                                d̄ = mean of differences | sₐ = std dev of differences | n = number of pairs
+                                </span>
+                            </div>
+
+                            <div class="info-box warning">
+                                <div class="info-box-title">⚠️ Critical Assumption</div>
+                                <div class="info-box-text">
+                                    The DIFFERENCES (not the original measurements) should be approximately normally distributed. 
+                                    This is less strict when n > 30 due to Central Limit Theorem.
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <div class="example-title">💼 Clinical Trial Example</div>
+                                <p><strong>Study:</strong> Blood pressure medication effectiveness</p>
+                                <table style="width: 100%; margin-top: 12px; font-size: 13px;">
+                                    <tr style="background: var(--bg-secondary);">
+                                        <th style="padding: 8px;">Patient</th>
+                                        <th style="padding: 8px;">Before</th>
+                                        <th style="padding: 8px;">After</th>
+                                        <th style="padding: 8px;">Difference</th>
+                                    </tr>
+                                    <tr><td style="padding: 8px;">1</td><td style="padding: 8px;">140</td><td style="padding: 8px;">125</td><td style="padding: 8px; color: var(--success); font-weight: 600;">-15</td></tr>
+                                    <tr><td style="padding: 8px;">2</td><td style="padding: 8px;">135</td><td style="padding: 8px;">130</td><td style="padding: 8px; color: var(--success); font-weight: 600;">-5</td></tr>
+                                    <tr><td style="padding: 8px;">3</td><td style="padding: 8px;">150</td><td style="padding: 8px;">135</td><td style="padding: 8px; color: var(--success); font-weight: 600;">-15</td></tr>
+                                </table>
+                                <p style="margin-top: 12px;">We test if mean difference ≠ 0</p>
+                            </div>
+                        </div>
+                    `,
+                    interactive: {
+                        controls: [
+                            { id: 'meanBefore', label: 'Mean Before', min: 50, max: 150, value: 100, step: 5 },
+                            { id: 'meanAfter', label: 'Mean After', min: 50, max: 150, value: 115, step: 5 },
+                            { id: 'sdDiff', label: 'Std Dev of Differences', min: 5, max: 30, value: 12, step: 1 },
+                            { id: 'nPairs', label: 'Number of Pairs', min: 5, max: 100, value: 25, step: 5 }
+                        ]
+                    },
+                    code: `<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+<span class="code-keyword">from</span> scipy <span class="code-keyword">import</span> stats
+
+<span class="code-comment"># Paired measurements (same subjects before and after)</span>
+before = np.array([<span class="code-number">130, 140, 135, 150, 145, 138, 142, 136, 148, 133</span>])
+after = np.array([<span class="code-number">125, 135, 130, 142, 139, 132, 138, 131, 143, 128</span>])
+
+<span class="code-comment"># Calculate differences</span>
+differences = before - after
+
+<span class="code-comment"># Perform paired t-test</span>
+t_stat, p_value = stats.<span class="code-function">ttest_rel</span>(before, after)
+
+<span class="code-comment"># Alternative: test if mean difference != 0</span>
+t_stat_alt, p_value_alt = stats.<span class="code-function">ttest_1samp</span>(differences, <span class="code-number">0</span>)
+
+<span class="code-keyword">print</span>(<span class="code-string">f"Mean before: {np.mean(before):.2f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"Mean after: {np.mean(after):.2f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"Mean difference: {np.mean(differences):.2f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"t-statistic: {t_stat:.4f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"p-value: {p_value:.4f}"</span>)
+
+<span class="code-comment"># Effect size for paired data</span>
+cohens_d = np.<span class="code-function">mean</span>(differences) / np.<span class="code-function">std</span>(differences, ddof=<span class="code-number">1</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"Cohen's d: {cohens_d:.3f}"</span>)`,
+                    quiz: {
+                        question: 'Why is a paired t-test more powerful than an independent t-test for the same data?',
+                        options: [
+                            { text: 'It eliminates between-subject variability by using each subject as their own control', correct: true },
+                            { text: 'It requires fewer assumptions about the data', correct: false },
+                            { text: 'It always produces smaller p-values', correct: false },
+                            { text: 'It can be used with smaller sample sizes', correct: false }
+                        ],
+                        explanation: 'Paired tests are more powerful because individual differences between subjects are removed from the analysis, reducing noise and making it easier to detect real treatment effects.'
+                    }
+                }
+            },
+            {
+                id: 'anova',
+                number: 5,
+                title: 'One-Way ANOVA',
+                description: 'Compare means across 3 or more independent groups',
+                xp: 125,
+                content: {
+                    theory: `
+                        <div class="theory-section">
+                            <h3 class="theory-heading">🎯 Multiple Group Comparison</h3>
+                            <p class="theory-content">
+                                ANOVA (Analysis of Variance) extends the t-test to compare means across three or more groups simultaneously. Instead of doing multiple t-tests (which inflates Type I error), ANOVA provides a single omnibus test.
+                            </p>
+
+                            <div class="info-box warning">
+                                <div class="info-box-title">⚠️ Why Not Multiple t-Tests?</div>
+                                <div class="info-box-text">
+                                    Comparing 3 groups requires 3 t-tests (A vs B, B vs C, A vs C). At α=0.05 each, your familywise error rate becomes ~14%! 
+                                    ANOVA maintains the desired α across all comparisons.
+                                </div>
+                            </div>
+
+                            <h3 class="theory-heading">🔑 Core Concept</h3>
+                            <p class="theory-content">
+                                ANOVA compares two types of variability:
+                            </p>
+                            
+                            <div class="example-box">
+                                <div class="example-title">Between-Group Variability</div>
+                                <p>How different are the group means from each other?</p>
+                                <p style="color: var(--text-muted); font-style: italic;">If treatment has effect → groups should differ</p>
+                            </div>
+
+                            <div class="example-box">
+                                <div class="example-title">Within-Group Variability</div>
+                                <p>How much do individuals vary within each group?</p>
+                                <p style="color: var(--text-muted); font-style: italic;">Natural random variation / measurement error</p>
+                            </div>
+
+                            <h3 class="theory-heading">🔢 The F-Statistic</h3>
+                            <div class="formula-box">
+                                F = MS_between / MS_within
+                                <br><br>
+                                MS_between = SS_between / (k-1)
+                                <br>
+                                MS_within = SS_within / (N-k)
+                                <br><br>
+                                <span style="font-size: 13px;">
+                                k = number of groups | N = total sample size<br>
+                                MS = Mean Square | SS = Sum of Squares
+                                </span>
+                            </div>
+
+                            <div class="info-box purple">
+                                <div class="info-box-title">💡 F-Statistic Interpretation</div>
+                                <div class="info-box-text">
+                                    F = 1 → Group means are similar (variability between = variability within)<br>
+                                    F >> 1 → At least one group differs significantly<br>
+                                    Large F → Small p-value → Reject H₀
+                                </div>
+                            </div>
+
+                            <h3 class="theory-heading">📋 ANOVA Table</h3>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Source</th>
+                                        <th>SS</th>
+                                        <th>df</th>
+                                        <th>MS</th>
+                                        <th>F</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Between Groups</td>
+                                        <td>SS_between</td>
+                                        <td>k-1</td>
+                                        <td>MS_between</td>
+                                        <td>F = MS_b/MS_w</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Within Groups</td>
+                                        <td>SS_within</td>
+                                        <td>N-k</td>
+                                        <td>MS_within</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td>SS_total</td>
+                                        <td>N-1</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h3 class="theory-heading">🔍 Post-Hoc Tests</h3>
+                            <p class="theory-content">
+                                If ANOVA is significant (p < α), it only tells us that <em>at least one</em> group differs. To find which specific groups differ, use post-hoc tests:
+                            </p>
+
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 8px; margin: 4px 0; background: var(--bg-secondary); border-radius: var(--radius);">
+                                    <strong>Tukey's HSD:</strong> Compare all pairs while controlling familywise error rate
+                                </li>
+                                <li style="padding: 8px; margin: 4px 0; background: var(--bg-secondary); border-radius: var(--radius);">
+                                    <strong>Bonferroni:</strong> Conservative correction for multiple comparisons
+                                </li>
+                                <li style="padding: 8px; margin: 4px 0; background: var(--bg-secondary); border-radius: var(--radius);">
+                                    <strong>Scheffé:</strong> Most conservative, for complex comparisons
+                                </li>
+                            </ul>
+                        </div>
+                    `,
+                    interactive: {
+                        controls: [
+                            { id: 'mean1', label: 'Group 1 Mean', min: 50, max: 150, value: 100, step: 5 },
+                            { id: 'mean2', label: 'Group 2 Mean', min: 50, max: 150, value: 110, step: 5 },
+                            { id: 'mean3', label: 'Group 3 Mean', min: 50, max: 150, value: 120, step: 5 },
+                            { id: 'withinSD', label: 'Within-Group SD', min: 5, max: 30, value: 15, step: 1 },
+                            { id: 'groupSize', label: 'Size per Group', min: 10, max: 50, value: 20, step: 5 }
+                        ]
+                    },
+                    code: `<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+<span class="code-keyword">from</span> scipy <span class="code-keyword">import</span> stats
+<span class="code-keyword">from</span> statsmodels.stats.multicomp <span class="code-keyword">import</span> pairwise_tukeyhsd
+
+<span class="code-comment"># Three independent groups</span>
+group1 = np.array([<span class="code-number">85, 88, 90, 87, 89, 91, 86, 88, 92, 87</span>])
+group2 = np.array([<span class="code-number">92, 95, 94, 93, 96, 94, 95, 97, 93, 94</span>])
+group3 = np.array([<span class="code-number">78, 80, 79, 81, 77, 80, 82, 79, 81, 78</span>])
+
+<span class="code-comment"># Perform one-way ANOVA</span>
+f_stat, p_value = stats.<span class="code-function">f_oneway</span>(group1, group2, group3)
+
+<span class="code-keyword">print</span>(<span class="code-string">f"F-statistic: {f_stat:.4f}"</span>)
+<span class="code-keyword">print</span>(<span class="code-string">f"p-value: {p_value:.4f}"</span>)
+
+<span class="code-comment"># If significant, perform Tukey's HSD post-hoc test</span>
+<span class="code-keyword">if</span> p_value < <span class="code-number">0.05</span>:
+    <span class="code-comment"># Combine data for post-hoc</span>
+    data = np.<span class="code-function">concatenate</span>([group1, group2, group3])
+    groups = [<span class="code-string">'Group1'</span>]*len(group1) + [<span class="code-string">'Group2'</span>]*len(group2) + [<span class="code-string">'Group3'</span>]*len(group3)
+    
+    tukey = pairwise_tukeyhsd(data, groups, alpha=<span class="code-number">0.05</span>)
+    <span class="code-keyword">print</span>(<span class="code-string">"\\nTukey's HSD Results:"</span>)
+    <span class="code-keyword">print</span>(tukey)
+
+<span class="code-comment"># Calculate effect size (eta-squared)</span>
+<span class="code-comment"># η² = SS_between / SS_total</span>
+grand_mean = np.<span class="code-function">mean</span>(np.<span class="code-function">concatenate</span>([group1, group2, group3]))
+ss_between = len(group1)*(np.<span class="code-function">mean</span>(group1)-grand_mean)**<span class="code-number">2</span> + \\
+             len(group2)*(np.<span class="code-function">mean</span>(group2)-grand_mean)**<span class="code-number">2</span> + \\
+             len(group3)*(np.<span class="code-function">mean</span>(group3)-grand_mean)**<span class="code-number">2</span>
+ss_total = np.<span class="code-function">sum</span>((np.<span class="code-function">concatenate</span>([group1, group2, group3])-grand_mean)**<span class="code-number">2</span>)
+eta_squared = ss_between / ss_total
+<span class="code-keyword">print</span>(<span class="code-string">f"Eta-squared: {eta_squared:.3f}"</span>)`,
+                    quiz: {
+                        question: 'ANOVA shows F=8.45, p=0.001 for 4 groups. What should you do next?',
+                        options: [
+                            { text: 'Perform post-hoc tests (e.g., Tukey\'s HSD) to find which groups differ', correct: true },
+                            { text: 'Conclude all groups are different from each other', correct: false },
+                            { text: 'No further analysis needed; ANOVA is complete', correct: false },
+                            { text: 'Repeat ANOVA with different groups', correct: false }
+                        ],
+                        explanation: 'Significant ANOVA only tells you that at least one group differs. Post-hoc tests are needed to identify which specific pairs of groups have significant differences.'
+                    }
+                }
+            }
+        ];
+
+        // Add 10 more modules to reach 15 total
+        const additionalModules = [
+            {
+                id: 'chi-square',
+                number: 6,
+                title: 'Chi-Square Test of Independence',
+                description: 'Test relationships between categorical variables',
+                xp: 100,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">📊 Categorical Data Analysis</h3>
+                        <p class="theory-content">Chi-square tests are used when both variables are categorical (e.g., gender, color preference, yes/no responses).</p>
+                        <div class="info-box"><div class="info-box-title">Perfect For</div><div class="info-box-text">
+                        • Testing if gender affects product preference<br>
+                        • Checking if treatment type relates to outcome<br>
+                        • Analyzing survey response patterns
+                        </div></div>
+                    </div>`,
+                    quiz: {
+                        question: 'When should you use chi-square test instead of t-test?',
+                        options: [
+                            { text: 'When both variables are categorical', correct: true },
+                            { text: 'When sample size is small', correct: false },
+                            { text: 'When data is continuous', correct: false },
+                            { text: 'When testing means', correct: false }
+                        ],
+                        explanation: 'Chi-square is specifically designed for categorical variables, while t-tests are for continuous numerical data.'
+                    }
+                }
+            },
+            {
+                id: 'correlation',
+                number: 7,
+                title: 'Pearson & Spearman Correlation',
+                description: 'Measure strength of relationships between variables',
+                xp: 100,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">🔗 Measuring Relationships</h3>
+                        <p class="theory-content">Correlation quantifies the strength and direction of a linear relationship between two continuous variables.</p>
+                    </div>`,
+                    quiz: {
+                        question: 'What does correlation = -0.85 indicate?',
+                        options: [
+                            { text: 'Strong negative linear relationship', correct: true },
+                            { text: 'Weak negative relationship', correct: false },
+                            { text: 'Strong positive relationship', correct: false },
+                            { text: 'No relationship', correct: false }
+                        ],
+                        explanation: 'Correlation ranges from -1 to +1. Values near -1 indicate strong negative relationships where one variable increases as the other decreases.'
+                    }
+                }
+            },
+            {
+                id: 'mann-whitney',
+                number: 8,
+                title: 'Mann-Whitney U Test',
+                description: 'Non-parametric alternative to two-sample t-test',
+                xp: 100,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">📊 When Normality Fails</h3>
+                        <p class="theory-content">Use Mann-Whitney U when t-test assumptions aren't met (non-normal data, ordinal scales, small samples).</p>
+                    </div>`,
+                    quiz: {
+                        question: 'When is Mann-Whitney U preferred over t-test?',
+                        options: [
+                            { text: 'Data is heavily skewed or has outliers', correct: true },
+                            { text: 'Sample size is very large', correct: false },
+                            { text: 'Data is perfectly normal', correct: false },
+                            { text: 'Groups have equal variances', correct: false }
+                        ],
+                        explanation: 'Mann-Whitney U is robust to non-normality and outliers, making it ideal when t-test assumptions are violated.'
+                    }
+                }
+            },
+            {
+                id: 'kruskal-wallis',
+                number: 9,
+                title: 'Kruskal-Wallis Test',
+                description: 'Non-parametric alternative to one-way ANOVA',
+                xp: 100,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">🎯 Multiple Groups Without Normality</h3>
+                        <p class="theory-content">Kruskal-Wallis extends Mann-Whitney to 3+ groups when ANOVA assumptions fail.</p>
+                    </div>`,
+                    quiz: {
+                        question: 'What does Kruskal-Wallis test on?',
+                        options: [
+                            { text: 'Ranks of the data instead of raw values', correct: true },
+                            { text: 'Means of the groups', correct: false },
+                            { text: 'Variances of the groups', correct: false },
+                            { text: 'Correlations between groups', correct: false }
+                        ],
+                        explanation: 'Kruskal-Wallis converts data to ranks, making it distribution-free and robust to outliers.'
+                    }
+                }
+            },
+            {
+                id: 'two-way-anova',
+                number: 10,
+                title: 'Two-Way ANOVA',
+                description: 'Analyze two factors and their interaction',
+                xp: 125,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">🔀 Multiple Factors Simultaneously</h3>
+                        <p class="theory-content">Two-way ANOVA tests effects of two independent variables AND their interaction on a continuous outcome.</p>
+                    </div>`,
+                    quiz: {
+                        question: 'What does an interaction effect mean in two-way ANOVA?',
+                        options: [
+                            { text: 'The effect of one factor depends on the level of the other factor', correct: true },
+                            { text: 'Both factors have significant main effects', correct: false },
+                            { text: 'The factors are correlated', correct: false },
+                            { text: 'The data is normally distributed', correct: false }
+                        ],
+                        explanation: 'Interaction means the combined effect of two factors is different from the sum of their individual effects.'
+                    }
+                }
+            },
+            {
+                id: 'linear-regression',
+                number: 11,
+                title: 'Simple Linear Regression',
+                description: 'Model and predict continuous outcomes',
+                xp: 125,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">📈 Prediction & Modeling</h3>
+                        <p class="theory-content">Regression models the relationship between predictor(s) and outcome, allowing prediction of new values.</p>
+                    </div>`,
+                    quiz: {
+                        question: 'In y = 5 + 2x, what does the coefficient 2 represent?',
+                        options: [
+                            { text: 'For each 1-unit increase in x, y increases by 2', correct: true },
+                            { text: 'The baseline value when x=0', correct: false },
+                            { text: 'The correlation between x and y', correct: false },
+                            { text: 'The p-value of the relationship', correct: false }
+                        ],
+                        explanation: 'The slope coefficient indicates how much y changes for each unit change in x.'
+                    }
+                }
+            },
+            {
+                id: 'multiple-regression',
+                number: 12,
+                title: 'Multiple Regression',
+                description: 'Predict from multiple independent variables',
+                xp: 150,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">🎯 Multiple Predictors</h3>
+                        <p class="theory-content">Multiple regression extends simple regression to include multiple predictor variables simultaneously.</p>
+                    </div>`,
+                    quiz: {
+                        question: 'Why use multiple regression instead of separate simple regressions?',
+                        options: [
+                            { text: 'It controls for confounding and shows independent effects of each predictor', correct: true },
+                            { text: 'It\'s easier to calculate', correct: false },
+                            { text: 'It always gives higher R²', correct: false },
+                            { text: 'It requires fewer assumptions', correct: false }
+                        ],
+                        explanation: 'Multiple regression estimates the unique contribution of each predictor while holding others constant, revealing true independent effects.'
+                    }
+                }
+            },
+            {
+                id: 'logistic-regression',
+                number: 13,
+                title: 'Logistic Regression',
+                description: 'Model binary outcomes (yes/no, success/fail)',
+                xp: 150,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">🎲 Binary Outcome Prediction</h3>
+                        <p class="theory-content">Logistic regression predicts probability of a binary outcome using one or more predictors.</p>
+                    </div>`,
+                    quiz: {
+                        question: 'What does logistic regression predict?',
+                        options: [
+                            { text: 'Probability that outcome = 1 (e.g., success, yes)', correct: true },
+                            { text: 'Exact binary outcome (0 or 1)', correct: false },
+                            { text: 'Continuous values', correct: false },
+                            { text: 'Categorical outcomes with 3+ levels', correct: false }
+                        ],
+                        explanation: 'Logistic regression outputs probabilities between 0 and 1, which can then be converted to binary predictions using a threshold (typically 0.5).'
+                    }
+                }
+            },
+            {
+                id: 'ancova',
+                number: 14,
+                title: 'ANCOVA (Analysis of Covariance)',
+                description: 'ANOVA with continuous covariates',
+                xp: 150,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">⚖️ Controlling for Confounders</h3>
+                        <p class="theory-content">ANCOVA combines ANOVA and regression, testing group differences while controlling for continuous covariates.</p>
+                    </div>`,
+                    quiz: {
+                        question: 'Why add covariates to ANOVA?',
+                        options: [
+                            { text: 'Reduce error variance and increase statistical power', correct: true },
+                            { text: 'Make the test easier to interpret', correct: false },
+                            { text: 'Avoid need for normal distribution', correct: false },
+                            { text: 'Test more hypotheses', correct: false }
+                        ],
+                        explanation: 'Covariates account for variability that\'s not due to the factor of interest, making it easier to detect real treatment effects.'
+                    }
+                }
+            },
+            {
+                id: 'power-analysis',
+                number: 15,
+                title: 'Power Analysis & Sample Size',
+                description: 'Determine required sample size for studies',
+                xp: 150,
+                content: {
+                    theory: `<div class="theory-section">
+                        <h3 class="theory-heading">📏 Planning Your Study</h3>
+                        <p class="theory-content">Statistical power is the probability of detecting a true effect. Power analysis determines the sample size needed to achieve desired power (typically 80%).</p>
+                        <div class="formula-box">
+                            Power = 1 - β (where β = Type II error rate)
+                            <br><br>
+                            Four interconnected components:<br>
+                            1. Effect size (Cohen's d, η², r)<br>
+                            2. Sample size (n)<br>
+                            3. Significance level (α)<br>
+                            4. Statistical power (1-β)
+                        </div>
+                        <div class="info-box purple">
+                            <div class="info-box-title">💡 Rule of Thumb</div>
+                            <div class="info-box-text">
+                                For t-tests with medium effect size (d=0.5), α=0.05, power=0.80:<br>
+                                • Independent groups: ~64 per group<br>
+                                • Paired samples: ~34 pairs<br>
+                                • One-way ANOVA (3 groups): ~52 per group
+                            </div>
+                        </div>
+                    </div>`,
+                    quiz: {
+                        question: 'A study with 80% power means:',
+                        options: [
+                            { text: '80% chance of detecting a true effect if it exists', correct: true },
+                            { text: '80% chance the null hypothesis is true', correct: false },
+                            { text: '80% confidence in your results', correct: false },
+                            { text: '20% Type I error rate', correct: false }
+                        ],
+                        explanation: 'Power is the probability of correctly rejecting a false null hypothesis (i.e., detecting a real effect when one exists).'
+                    }
+                }
+            }
+        ];
+
+        modules.push(...additionalModules);
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        function init() {
+            loadLearningPath();
+            loadProgressFromStorage();
+            updateProgressDisplay();
+        }
+
+        function loadLearningPath() {
+            const pathContainer = document.getElementById('learningPath');
+            pathContainer.innerHTML = modules.map(module => {
+                const completed = state.completedModules.has(module.id);
+                const progress = state.moduleProgress[module.id] || 0;
+                return `
+                    <div class="path-card ${completed ? 'completed' : ''}" onclick="loadModule('${module.id}')">
+                        <div class="path-number">${module.number}</div>
+                        <div class="path-title">${module.title}</div>
+                        <div class="path-desc">${module.description}</div>
+                        <div class="path-progress">
+                            <div class="mini-progress">
+                                <div class="mini-progress-fill" style="width: ${progress}%"></div>
+                            </div>
+                            <span>${progress}%</span>
+                        </div>
+                        ${completed ? '<span class="badge success" style="margin-top: 8px;">✓ Completed</span>' : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function loadModule(moduleId) {
+            const module = modules.find(m => m.id === moduleId);
+            if (!module) return;
+
+            state.currentModule = moduleId;
+
+            const content = document.getElementById('moduleContent');
+            content.classList.remove('hidden');
+            content.innerHTML = `
+                <div class="content-panel">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+                        <div>
+                            <div class="badge" style="margin-bottom: 8px;">Module ${module.number} of ${modules.length}</div>
+                            <h2 class="section-title">${module.title}</h2>
+                            <p class="section-subtitle">${module.description}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="badge success">${module.xp} XP</div>
+                        </div>
+                    </div>
+
+                    ${module.content.theory}
+
+                    ${module.content.interactive ? generateInteractiveDemo(module) : ''}
+                    ${module.content.code ? generateCodeSection(module) : ''}
+                    ${module.content.quiz ? generateQuiz(module) : ''}
+
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" onclick="closeModule()">← Back to Path</button>
+                        <button class="btn btn-primary" onclick="nextModule()">Next Module →</button>
+                    </div>
+                </div>
+            `;
+
+            // Scroll to content
+            content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Update progress
+            if (!state.moduleProgress[moduleId]) {
+                state.moduleProgress[moduleId] = 50;
+                saveProgressToStorage();
+            }
+        }
+
+        function generateInteractiveDemo(module) {
+            if (!module.content.interactive) return '';
+
+            const controls = module.content.interactive.controls;
+            const controlsHTML = controls.map(control => `
+                <div class="control-item">
+                    <div class="control-label-row">
+                        <span>${control.label}</span>
+                        <span class="control-value" id="val-${control.id}">${control.value}</span>
+                    </div>
+                    <input type="range" class="slider" id="${control.id}"
+                           min="${control.min}" max="${control.max}" 
+                           value="${control.value}" step="${control.step}"
+                           oninput="updateDemo('${module.id}')">
+                </div>
+            `).join('');
+
+            return `
+                <div class="interactive-demo">
+                    <div class="demo-header">
+                        <h4 class="demo-title">🎮 Interactive Visualization</h4>
+                        <button class="btn btn-secondary btn-small" onclick="resetDemo('${module.id}')">Reset</button>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 14px;">
+                        Adjust the parameters below and watch how they affect the test statistics in real-time.
+                    </p>
+                    <div class="control-grid">
+                        ${controlsHTML}
+                    </div>
+                    <div class="viz-container">
+                        <canvas id="demoCanvas-${module.id}"></canvas>
+                    </div>
+                    <div class="stats-display" id="stats-${module.id}">
+                        <!-- Stats populate here -->
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateCodeSection(module) {
+            return `
+                <div class="code-section">
+                    <div class="code-header">
+                        <h4 class="code-title">💻 Python Implementation</h4>
+                        <button class="btn btn-secondary btn-small" onclick="copyCode('${module.id}')">Copy Code</button>
+                    </div>
+                    <div class="code-block" id="code-${module.id}">
+                        ${module.content.code}
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateQuiz(module) {
+            const quiz = module.content.quiz;
+            const optionsHTML = quiz.options.map((opt, idx) => `
+                <div class="quiz-option" onclick="answerQuiz('${module.id}', ${idx}, ${opt.correct})">
+                    ${opt.text}
+                </div>
+            `).join('');
+
+            return `
+                <div class="quiz-container" id="quiz-${module.id}">
+                    <div class="quiz-header">
+                        <h4 class="quiz-title">🧠 Knowledge Check</h4>
+                        <div class="quiz-xp">+${Math.floor(module.xp / 2)} XP</div>
+                    </div>
+                    <div class="quiz-question">${quiz.question}</div>
+                    <div class="quiz-options" id="quiz-opts-${module.id}">
+                        ${optionsHTML}
+                    </div>
+                    <div id="quiz-feedback-${module.id}"></div>
+                </div>
+            `;
+        }
+
+        function updateDemo(moduleId) {
+            const module = modules.find(m => m.id === moduleId);
+            if (!module || !module.content.interactive) return;
+
+            // Update value displays
+            module.content.interactive.controls.forEach(control => {
+                const slider = document.getElementById(control.id);
+                const display = document.getElementById(`val-${control.id}`);
+                if (slider && display) {
+                    display.textContent = slider.value;
+                }
+            });
+
+            // Draw visualization
+            drawDemoVisualization(moduleId);
+
+            // Calculate and display stats
+            calculateDemoStats(moduleId);
+        }
+
+        function drawDemoVisualization(moduleId) {
+            const canvas = document.getElementById(`demoCanvas-${moduleId}`);
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = 300;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (moduleId === 'onesample-t') {
+                drawOneSampleDemo(ctx, canvas.width, canvas.height);
+            } else if (moduleId === 'twosample-t') {
+                drawTwoSampleDemo(ctx, canvas.width, canvas.height);
+            } else if (moduleId === 'paired-t') {
+                drawPairedDemo(ctx, canvas.width, canvas.height);
+            } else if (moduleId === 'anova') {
+                drawANOVADemo(ctx, canvas.width, canvas.height);
+            }
+        }
+
+        function drawOneSampleDemo(ctx, width, height) {
+            const sampleMean = parseFloat(document.getElementById('sampleMean')?.value || 16.5);
+            const popMean = parseFloat(document.getElementById('popMean')?.value || 16);
+            const sd = parseFloat(document.getElementById('sampleSD')?.value || 1.2);
+
+            drawNormalCurve(ctx, width, height, sampleMean, sd, '#F97316');
+
+            // Draw population mean line
+            const popX = ((popMean - 10) / 20) * width;
+            ctx.strokeStyle = '#3B82F6';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(popX, 0);
+            ctx.lineTo(popX, height);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Labels
+            ctx.fillStyle = '#6B7280';
+            ctx.font = '12px Inter';
+            ctx.fillText(`Sample μ = ${sampleMean}`, 20, 30);
+            ctx.fillText(`Population μ₀ = ${popMean}`, 20, 50);
+        }
+
+        function drawTwoSampleDemo(ctx, width, height) {
+            const mean1 = parseFloat(document.getElementById('mean1')?.value || 100);
+            const mean2 = parseFloat(document.getElementById('mean2')?.value || 110);
+            const sd1 = parseFloat(document.getElementById('sd1')?.value || 15);
+
+            drawNormalCurve(ctx, width, height, mean1, sd1, '#3B82F6', 50, 150);
+            drawNormalCurve(ctx, width, height, mean2, sd1, '#F97316', 50, 150);
+        }
+
+        function drawPairedDemo(ctx, width, height) {
+            const meanBefore = parseFloat(document.getElementById('meanBefore')?.value || 100);
+            const meanAfter = parseFloat(document.getElementById('meanAfter')?.value || 115);
+            const sd = parseFloat(document.getElementById('sdDiff')?.value || 12);
+
+            drawNormalCurve(ctx, width, height, meanBefore, sd, '#3B82F6', 50, 150);
+            drawNormalCurve(ctx, width, height, meanAfter, sd, '#10B981', 50, 150);
+        }
+
+        function drawANOVADemo(ctx, width, height) {
+            const mean1 = parseFloat(document.getElementById('mean1')?.value || 100);
+            const mean2 = parseFloat(document.getElementById('mean2')?.value || 110);
+            const mean3 = parseFloat(document.getElementById('mean3')?.value || 120);
+            const sd = parseFloat(document.getElementById('withinSD')?.value || 15);
+
+            drawNormalCurve(ctx, width, height, mean1, sd, '#3B82F6', 50, 150);
+            drawNormalCurve(ctx, width, height, mean2, sd, '#F97316', 50, 150);
+            drawNormalCurve(ctx, width, height, mean3, sd, '#10B981', 50, 150);
+        }
+
+        function drawNormalCurve(ctx, width, height, mean, sd, color, minX = 0, maxX = 200) {
+            const xScale = width / (maxX - minX);
+            const yScale = height / (0.05 * Math.sqrt(2 * Math.PI * sd * sd));
+
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+
+            for (let x = minX; x <= maxX; x += 0.5) {
+                const y = (1 / (sd * Math.sqrt(2 * Math.PI))) *
+                    Math.exp(-0.5 * Math.pow((x - mean) / sd, 2));
+                const canvasX = (x - minX) * xScale;
+                const canvasY = height - y * yScale;
+
+                if (x === minX) {
+                    ctx.moveTo(canvasX, canvasY);
+                } else {
+                    ctx.lineTo(canvasX, canvasY);
+                }
+            }
+            ctx.stroke();
+        }
+
+        function calculateDemoStats(moduleId) {
+            const statsDiv = document.getElementById(`stats-${moduleId}`);
+            if (!statsDiv) return;
+
+            let statsHTML = '';
+
+            if (moduleId === 'onesample-t') {
+                const sampleMean = parseFloat(document.getElementById('sampleMean').value);
+                const popMean = parseFloat(document.getElementById('popMean').value);
+                const sd = parseFloat(document.getElementById('sampleSD').value);
+                const n = parseFloat(document.getElementById('sampleSize').value);
+
+                const se = sd / Math.sqrt(n);
+                const tStat = (sampleMean - popMean) / se;
+                const df = n - 1;
+                const pValue = Math.abs(tStat) > 2 ? 0.01 : Math.abs(tStat) > 1.5 ? 0.05 : 0.20;
+
+                statsHTML = `
+                    <div class="stat-card">
+                        <div class="stat-card-label">t-statistic</div>
+                        <div class="stat-card-value">${tStat.toFixed(3)}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-label">p-value</div>
+                        <div class="stat-card-value">${pValue.toFixed(4)}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-label">Degrees of Freedom</div>
+                        <div class="stat-card-value">${df}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-label">Standard Error</div>
+                        <div class="stat-card-value">${se.toFixed(3)}</div>
+                    </div>
+                `;
+            } else if (moduleId === 'twosample-t' || moduleId === 'paired-t' || moduleId === 'anova') {
+                statsHTML = '<div class="stat-card"><div class="stat-card-label">Stats</div><div class="stat-card-value">Interactive</div></div>';
+            }
+
+            statsDiv.innerHTML = statsHTML;
+        }
+
+        function resetDemo(moduleId) {
+            const module = modules.find(m => m.id === moduleId);
+            if (!module || !module.content.interactive) return;
+
+            module.content.interactive.controls.forEach(control => {
+                const slider = document.getElementById(control.id);
+                if (slider) {
+                    slider.value = control.value;
+                }
+            });
+
+            updateDemo(moduleId);
+        }
+
+        function answerQuiz(moduleId, optionIdx, isCorrect) {
+            const module = modules.find(m => m.id === moduleId);
+            const options = document.querySelectorAll(`#quiz-opts-${moduleId} .quiz-option`);
+            const feedback = document.getElementById(`quiz-feedback-${moduleId}`);
+
+            options.forEach((opt, idx) => {
+                opt.classList.add('disabled');
+                if (idx === optionIdx) {
+                    opt.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            });
+
+            if (isCorrect) {
+                const xpGain = Math.floor(module.xp / 2);
+                state.xp += xpGain;
+                state.completedQuizzes.add(moduleId);
+                state.completedModules.add(moduleId);
+                state.moduleProgress[moduleId] = 100;
+
+                feedback.className = 'quiz-feedback correct';
+                feedback.innerHTML = `
+                    ✅ Correct! +${xpGain} XP<br>
+                    <strong>Explanation:</strong> ${module.content.quiz.explanation}
+                `;
+
+                saveProgressToStorage();
+                updateProgressDisplay();
+                loadLearningPath();
+            } else {
+                feedback.className = 'quiz-feedback incorrect';
+                feedback.innerHTML = `
+                    ❌ Not quite right.<br>
+                    <strong>Explanation:</strong> ${module.content.quiz.explanation}
+                `;
+            }
+        }
+
+        function copyCode(moduleId) {
+            const codeBlock = document.getElementById(`code-${moduleId}`);
+            const text = codeBlock.innerText || codeBlock.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Code copied to clipboard!');
+            });
+        }
+
+        function closeModule() {
+            document.getElementById('moduleContent').classList.add('hidden');
+            state.currentModule = null;
+        }
+
+        function nextModule() {
+            const currentIdx = modules.findIndex(m => m.id === state.currentModule);
+            if (currentIdx < modules.length - 1) {
+                loadModule(modules[currentIdx + 1].id);
+            } else {
+                alert('🎉 Congratulations! You\'ve completed all modules!');
+                closeModule();
+            }
+        }
+
+        function switchTab(tab) {
+            state.currentTab = tab;
+
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.getElementById('learnTab').classList.toggle('hidden', tab !== 'learn');
+            document.getElementById('practiceTab').classList.toggle('hidden', tab !== 'practice');
+            document.getElementById('referenceTab').classList.toggle('hidden', tab !== 'reference');
+        }
+
+        function loadPracticeScenario(type) {
+            const scenarioDiv = document.getElementById('practiceScenario');
+            scenarioDiv.classList.remove('hidden');
+            scenarioDiv.innerHTML = `
+                <div class="info-box purple">
+                    <div class="info-box-title">🎯 Practice Scenario: ${type.toUpperCase()}</div>
+                    <div class="info-box-text">Practice scenarios are being developed. Check back soon for realistic problems and step-by-step solutions!</div>
+                </div>
+            `;
+        }
+
+        function updateProgressDisplay() {
+            document.getElementById('totalXP').textContent = state.xp;
+            document.getElementById('modulesCompleted').textContent = `${state.completedModules.size}/${modules.length}`;
+            document.getElementById('quizzesCompleted').textContent = `${state.completedQuizzes.size}/${modules.length}`;
+
+            let level = 'Beginner';
+            if (state.xp >= 1500) level = 'Expert';
+            else if (state.xp >= 1000) level = 'Advanced';
+            else if (state.xp >= 500) level = 'Intermediate';
+
+            document.getElementById('currentLevel').textContent = level;
+        }
+
+        function saveProgressToStorage() {
+            localStorage.setItem('hysea-progress', JSON.stringify({
+                xp: state.xp,
+                completedModules: Array.from(state.completedModules),
+                completedQuizzes: Array.from(state.completedQuizzes),
+                moduleProgress: state.moduleProgress
+            }));
+        }
+
+        function loadProgressFromStorage() {
+            const saved = localStorage.getItem('hysea-progress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                state.xp = data.xp || 0;
+                state.completedModules = new Set(data.completedModules || []);
+                state.completedQuizzes = new Set(data.completedQuizzes || []);
+                state.moduleProgress = data.moduleProgress || {};
+            }
+        }
+
+        // Initialize on page load
+        init();
+    </script>
+</body>
+
+</html>
