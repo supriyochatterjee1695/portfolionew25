@@ -8,16 +8,16 @@ createChat({
   mode: 'window',
   showWelcomeScreen: true,
   initialMessages: [
-    'Hi, I’m Supy, your 24*7 Personal Mental Positivity Bot 👋',
-    'Tell me what you feel !.'
+    'Hi, I’m Supy, your 24*7 Personal Support Buddy 👋',
+    'Tell me what you feel !'
   ],
   i18n: {
     en: {
       title: 'Supy',
-      subtitle: 'CSeametry AI Assistant',
+      subtitle: 'Your Buddy Supy is here !',
       footer: '',
-      getStarted: 'Start chatting',
-      inputPlaceholder: 'Ask Supy a question…'
+      getStarted: 'Talk to me',
+      inputPlaceholder: 'Type here...'
     }
   }
 });
