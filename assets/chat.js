@@ -8,8 +8,8 @@ createChat({
   mode: 'window',
   showWelcomeScreen: true,
   initialMessages: [
-    'Hi, I’m Supy 👋',
-    'Let me help you with what you need.'
+    'Hi, I’m Supy, your 24*7 Personal Mental Positivity Bot 👋',
+    'Tell me what you feel !.'
   ],
   i18n: {
     en: {
