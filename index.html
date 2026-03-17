@@ -1584,7 +1584,7 @@
             submitBtn.disabled = true;
             submitBtn.innerText = "Sending...";
             formMessage.className = "message"; // Reset classes
-            formMessage.innerHTML = "Checking connection...";
+            formMessage.innerHTML = "Sending you message...";
             formMessage.classList.add('show');
 
             const data = {
@@ -1607,7 +1607,7 @@
                 .then(() => {
                     // Since we use no-cors, we can't read the actual response body,
                     // but if we reach here, the request was successfully dispatched.
-                    formMessage.innerHTML = "✅ Message sent successfully! I will get back to you soon.";
+                    formMessage.innerHTML = "✅ Message Sent! We will contact you soon !";
                     formMessage.classList.add('success');
                     this.reset();
                 })
