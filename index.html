@@ -1574,9 +1574,18 @@
         });
 
         document.getElementById("contactForm").addEventListener("submit", function (e) {
-            e.preventDefault(); // prevent page reload
-
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
             const formMessage = document.getElementById("formMessage");
+            const originalBtnText = submitBtn.innerText;
+
+            // Basic UI Feedback
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Sending...";
+            formMessage.className = "message"; // Reset classes
+            formMessage.innerHTML = "Checking connection...";
+            formMessage.classList.add('show');
 
             const data = {
                 name: document.getElementById("name").value,
@@ -1584,28 +1593,33 @@
                 message: document.getElementById("message").value
             };
 
+            // Using text/plain as Content-Type to avoid CORS preflight (OPTIONS) request
+            // handle the POST as an opaque request with no-cors to ensure it reaches GAS
             fetch("https://script.google.com/macros/s/AKfycbz5wBUK428OCeaS15h9AXEC8ODZ-RGErFe_n-gYAI_ckGLHhua6csWQphvkPEgWd-xQ/exec", {
                 method: "POST",
-                body: JSON.stringify(data),
+                mode: "no-cors",
+                cache: "no-cache",
                 headers: {
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(data)
             })
-                .then(response => response.json())
-                .then(res => {
-                    if (res.status === "success") {
-                        formMessage.innerHTML = "✅ Message sent successfully!";
-                        formMessage.style.color = "green";
-                        document.getElementById("contactForm").reset();
-                    } else {
-                        formMessage.innerHTML = "❌ Error submitting form.";
-                        formMessage.style.color = "red";
-                    }
-                })
-                .catch(error => {
-                    formMessage.innerHTML = "❌ Something went wrong.";
-                    formMessage.style.color = "red";
-                });
+            .then(() => {
+                // Since we use no-cors, we can't read the actual response body,
+                // but if we reach here, the request was successfully dispatched.
+                formMessage.innerHTML = "✅ Message sent successfully! I will get back to you soon.";
+                formMessage.classList.add('success');
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                formMessage.innerHTML = "❌ Connection error. Please try again or email me directly.";
+                formMessage.classList.add('error');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalBtnText;
+            });
         });
     </script>
 </body>
