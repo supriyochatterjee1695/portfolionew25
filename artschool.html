@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meera Smriti Sishu Ankan Shiksha Kendra</title>
-  <meta name="description" content="Meera Smriti Sishu Ankan Shiksha Kendra is an art school in Rishra, West Bengal, known for dedicated teachers, a warm creative environment, and more than 2000 students learning drawing and painting." />
+  <meta name="description"
+    content="Meera Smriti Sishu Ankan Shiksha Kendra is an art school in Rishra, West Bengal, known for dedicated teachers, a warm creative environment, and more than 2000 students learning drawing and painting." />
   <meta name="theme-color" content="#f6efe6" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <style>
-    :root, [data-theme="light"] {
+    :root,
+    [data-theme="light"] {
       --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
       --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
       --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
@@ -19,9 +24,18 @@
       --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.6rem);
       --text-hero: clamp(3rem, 0.8rem + 6vw, 6.2rem);
 
-      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
-      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
-      --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
 
       --color-bg: #f6efe6;
       --color-surface: #fbf7f2;
@@ -79,248 +93,679 @@
       --shadow-lg: 0 22px 60px rgba(0, 0, 0, 0.42);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100dvh;
       background:
-        radial-gradient(circle at top left, rgba(197,130,47,0.14), transparent 28%),
-        radial-gradient(circle at right 20%, rgba(46,103,86,0.10), transparent 24%),
+        radial-gradient(circle at top left, rgba(197, 130, 47, 0.14), transparent 28%),
+        radial-gradient(circle at right 20%, rgba(46, 103, 86, 0.10), transparent 24%),
         linear-gradient(180deg, var(--color-bg), color-mix(in srgb, var(--color-bg) 85%, white 15%));
       color: var(--color-text);
       font-family: var(--font-body);
       font-size: var(--text-base);
       line-height: 1.65;
     }
-    a { color: inherit; text-decoration: none; }
-    img, svg { display: block; max-width: 100%; }
-    button { font: inherit; cursor: pointer; border: 0; background: none; }
-    .skip-link {
-      position: absolute; left: var(--space-4); top: -40px; background: var(--color-primary);
-      color: var(--color-text-inverse); padding: var(--space-3) var(--space-4); border-radius: var(--radius-full); z-index: 1000;
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    .skip-link:focus { top: var(--space-4); }
-    .container { width: min(calc(100% - 2rem), var(--content-default)); margin-inline: auto; }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 0;
+      background: none;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: var(--space-4);
+      top: -40px;
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-full);
+      z-index: 1000;
+    }
+
+    .skip-link:focus {
+      top: var(--space-4);
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--content-default));
+      margin-inline: auto;
+    }
 
     .site-header {
-      position: sticky; top: 0; z-index: 30;
+      position: sticky;
+      top: 0;
+      z-index: 30;
       backdrop-filter: blur(12px);
       background: color-mix(in srgb, var(--color-bg) 82%, transparent);
       border-bottom: 1px solid var(--color-divider);
     }
+
     .nav-row {
-      display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
       padding: var(--space-4) 0;
     }
+
     .brand {
-      display: flex; align-items: center; gap: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
       min-width: 0;
     }
+
     .brand-mark {
-      width: 52px; height: 52px; color: var(--color-primary); flex: 0 0 auto;
+      width: 52px;
+      height: 52px;
+      color: var(--color-primary);
+      flex: 0 0 auto;
       background: linear-gradient(135deg, var(--color-surface-2), var(--color-surface-offset));
-      border-radius: 50%; padding: var(--space-2); border: 1px solid var(--color-border);
+      border-radius: 50%;
+      padding: var(--space-2);
+      border: 1px solid var(--color-border);
       box-shadow: var(--shadow-sm);
     }
+
     .brand-text strong {
-      display: block; font-family: var(--font-display); font-size: var(--text-lg); line-height: 1;
+      display: block;
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      line-height: 1;
       letter-spacing: 0.02em;
     }
-    .brand-text span { display: block; color: var(--color-text-muted); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.16em; margin-top: 0.2rem; }
+
+    .brand-text span {
+      display: block;
+      color: var(--color-text-muted);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-top: 0.2rem;
+    }
+
     .nav-links {
-      display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; justify-content: flex-end;
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
+
     .nav-links a {
-      position: relative; font-size: var(--text-sm); color: var(--color-text-muted); padding-bottom: 0.15rem;
+      position: relative;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      padding-bottom: 0.15rem;
     }
+
     .nav-links a::after {
       content: "";
-      position: absolute; left: 0; bottom: -0.1rem; width: 100%; height: 1px;
-      background: var(--color-primary); transform: scaleX(0); transform-origin: left; transition: transform var(--transition);
+      position: absolute;
+      left: 0;
+      bottom: -0.1rem;
+      width: 100%;
+      height: 1px;
+      background: var(--color-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
     }
-    .nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); }
-    .header-actions { display: flex; gap: var(--space-3); align-items: center; }
-    .theme-toggle, .menu-toggle {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--color-border);
-      background: var(--color-surface); color: var(--color-text);
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      transform: scaleX(1);
     }
-    .menu-toggle { display: none; }
+
+    .header-actions {
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+    }
+
+    .theme-toggle,
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .menu-toggle {
+      display: none;
+    }
 
     .hero {
       padding: clamp(var(--space-12), 10vw, var(--space-24)) 0 var(--space-16);
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
+
     .hero-grid {
-      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-10); align-items: center;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-10);
+      align-items: center;
     }
+
     .eyebrow {
-      display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-xs);
-      text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-secondary); margin-bottom: var(--space-4);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-4);
     }
+
     .hero h1 {
-      font-family: var(--font-display); font-size: var(--text-hero); line-height: 0.94; max-width: 11ch;
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      line-height: 0.94;
+      max-width: 11ch;
       margin-bottom: var(--space-5);
     }
+
     .hero-copy {
-      color: var(--color-text-muted); max-width: 60ch; margin-bottom: var(--space-6);
+      color: var(--color-text-muted);
+      max-width: 60ch;
+      margin-bottom: var(--space-6);
     }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
-      min-height: 48px; padding: 0.9rem 1.3rem; border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      min-height: 48px;
+      padding: 0.9rem 1.3rem;
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 700;
       transition: transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
     }
-    .btn-primary { background: var(--color-primary); color: var(--color-text-inverse); box-shadow: var(--shadow-md); }
-    .btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); }
-    .btn-secondary { border: 1px solid var(--color-border); background: var(--color-surface); }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
 
     .hero-studio {
-      position: relative; min-height: 520px; border-radius: var(--radius-xl); background: linear-gradient(180deg, var(--color-surface-2), var(--color-surface-offset));
-      border: 1px solid var(--color-border); box-shadow: var(--shadow-lg); padding: var(--space-8); overflow: hidden;
+      position: relative;
+      min-height: 520px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, var(--color-surface-2), var(--color-surface-offset));
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+      padding: var(--space-8);
+      overflow: hidden;
     }
+
     .canvas-placeholder {
-      position: absolute; inset: var(--space-8) var(--space-8) auto auto; width: 62%; aspect-ratio: 4 / 5;
-      border: 2px dashed color-mix(in srgb, var(--color-primary) 28%, var(--color-border)); border-radius: var(--radius-lg);
-      background: repeating-linear-gradient(135deg, transparent 0 18px, rgba(255,255,255,0.08) 18px 36px);
-      display: grid; place-items: center; color: var(--color-text-faint); font-size: var(--text-sm); text-align: center; padding: var(--space-4);
+      position: absolute;
+      inset: var(--space-8) var(--space-8) auto auto;
+      width: 62%;
+      aspect-ratio: 4 / 5;
+      border: 2px dashed color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+      border-radius: var(--radius-lg);
+      background: repeating-linear-gradient(135deg, transparent 0 18px, rgba(255, 255, 255, 0.08) 18px 36px);
+      display: grid;
+      place-items: center;
+      color: var(--color-text-faint);
+      font-size: var(--text-sm);
+      text-align: center;
+      padding: var(--space-4);
     }
+
     .palette {
-      position: absolute; left: var(--space-8); bottom: var(--space-8); width: 180px; aspect-ratio: 1 / 1;
+      position: absolute;
+      left: var(--space-8);
+      bottom: var(--space-8);
+      width: 180px;
+      aspect-ratio: 1 / 1;
       background: radial-gradient(circle at 30% 30%, #f3d89c 0 14%, transparent 15%),
-                  radial-gradient(circle at 55% 24%, #d68853 0 10%, transparent 11%),
-                  radial-gradient(circle at 67% 53%, #508469 0 11%, transparent 12%),
-                  radial-gradient(circle at 28% 61%, #6f88c5 0 10%, transparent 11%),
-                  radial-gradient(circle at 47% 72%, #ad5459 0 11%, transparent 12%),
-                  radial-gradient(circle at 54% 50%, var(--color-surface-offset-2) 0 52%, transparent 53%);
+        radial-gradient(circle at 55% 24%, #d68853 0 10%, transparent 11%),
+        radial-gradient(circle at 67% 53%, #508469 0 11%, transparent 12%),
+        radial-gradient(circle at 28% 61%, #6f88c5 0 10%, transparent 11%),
+        radial-gradient(circle at 47% 72%, #ad5459 0 11%, transparent 12%),
+        radial-gradient(circle at 54% 50%, var(--color-surface-offset-2) 0 52%, transparent 53%);
       border-radius: 48% 52% 42% 58% / 50% 46% 54% 50%;
-      border: 1px solid rgba(0,0,0,0.05);
+      border: 1px solid rgba(0, 0, 0, 0.05);
       box-shadow: var(--shadow-md);
       transform: rotate(-8deg);
     }
+
     .brush {
-      position: absolute; background: linear-gradient(180deg, #704326, #2e1e16); border-radius: var(--radius-full);
+      position: absolute;
+      background: linear-gradient(180deg, #704326, #2e1e16);
+      border-radius: var(--radius-full);
       transform-origin: center;
     }
-    .brush.one { width: 12px; height: 180px; right: 22%; bottom: 12%; transform: rotate(18deg); }
-    .brush.two { width: 10px; height: 145px; right: 15%; bottom: 10%; transform: rotate(30deg); }
+
+    .brush.one {
+      width: 12px;
+      height: 180px;
+      right: 22%;
+      bottom: 12%;
+      transform: rotate(18deg);
+    }
+
+    .brush.two {
+      width: 10px;
+      height: 145px;
+      right: 15%;
+      bottom: 10%;
+      transform: rotate(30deg);
+    }
+
     .brush::before {
-      content: ""; position: absolute; top: -18px; left: 50%; transform: translateX(-50%); width: 20px; height: 24px;
-      background: linear-gradient(180deg, #c7b08b, #8c6a4d); clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%);
+      content: "";
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 24px;
+      background: linear-gradient(180deg, #c7b08b, #8c6a4d);
+      clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%);
       border-radius: 3px;
     }
+
     .paint-note {
-      position: absolute; top: var(--space-8); left: var(--space-8); max-width: 220px; padding: var(--space-4);
-      background: color-mix(in srgb, var(--color-surface) 90%, transparent); border-radius: var(--radius-lg);
-      border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);
+      position: absolute;
+      top: var(--space-8);
+      left: var(--space-8);
+      max-width: 220px;
+      padding: var(--space-4);
+      background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
       transform: rotate(-4deg);
     }
-    .paint-note strong { display: block; font-size: var(--text-sm); margin-bottom: var(--space-2); }
-    .paint-note span { color: var(--color-text-muted); font-size: var(--text-xs); }
 
-    section { padding: clamp(var(--space-10), 7vw, var(--space-20)) 0; }
-    .section-head { display: flex; justify-content: space-between; gap: var(--space-6); align-items: end; margin-bottom: var(--space-8); }
-    .section-head h2 {
-      font-family: var(--font-display); font-size: var(--text-2xl); line-height: 0.98; max-width: 10ch;
+    .paint-note strong {
+      display: block;
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-2);
     }
-    .section-head p { color: var(--color-text-muted); max-width: 56ch; }
+
+    .paint-note span {
+      color: var(--color-text-muted);
+      font-size: var(--text-xs);
+    }
+
+    section {
+      padding: clamp(var(--space-10), 7vw, var(--space-20)) 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-6);
+      align-items: end;
+      margin-bottom: var(--space-8);
+    }
+
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      line-height: 0.98;
+      max-width: 10ch;
+    }
+
+    .section-head p {
+      color: var(--color-text-muted);
+      max-width: 56ch;
+    }
 
     .stats {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
       margin-top: var(--space-8);
     }
-    .stat-card, .info-card, .review-card, .contact-card, .placeholder-card {
-      background: color-mix(in srgb, var(--color-surface) 94%, transparent);
-      border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
-    }
-    .stat-card { padding: var(--space-5); }
-    .stat-card strong {
-      display: block; font-size: var(--text-xl); font-family: var(--font-display); color: var(--color-primary);
-    }
-    .stat-card span { color: var(--color-text-muted); font-size: var(--text-sm); }
 
-    .story-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-8); align-items: start; }
-    .story-panel { padding: var(--space-8); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); box-shadow: var(--shadow-md); }
-    .story-panel p + p { margin-top: var(--space-4); }
-    .highlight-list { list-style: none; margin-top: var(--space-6); display: grid; gap: var(--space-3); }
+    .stat-card,
+    .info-card,
+    .review-card,
+    .contact-card,
+    .placeholder-card {
+      background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-card {
+      padding: var(--space-5);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: var(--text-xl);
+      font-family: var(--font-display);
+      color: var(--color-primary);
+    }
+
+    .stat-card span {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-8);
+      align-items: start;
+    }
+
+    .story-panel {
+      padding: var(--space-8);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+    }
+
+    .story-panel p+p {
+      margin-top: var(--space-4);
+    }
+
+    .highlight-list {
+      list-style: none;
+      margin-top: var(--space-6);
+      display: grid;
+      gap: var(--space-3);
+    }
+
     .highlight-list li {
-      padding: var(--space-4) var(--space-5); background: var(--color-surface-2); border-radius: var(--radius-md); border: 1px solid var(--color-divider);
+      padding: var(--space-4) var(--space-5);
+      background: var(--color-surface-2);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-divider);
       color: var(--color-text-muted);
     }
+
     .placeholder-card {
-      min-height: 100%; padding: var(--space-8); position: relative; overflow: hidden;
+      min-height: 100%;
+      padding: var(--space-8);
+      position: relative;
+      overflow: hidden;
       background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary-highlight) 55%, var(--color-surface)), var(--color-surface));
     }
+
     .placeholder-frame {
-      border: 2px dashed color-mix(in srgb, var(--color-secondary) 35%, var(--color-border)); border-radius: var(--radius-lg);
-      min-height: 360px; display: grid; place-items: center; text-align: center; color: var(--color-text-faint); padding: var(--space-6);
+      border: 2px dashed color-mix(in srgb, var(--color-secondary) 35%, var(--color-border));
+      border-radius: var(--radius-lg);
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--color-text-faint);
+      padding: var(--space-6);
     }
 
-    .program-grid, .review-grid, .contact-grid { display: grid; gap: var(--space-5); }
-    .program-grid { grid-template-columns: repeat(3, 1fr); }
-    .info-card { padding: var(--space-6); }
+    .program-grid,
+    .review-grid,
+    .contact-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .program-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .info-card {
+      padding: var(--space-6);
+    }
+
     .info-card .label {
-      display: inline-block; margin-bottom: var(--space-3); font-size: var(--text-xs); color: var(--color-secondary);
-      text-transform: uppercase; letter-spacing: 0.14em;
+      display: inline-block;
+      margin-bottom: var(--space-3);
+      font-size: var(--text-xs);
+      color: var(--color-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
     }
-    .info-card h3 { font-size: var(--text-lg); margin-bottom: var(--space-3); }
-    .info-card p { color: var(--color-text-muted); }
 
-    .review-grid { grid-template-columns: repeat(3, 1fr); }
-    .review-card { padding: var(--space-6); display: grid; gap: var(--space-4); }
-    .stars { color: var(--color-accent); letter-spacing: 0.1em; font-size: var(--text-sm); }
-    .review-meta strong { display: block; font-size: var(--text-sm); }
-    .review-meta span { color: var(--color-text-muted); font-size: var(--text-xs); }
-    .review-card p { color: var(--color-text-muted); font-size: var(--text-sm); }
+    .info-card h3 {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-3);
+    }
 
-    .contact-grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
-    .contact-card { padding: var(--space-8); }
-    .contact-list { list-style: none; display: grid; gap: var(--space-4); margin-top: var(--space-6); }
-    .contact-list li { padding-bottom: var(--space-4); border-bottom: 1px solid var(--color-divider); }
-    .contact-list small { display: block; color: var(--color-text-faint); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: var(--space-2); }
-    .contact-list span, .contact-list a { color: var(--color-text-muted); }
-    .mini-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+    .info-card p {
+      color: var(--color-text-muted);
+    }
+
+    .review-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .review-card {
+      padding: var(--space-6);
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .stars {
+      color: var(--color-accent);
+      letter-spacing: 0.1em;
+      font-size: var(--text-sm);
+    }
+
+    .review-meta strong {
+      display: block;
+      font-size: var(--text-sm);
+    }
+
+    .review-meta span {
+      color: var(--color-text-muted);
+      font-size: var(--text-xs);
+    }
+
+    .review-card p {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .contact-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
+    }
+
+    .contact-card {
+      padding: var(--space-8);
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+
+    .contact-list li {
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-divider);
+    }
+
+    .contact-list small {
+      display: block;
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--space-2);
+    }
+
+    .contact-list span,
+    .contact-list a {
+      color: var(--color-text-muted);
+    }
+
+    .mini-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
 
     .footer {
       padding: var(--space-8) 0 var(--space-12);
-      border-top: 1px solid var(--color-divider); color: var(--color-text-muted);
+      border-top: 1px solid var(--color-divider);
+      color: var(--color-text-muted);
     }
-    .footer-row { display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
 
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 700ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     @media (max-width: 980px) {
-      .hero-grid, .story-grid, .contact-grid, .program-grid, .review-grid, .stats { grid-template-columns: 1fr 1fr; }
-      .hero-studio { min-height: 460px; }
-    }
-    @media (max-width: 760px) {
-      .menu-toggle { display: inline-flex; }
-      .nav-links {
-        position: absolute; left: 1rem; right: 1rem; top: calc(100% + 0.75rem); display: none;
-        flex-direction: column; align-items: flex-start; padding: var(--space-5); background: var(--color-surface);
-        border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+
+      .hero-grid,
+      .story-grid,
+      .contact-grid,
+      .program-grid,
+      .review-grid,
+      .stats {
+        grid-template-columns: 1fr 1fr;
       }
-      .nav-links.open { display: flex; }
-      .hero-grid, .story-grid, .contact-grid, .program-grid, .review-grid, .stats { grid-template-columns: 1fr; }
-      .section-head { flex-direction: column; align-items: start; }
-      .hero h1 { max-width: 100%; }
-      .hero-studio { min-height: 430px; }
-      .canvas-placeholder { width: 64%; inset: auto var(--space-5) var(--space-5) auto; }
-      .paint-note { max-width: 60%; }
+
+      .hero-studio {
+        min-height: 460px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        top: calc(100% + 0.75rem);
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-5);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero-grid,
+      .story-grid,
+      .contact-grid,
+      .program-grid,
+      .review-grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+      }
+
+      .hero-studio {
+        min-height: 430px;
+      }
+
+      .canvas-placeholder {
+        width: 64%;
+        inset: auto var(--space-5) var(--space-5) auto;
+      }
+
+      .paint-note {
+        max-width: 60%;
+      }
     }
   </style>
 </head>
+
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
   <header class="site-header">
     <div class="container nav-row">
       <a href="#top" class="brand" aria-label="Meera Smriti Sishu Ankan Shiksha Kendra home">
         <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M20 40c4-12 10-19 18-22 5-2 12 0 14 6 2 7-3 12-8 14-4 2-9 2-13 5-5 3-8 8-9 13-5-4-7-10-2-16Z" fill="currentColor" opacity="0.18"/>
-          <path d="M22 42c2-8 7-15 14-20 4-3 8-4 13-4 4 0 7 2 8 6 1 4-1 8-4 10-5 4-12 4-17 8-5 3-8 8-10 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <circle cx="43" cy="24" r="2.5" fill="currentColor"/>
-          <path d="M18 47c4 1 8 0 11-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M20 40c4-12 10-19 18-22 5-2 12 0 14 6 2 7-3 12-8 14-4 2-9 2-13 5-5 3-8 8-9 13-5-4-7-10-2-16Z"
+            fill="currentColor" opacity="0.18" />
+          <path d="M22 42c2-8 7-15 14-20 4-3 8-4 13-4 4 0 7 2 8 6 1 4-1 8-4 10-5 4-12 4-17 8-5 3-8 8-10 14"
+            stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          <circle cx="43" cy="24" r="2.5" fill="currentColor" />
+          <path d="M18 47c4 1 8 0 11-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
         </svg>
         <div class="brand-text">
           <strong>Meera Smriti</strong>
@@ -337,10 +782,18 @@
 
       <div class="header-actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Switch color theme">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <path
+              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
+            </path>
+          </svg>
         </button>
-        <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+        <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="site-nav"
+          aria-label="Open navigation menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18M3 12h18M3 18h18"></path>
+          </svg>
         </button>
       </div>
     </div>
@@ -352,13 +805,15 @@
         <div class="reveal">
           <div class="eyebrow">4.8 rating · 128 reviews · Rishra, West Bengal</div>
           <h1>Where young hands learn to paint with confidence.</h1>
-          <p class="hero-copy">Meera Smriti Sishu Ankan Shiksha Kendra is a well-loved art school in Rishra, nurturing drawing, painting, imagination, and discipline through dedicated teachers and a warm studio culture.</p>
+          <p class="hero-copy">Meera Smriti Sishu Ankan Shiksha Kendra is a well-loved art school in Rishra, nurturing
+            drawing, painting, imagination, and discipline through dedicated teachers and a warm studio culture.</p>
           <div class="hero-actions">
             <a href="#visit" class="btn btn-primary">Visit the school</a>
             <a href="#reviews" class="btn btn-secondary">Read student voices</a>
           </div>
           <div class="stats">
-            <article class="stat-card"><strong>2000+</strong><span>Students mentioned in community review</span></article>
+            <article class="stat-card"><strong>2000+</strong><span>Students mentioned in community review</span>
+            </article>
             <article class="stat-card"><strong>4.8</strong><span>Local rating from 128 reviews</span></article>
             <article class="stat-card"><strong>9 pm</strong><span>Open daily until evening</span></article>
             <article class="stat-card"><strong>Rishra</strong><span>Bangur Park, 18th Lane location</span></article>
@@ -387,8 +842,10 @@
               <h2>An art school shaped by patience, practice, and care.</h2>
             </div>
           </div>
-          <p>Families and former students consistently describe the school as dedicated, encouraging, and deeply committed to helping children explore many forms of painting and drawing from an early age.</p>
-          <p>The atmosphere reflected in the reviews feels less like a rigid coaching center and more like a creative studio where teachers stay approachable, students return for years, and learning art remains joyful.</p>
+          <p>Families and former students consistently describe the school as dedicated, encouraging, and deeply
+            committed to helping children explore many forms of painting and drawing from an early age.</p>
+          <p>The atmosphere reflected in the reviews feels less like a rigid coaching center and more like a creative
+            studio where teachers stay approachable, students return for years, and learning art remains joyful.</p>
           <ul class="highlight-list">
             <li>Dedicated and highly qualified teachers with a reputation for supportive behaviour.</li>
             <li>Long-term student relationships, with multiple reviews mentioning years of continued learning.</li>
@@ -398,7 +855,9 @@
         <aside class="placeholder-card reveal" aria-label="Placeholder for artist portrait or gallery wall">
           <div class="placeholder-frame">
             <div>
-              <strong style="display:block; font-size: var(--text-lg); color: var(--color-primary); margin-bottom: .5rem;">Artist / Founder Portrait Placeholder</strong>
+              <strong
+                style="display:block; font-size: var(--text-lg); color: var(--color-primary); margin-bottom: .5rem;">Artist
+                / Founder Portrait Placeholder</strong>
               <span>Use this space for a founder portrait, faculty photograph, or signature painting series.</span>
             </div>
           </div>
@@ -413,23 +872,28 @@
             <div class="eyebrow">Learning experience</div>
             <h2>Built for beginners, nurtured like a studio.</h2>
           </div>
-          <p>The site design reflects an artist’s gallery mood: textured surfaces, warm paper tones, and room for work to breathe. The school’s offering is presented as a journey of growth rather than a generic tuition service.</p>
+          <p>The site design reflects an artist’s gallery mood: textured surfaces, warm paper tones, and room for work
+            to breathe. The school’s offering is presented as a journey of growth rather than a generic tuition service.
+          </p>
         </div>
         <div class="program-grid">
           <article class="info-card reveal">
             <span class="label">Creative foundations</span>
             <h3>Drawing and painting basics</h3>
-            <p>Introduce children to shape, line, colour, composition, and confidence through a welcoming classroom culture.</p>
+            <p>Introduce children to shape, line, colour, composition, and confidence through a welcoming classroom
+              culture.</p>
           </article>
           <article class="info-card reveal">
             <span class="label">Progressive learning</span>
             <h3>Multiple painting styles</h3>
-            <p>Reviews mention exposure to different kinds of painting, helping students build curiosity and range over time.</p>
+            <p>Reviews mention exposure to different kinds of painting, helping students build curiosity and range over
+              time.</p>
           </article>
           <article class="info-card reveal">
             <span class="label">Mentored practice</span>
             <h3>Friendly, hands-on teachers</h3>
-            <p>The strongest repeated theme across testimonials is teacher support, encouragement, and calm guidance.</p>
+            <p>The strongest repeated theme across testimonials is teacher support, encouragement, and calm guidance.
+            </p>
           </article>
         </div>
       </div>
@@ -442,23 +906,27 @@
             <div class="eyebrow">Community voices</div>
             <h2>What students and local guides remember most.</h2>
           </div>
-          <p>The reviews repeatedly highlight helpful teachers, friendly learning, creativity, and the feeling that students can build a bright future in art here.</p>
+          <p>The reviews repeatedly highlight helpful teachers, friendly learning, creativity, and the feeling that
+            students can build a bright future in art here.</p>
         </div>
         <div class="review-grid">
           <article class="review-card reveal">
             <div class="stars">★★★★★</div>
             <div class="review-meta"><strong>Soham Acharyya</strong><span>Local Guide</span></div>
-            <p>Called the school one of the dedicated art schools in West Bengal, praised highly qualified teachers, and noted that the institution has more than 2000 students.</p>
+            <p>Called the school one of the dedicated art schools in West Bengal, praised highly qualified teachers, and
+              noted that the institution has more than 2000 students.</p>
           </article>
           <article class="review-card reveal">
             <div class="stars">★★★★★</div>
             <div class="review-meta"><strong>Pratyusha Maji</strong><span>Long-term student</span></div>
-            <p>Shared that she has been learning painting there since age five and enjoys the variety of arts taught in class.</p>
+            <p>Shared that she has been learning painting there since age five and enjoys the variety of arts taught in
+              class.</p>
           </article>
           <article class="review-card reveal">
             <div class="stars">★★★★★</div>
             <div class="review-meta"><strong>Rupankar Ghosh</strong><span>Student review</span></div>
-            <p>Described it as the best painting institute, emphasising friendly teachers and the school’s role in shaping a bright future in painting.</p>
+            <p>Described it as the best painting institute, emphasising friendly teachers and the school’s role in
+              shaping a bright future in painting.</p>
           </article>
         </div>
       </div>
@@ -468,8 +936,12 @@
       <div class="container contact-grid">
         <div class="contact-card reveal">
           <div class="eyebrow">Visit and contact</div>
-          <h2 style="font-family: var(--font-display); font-size: var(--text-2xl); line-height: 1; margin-bottom: var(--space-4);">Come by the studio, call ahead, or plan a visit for your child.</h2>
-          <p style="color: var(--color-text-muted); max-width: 55ch;">For a local art school website, the most useful details should always be easy to find. This section keeps address, timing, and contact information practical and visible.</p>
+          <h2
+            style="font-family: var(--font-display); font-size: var(--text-2xl); line-height: 1; margin-bottom: var(--space-4);">
+            Come by the studio, call ahead, or plan a visit for your child.</h2>
+          <p style="color: var(--color-text-muted); max-width: 55ch;">For a local art school website, the most useful
+            details should always be easy to find. This section keeps address, timing, and contact information practical
+            and visible.</p>
           <ul class="contact-list">
             <li><small>Address</small><span>36, 18th Ln, Bangur Park, Rishra, West Bengal 712248</span></li>
             <li><small>Open hours</small><span>Open · Closes 9 pm</span></li>
@@ -478,13 +950,17 @@
           </ul>
           <div class="mini-actions">
             <a class="btn btn-primary" href="tel:+918274940238">Call the school</a>
-            <a class="btn btn-secondary" href="https://maps.google.com/?q=36%2C%2018th%20Ln%2C%20Bangur%20Park%2C%20Rishra%2C%20West%20Bengal%20712248" target="_blank" rel="noopener noreferrer">Get directions</a>
+            <a class="btn btn-secondary"
+              href="https://maps.google.com/?q=36%2C%2018th%20Ln%2C%20Bangur%20Park%2C%20Rishra%2C%20West%20Bengal%20712248"
+              target="_blank" rel="noopener noreferrer">Get directions</a>
           </div>
         </div>
         <aside class="placeholder-card reveal">
           <div class="placeholder-frame">
             <div>
-              <strong style="display:block; font-size: var(--text-lg); color: var(--color-secondary); margin-bottom: .5rem;">Map / Interior Placeholder</strong>
+              <strong
+                style="display:block; font-size: var(--text-lg); color: var(--color-secondary); margin-bottom: .5rem;">Map
+                / Interior Placeholder</strong>
               <span>Add a classroom view, sketch wall, or gallery exhibition placeholder here later.</span>
             </div>
           </div>
@@ -496,7 +972,7 @@
   <footer class="footer">
     <div class="container footer-row">
       <p>Meera Smriti Sishu Ankan Shiksha Kendra · Art school website concept with an artist’s gallery atmosphere.</p>
-      <p>Designed as a single-file experience with HTML, CSS, and JavaScript.</p>
+      <p>Designed by <a href="https://www.cseametry.co.in" style="text-decoration: none;">CSeametry</a>.</p>
     </div>
   </footer>
 
@@ -545,4 +1021,5 @@
     })();
   </script>
 </body>
+
 </html>
