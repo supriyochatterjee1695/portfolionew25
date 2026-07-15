@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TTF Homemade Desserts</title>
+  <!-- Font Awesome for the WhatsApp Icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+
+
+
+
+
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fffaf8;
+      color: #44231d;
+    }
+
+    /* ---------- COLORS ---------- */
+    :root {
+      --primary: #A51313;
+      --dark: #5B0F0F;
+      --cream: #FFF9F7;
+      --light: #F8ECE8;
+      --text: #43221D;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 8%;
+      background: rgba(255, 249, 247, 0.85);
+      /* Translucent cream tint */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo img {
+      height: 48px;
+      border-radius: 8px;
+      transition: height 0.3s ease;
+    }
+
+    .logo h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #555;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: white !important;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(165, 19, 19, 0.2);
+    }
+
+    .nav-cta:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(91, 15, 15, 0.3);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      padding: 80px 8%;
+      background: linear-gradient(135deg, #fffaf8, #fff0ec);
+      gap: 40px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--light);
+      color: var(--primary);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      border: 1px solid rgba(165, 19, 19, 0.1);
+      width: fit-content;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 58px;
+      line-height: 1.1;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    .hero span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #666;
+      margin-bottom: 35px;
+      max-width: 500px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 15px 34px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: .3s;
+      box-shadow: 0 4px 15px rgba(165, 19, 19, 0.2);
+    }
+
+    .btn:hover {
+      background: var(--dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(91, 15, 15, 0.3);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: var(--primary);
+      padding: 13px 32px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: .3s;
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--light);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(165, 19, 19, 0.1);
+    }
+
+    .hero-img-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-main-img {
+      width: 90%;
+      max-width: 400px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 30px;
+      box-shadow: 0 20px 40px rgba(91, 15, 15, 0.12);
+      border: 6px solid white;
+      transform: rotate(-2deg);
+      transition: all 0.5s ease;
+    }
+
+    .hero-main-img:hover {
+      transform: rotate(0deg) scale(1.03);
+      box-shadow: 0 30px 60px rgba(91, 15, 15, 0.22);
+    }
+
+    .hero-img-badge {
+      position: absolute;
+      bottom: 20px;
+      right: 5%;
+      background: white;
+      color: var(--text);
+      padding: 10px 18px;
+      border-radius: 15px;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-left: 4px solid var(--primary);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* ---------- SECTION ---------- */
+    section {
+      padding: 80px 8%;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .title h2 {
+      font-size: 42px;
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+    }
+
+    .title p {
+      margin-top: 12px;
+      color: #777;
+    }
+
+    /* ---------- CARDS ---------- */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(91, 15, 15, 0.05);
+      border: 1px solid rgba(91, 15, 15, 0.03);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(91, 15, 15, 0.12);
+    }
+
+    .card-img-container {
+      position: relative;
+      overflow: hidden;
+      height: 240px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .card:hover .card-img-container img {
+      transform: scale(1.08);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--primary);
+      color: white;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 10px rgba(165, 19, 19, 0.3);
+      z-index: 2;
+    }
+
+    .card-badge.eggless {
+      background: #2e7d32;
+      box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+    }
+
+    .card-content {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--dark);
+      margin: 0;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+      margin: 0 0 8px 0;
+    }
+
+    .card-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: #ffb300;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .card-rating span {
+      color: #777;
+      font-size: 12px;
+      margin-left: 4px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .price {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .card-btn {
+      padding: 12px 24px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(165, 19, 19, 0.15);
+      text-decoration: none;
+    }
+
+    .card-btn:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(91, 15, 15, 0.25);
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-img-wrapper {
+      position: relative;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(91, 15, 15, 0.1);
+    }
+
+    .about-img-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--primary);
+      border-radius: 24px;
+      z-index: -1;
+      opacity: 0.15;
+    }
+
+    .about h2 {
+      font-size: 44px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 24px;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .about p {
+      line-height: 1.8;
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    /* ---------- FEATURES ---------- */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .feature {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(91, 15, 15, 0.04);
+      border: 1px solid rgba(91, 15, 15, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(91, 15, 15, 0.08);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--light);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+      font-size: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .feature:hover .feature-icon {
+      background: var(--primary);
+      color: white;
+      transform: rotate(360deg);
+    }
+
+    .feature h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+
+    .feature p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: white;
+      text-align: center;
+      padding: 100px 8%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      margin: 40px 8%;
+      box-shadow: 0 15px 40px rgba(165, 19, 19, 0.2);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta h2 {
+      font-size: 48px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .cta p {
+      font-size: 18px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-btn {
+      background: white;
+      color: var(--primary);
+      padding: 16px 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      border-radius: 40px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      background: var(--light);
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+      }
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 60px 40px;
+      text-align: center;
+      background: #4d1010;
+      color: white;
+    }
+
+    footer h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      opacity: 0.8;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* Sticky positioning for the button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 40px;
+      right: 40px;
+      background-color: #25D366;
+      color: #FFF;
+      border-radius: 50%;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 30px;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #128c7e;
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 8px 25px rgba(18, 140, 126, 0.5);
+    }
+
+    /* ---------- MOBILE ---------- */
+    @media(max-width:900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      .hero-badge {
+        margin: 0 auto 20px auto;
+      }
+
+      .hero-img-wrapper {
+        margin-top: 30px;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-ctas {
+        justify-content: center;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 8%;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .cta {
+        margin: 40px 4%;
+        padding: 60px 6%;
+      }
+
+      .cta h2 {
+        font-size: 36px;
+      }
+    }
+  </style>
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+  <!-- -------- WhatsApp Floating Button -------- -->
+  <a href="https://wa.me/+918013324740" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+    title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ---------- Navigation Bar ---------- -->
+  <nav>
+    <div class="logo">
+      <img src="assets/Logo.jpeg" alt="TTF Homemade Desserts Logo">
+      <h2>TTF</h2>
+    </div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/+918013324740" target="_blank" class="nav-cta">
+      <i class="fab fa-whatsapp"></i> Order Now
+    </a>
+  </nav>
+
+  <!-- ---------- Hero Section ---------- -->
+  <section class="hero">
+    <div>
+      <div class="hero-badge">Made with Love 💖</div>
+      <h1>Homemade <span>Desserts</span><br>Made With Love</h1>
+      <p>
+        Indulge in handcrafted cakes, mousses, and premium desserts made fresh every day using the finest ingredients.
+      </p>
+      <div class="hero-ctas">
+        <a href="#menu" class="btn">Explore Menu</a>
+        <a href="https://wa.me/+918013324740" target="_blank" class="btn btn-secondary">
+          <i class="fab fa-whatsapp"></i> Order Direct
+        </a>
+      </div>
+    </div>
+    <div class="hero-img-wrapper">
+      <img src="assets/Moose.jpeg" class="hero-main-img" alt="Signature Chocolate Moose Cake">
+      <div class="hero-img-badge">Best Seller (JODI TUMI CHAO)</div>
+    </div>
+  </section>
+
+  <!-- ---------- Menu Section ---------- -->
+  <section id="menu">
+    <div class="title">
+      <h2>Our Signature Desserts</h2>
+      <p>Freshly prepared every day.</p>
+    </div>
+
+    <div class="cards">
+      <!-- Card 1: Chocolate Moose Cake -->
+      <div class="card">
+        <span class="card-badge">Bestseller</span>
+        <div class="card-img-container">
+          <img src="assets/Moose.jpeg" alt="Chocolate Moose Cake">
+        </div>
+        <div class="card-content">
+          <div class="card-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>5.0 (48 reviews)</span>
+          </div>
+          <h3>Chocolate Moose Cake</h3>
+          <p>Layers of creamy chocolate happiness.</p>
+          <div class="card-footer">
+            <div class="price">₹79</div>
+            <a href="https://wa.me/+918013324740" target="_blank" class="card-btn">
+              <i class="fab fa-whatsapp"></i> Order Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Pocket Moose -->
+      <div class="card">
+        <span class="card-badge eggless">Eggless</span>
+        <div class="card-img-container">
+          <img src="assets/Pocket moose.jpeg" alt="Pocket Moose">
+        </div>
+        <div class="card-content">
+          <div class="card-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <span>4.8 (32 reviews)</span>
+          </div>
+          <h3>Pocket Moose</h3>
+          <p>Perfect little indulgence for anytime.</p>
+          <div class="card-footer">
+            <div class="price">₹49</div>
+            <a href="https://wa.me/+918013324740" target="_blank" class="card-btn">
+              <i class="fab fa-whatsapp"></i> Order Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Truffle Cake -->
+      <div class="card">
+        <span class="card-badge">Popular</span>
+        <div class="card-img-container">
+          <img src="assets/Truffle.jpeg" alt="Truffle Cake">
+        </div>
+        <div class="card-content">
+          <div class="card-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>4.9 (56 reviews)</span>
+          </div>
+          <h3>Truffle Cake</h3>
+          <p>Rich chocolate with irresistible ganache.</p>
+          <div class="card-footer">
+            <div class="price">₹89</div>
+            <a href="https://wa.me/+918013324740" target="_blank" class="card-btn">
+              <i class="fab fa-whatsapp"></i> Order Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Bowl Cake -->
+      <div class="card">
+        <span class="card-badge">New</span>
+        <div class="card-img-container">
+          <img src="assets/Bowl Cake.jpeg" alt="Bowl Cake">
+        </div>
+        <div class="card-content">
+          <div class="card-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>4.9 (29 reviews)</span>
+          </div>
+          <h3>Bowl Cake</h3>
+          <p>Loaded with chocolate goodness.</p>
+          <div class="card-footer">
+            <div class="price">₹149</div>
+            <a href="https://wa.me/+918013324740" target="_blank" class="card-btn">
+              <i class="fab fa-whatsapp"></i> Order Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- About Section ---------- -->
+  <section id="about">
+    <div class="about">
+      <div class="about-img-wrapper">
+        <img src="assets/Logo.jpeg" alt="About TTF Homemade Desserts">
+      </div>
+      <div>
+        <h2>About TTF Homemade Desserts</h2>
+        <p>
+          At TTF Homemade Desserts, every treat is crafted with passion, premium ingredients, and homemade love. Our
+          goal is simple—to create memorable sweet experiences that bring joy to every celebration.
+        </p>
+        <p>
+          We take pride in preparing our items in small, dedicated batches so that they reach you with maximum freshness
+          and taste.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- Features Section ---------- -->
+  <section>
+    <div class="title">
+      <h2>Why Customers Love Us</h2>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <h3>Premium Ingredients</h3>
+        <p>Only the finest quality products, selected with care.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <h3>Fresh Everyday</h3>
+        <p>Prepared in small fresh batches daily.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h3>Homemade</h3>
+        <p>Made with love and meticulous care.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <i class="fas fa-tags"></i>
+        </div>
+        <h3>Affordable Luxury</h3>
+        <p>Premium taste without premium pricing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- Call To Action Section ---------- -->
+  <section class="cta">
+    <div class="cta-content">
+      <h2>Sweet Cravings?<br>We've Got You Covered!</h2>
+      <p>Order your favorite desserts today and have them prepared fresh just for you.</p>
+      <a href="https://wa.me/+918013324740" target="_blank" class="cta-btn">
+        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ---------- Footer ---------- -->
+  <footer id="contact">
+    <h3>TTF Homemade Desserts</h3>
+    <p>📍 Freshly Homemade • Premium Ingredients • Made With Love</p>
+    <p>💬 Contact us directly on WhatsApp to customize your orders.</p>
+    <br>
+    <p>2026 TTF Homemade Desserts. All Rights Reserved.</p>
+    <br>
+    <a href="https://cseametry.co.in" target="_blank" style="text-decoration: none; color: white;">
+      <p>Developed by CSeametry Engineering Consultancy Services</p>
+    </a>
+  </footer>
+
+</body>
+
+</html>
