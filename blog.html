@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | CSeametry — Insights on Data, AI & Business Growth</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Expert insights on Data Analytics, AI Automation, Business Intelligence, and Corporate Training. Actionable strategies from CSeametry to accelerate your business growth.">
+    <meta name="keywords"
+        content="Data Analytics Blog, AI Blog, Business Intelligence, Corporate Training, Data Science, Automation, CSeametry">
+    <meta name="author" content="CSeametry">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.cseametry.co.in/blog.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cseametry.co.in/blog.html">
+    <meta property="og:title" content="CSeametry Blog — Insights on Data, AI & Business Growth">
+    <meta property="og:description"
+        content="Expert insights on Data Analytics, AI Automation, and Corporate Training to accelerate your business.">
+    <meta property="og:image" content="https://www.cseametry.co.in/assets/logoo-removebg-preview%20(1).png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon_48.png" sizes="48x48">
+    <link rel="apple-touch-icon" href="assets/favicon_48.png">
+
+    <!-- Fonts: Same as index.html -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+           DESIGN SYSTEM — identical to index.html
+           ═══════════════════════════════════════════════════════════ */
+        :root {
+            --navy: #012169;
+            --navy-light: #0033a0;
+            --accent: #009ce0;
+            --accent-hover: #007bbd;
+            --light-blue: #e6f7ff;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --gray: #64748b;
+            --dark-gray: #1e293b;
+            --gold: #fbbf24;
+            --gradient-primary: linear-gradient(135deg, #012169 0%, #009ce0 100%);
+            --gradient-light: linear-gradient(135deg, #009ce0 0%, #ffffff 100%);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           HEADER — identical to index.html
+           ═══════════════════════════════════════════════════════════ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1.25rem 2rem;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(1, 33, 105, 0.05);
+        }
+
+        header.scrolled {
+            padding: 0.8rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px -10px rgba(1, 33, 105, 0.1);
+            border-bottom: 1px solid rgba(1, 33, 105, 0.1);
+        }
+
+        header.scrolled .logo {
+            font-size: 1.5rem;
+        }
+
+        header.scrolled .logo img {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: var(--navy);
+            font-size: 1.75rem;
+            font-weight: 800;
+            text-decoration: none;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            margin-top: 5px;
+            object-fit: contain;
+            display: block;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 4px 6px rgba(1, 33, 105, 0.1));
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            background: transparent;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            background: var(--light-blue);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            color: var(--white);
+            background: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            padding: 8px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hamburger:hover {
+            background: transparent;
+        }
+
+        .hamburger.active {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--navy);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+            display: block;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -7px);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           BLOG HERO SECTION
+           ═══════════════════════════════════════════════════════════ */
+        .blog-hero {
+            background: var(--white);
+            padding: 160px 2rem 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, var(--light-blue) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 156, 224, 0.05) 0%, transparent 40%);
+        }
+
+        .blog-hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(1, 33, 105, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(1, 33, 105, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.8;
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .blog-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light-blue);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 156, 224, 0.2);
+            color: var(--navy);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .blog-hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            color: var(--navy);
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .blog-hero h1 .highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .blog-hero-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        /* Newsletter CTA in Hero */
+        .newsletter-cta {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 480px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .newsletter-cta input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .newsletter-cta input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 156, 224, 0.1);
+        }
+
+        .newsletter-cta .btn {
+            white-space: nowrap;
+        }
+
+        /* Category Tabs */
+        .category-bar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            margin-top: 2.5rem;
+        }
+
+        .category-tab {
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            border: 1px solid #e2e8f0;
+            background: var(--white);
+            color: var(--gray);
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--light-blue);
+        }
+
+        .category-tab.active {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           FEATURED ARTICLE
+           ═══════════════════════════════════════════════════════════ */
+        .featured-section {
+            padding: 60px 2rem 0;
+            background: var(--white);
+        }
+
+        .featured-article {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            background: var(--light-gray);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .featured-article:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-4px);
+        }
+
+        .featured-img-wrap {
+            height: 100%;
+            min-height: 360px;
+            overflow: hidden;
+        }
+
+        .featured-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .featured-article:hover .featured-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .featured-content {
+            padding: 2.5rem 2.5rem 2.5rem 0;
+        }
+
+        .featured-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .featured-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .featured-content h2 {
+            font-size: 1.75rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .featured-content p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .read-more-link:hover {
+            color: var(--navy);
+            gap: 0.75rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           BLOG GRID
+           ═══════════════════════════════════════════════════════════ */
+        .blog-section {
+            padding: 80px 2rem 100px;
+            background: var(--white);
+        }
+
+        .blog-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .blog-section-header h2 {
+            font-size: 1.75rem;
+            color: var(--navy);
+        }
+
+        .sort-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .sort-control select {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sort-control select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* Blog Card */
+        .blog-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .card-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--navy);
+            color: var(--white);
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .card-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.15rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            line-height: 1.35;
+            font-weight: 700;
+        }
+
+        .card-hook {
+            font-size: 0.92rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .card-footer .arrow {
+            transition: transform 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .blog-card:hover .card-footer {
+            color: var(--navy);
+        }
+
+        .blog-card:hover .card-footer .arrow {
+            transform: translateX(4px);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           INLINE CTA BANNER (between cards)
+           ═══════════════════════════════════════════════════════════ */
+        .inline-cta {
+            grid-column: 1 / -1;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            color: var(--white);
+        }
+
+        .inline-cta-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .inline-cta-text p {
+            opacity: 0.85;
+            font-size: 1rem;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--navy);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ARTICLE MODAL
+           ═══════════════════════════════════════════════════════════ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(1, 33, 105, 0.6);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: var(--white);
+            width: 92%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 20px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(1, 33, 105, 0.25);
+            transform: translateY(30px) scale(0.97);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0) scale(1);
+        }
+
+        .close-btn {
+            position: sticky;
+            top: 1rem;
+            float: right;
+            margin: 1rem 1rem 0 0;
+            width: 40px;
+            height: 40px;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .close-btn:hover {
+            background: var(--accent);
+            color: var(--white);
+            transform: rotate(90deg);
+        }
+
+        .modal-hero-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+        }
+
+        .modal-category {
+            display: inline-flex;
+            background: var(--light-blue);
+            color: var(--accent);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body h2 {
+            font-size: 1.75rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .modal-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .modal-meta .author-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-meta .author-avatar-sm {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .modal-article-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--dark-gray);
+        }
+
+        .modal-article-text p {
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-article-text h3 {
+            font-size: 1.25rem;
+            color: var(--navy);
+            margin: 2rem 0 1rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--dark-gray);
+            color: #6ee7b7;
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .code-block-label {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Modal CTA */
+        .modal-cta {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .modal-cta h4 {
+            color: var(--navy);
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-cta p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           FOOTER — identical to index.html
+           ═══════════════════════════════════════════════════════════ */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 4rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════════════════════ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           RESPONSIVE DESIGN
+           ═══════════════════════════════════════════════════════════ */
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--navy);
+                width: 100%;
+                padding: 2rem;
+                gap: 1rem;
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 30px rgba(1, 33, 105, 0.2);
+            }
+
+            .nav-links a {
+                color: var(--white);
+                font-size: 1.1rem;
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+            }
+
+            .nav-links a:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--accent);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content {
+                padding: 2rem;
+            }
+
+            .featured-img-wrap {
+                min-height: 250px;
+            }
+
+            .inline-cta {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 1rem;
+            }
+
+            .blog-hero {
+                padding: 130px 1.5rem 60px;
+            }
+
+            .blog-hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .newsletter-cta {
+                flex-direction: column;
+            }
+
+            .newsletter-cta .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .category-bar {
+                padding: 0 1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-section {
+                padding: 50px 1.5rem 80px;
+            }
+
+            .featured-section {
+                padding: 40px 1.5rem 0;
+            }
+
+            .featured-content h2 {
+                font-size: 1.35rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .modal-hero-img {
+                height: 200px;
+            }
+
+            .modal-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* Scrollbar styling for modal */
+        .modal-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .modal-container::-webkit-scrollbar-thumb {
+            background: rgba(1, 33, 105, 0.15);
+            border-radius: 3px;
+        }
+
+        .modal-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(1, 33, 105, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ═══════════════════ HEADER (same as index.html) ═══════════════════ -->
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="assets/logoo-removebg-preview%20(1).png" alt="CSeametry Logo">
+                CSeametry
+            </a>
+            <ul class="nav-links">
+
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="main.html">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="blog.html">Insights</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ═══════════════════ BLOG HERO ═══════════════════ -->
+    <section class="blog-hero">
+        <div class="blog-hero-grid"></div>
+        <div class="blog-hero-content">
+            <div class="blog-hero-badge"> Our Insights and Learnings</div>
+            <h1 class="fade-in">Insights on <span class="highlight">Data, AI & Growth</span></h1>
+            <p class="blog-hero-description fade-in">
+                Actionable strategies, engineering deep-dives, and data-driven thinking to help your business scale
+                smarter.
+            </p>
+
+            <div class="category-bar" id="categoryBar">
+                <button class="category-tab active" data-category="all">All Posts</button>
+                <button class="category-tab" data-category="data-analytics">Data Analytics</button>
+                <button class="category-tab" data-category="ai-automation">AI & Automation</button>
+                <button class="category-tab" data-category="engineering">Engineering</button>
+                <button class="category-tab" data-category="business">Business Growth</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FEATURED ARTICLE ═══════════════════ -->
+    <section class="featured-section">
+        <div class="featured-article fade-in" id="featuredArticle" onclick="openModal(1)">
+            <div class="featured-img-wrap">
+                <img id="featuredImg" src="https://picsum.photos/800/500?random=10" alt="Featured article">
+            </div>
+            <div class="featured-content">
+                <div class="featured-label">⭐ Featured</div>
+                <div class="featured-meta">
+                    <span id="featuredDate">August 20, 2026</span>
+                    <span>·</span>
+                    <span>5 min read</span>
+                </div>
+                <h2 id="featuredTitle">Building Enterprise Data Pipelines That Actually Scale</h2>
+                <p id="featuredHook">A deep dive into architectural patterns that transform chaotic data flows into
+                    reliable, cost-efficient intelligence systems.</p>
+                <span class="read-more-link">Read Full Article <span class="arrow">→</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ BLOG GRID ═══════════════════ -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-section-header">
+                <h2 class="fade-in">Latest Articles</h2>
+                <div class="sort-control fade-in">
+                    <span>Sort:</span>
+                    <select id="sortFilter" onchange="sortArticles()">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+            <div class="blog-grid" id="blogGrid">
+                <!-- Cards rendered via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ ARTICLE MODAL ═══════════════════ -->
+    <div class="modal-overlay" id="articleModal">
+        <div class="modal-container">
+            <button class="close-btn" onclick="closeModal()" aria-label="Close article">✕</button>
+            <img id="modalImg" class="modal-hero-img" src="" alt="Article image">
+            <div class="modal-body">
+                <div class="modal-category" id="modalCategory">Data Analytics</div>
+                <h2 id="modalTitle">Article Title</h2>
+                <div class="modal-meta">
+                    <div class="author-tag">
+                        <div class="author-avatar-sm">SC</div>
+                        <span>Supriyo Chatterjee</span>
+                    </div>
+                    <span id="modalDate">Date</span>
+                    <span id="modalReadTime">5 min read</span>
+                </div>
+                <div class="modal-article-text" id="modalBody">
+                    <!-- Article content inserted here -->
+                </div>
+                <div class="code-block" id="codeBlockWrap" style="display:none;">
+                    <span class="code-block-label">Code</span>
+                    <pre><code id="modalCode"></code></pre>
+                </div>
+                <div class="modal-cta">
+                    <h4>Need help implementing this?</h4>
+                    <p>Our team builds production-ready data & AI solutions for businesses like yours.</p>
+                    <a href="index.html#contact" class="btn btn-primary">Book a Free Strategy Call →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ FOOTER (same as index.html) ═══════════════════ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CSeametry</h3>
+                <p>Data & AI solutions expert helping businesses transform their data into actionable insights and
+                    sustainable growth.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/csupriyocharteredengineer" class="social-link" target="_blank"
+                        rel="noopener" aria-label="LinkedIn">💼</a>
+                    <a href="mailto:supriyochatterjee@cseametry.co.in" class="social-link" aria-label="Email">📧</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="blog.html">Insights</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="services.html">Data Analysis & Consulting</a></li>
+                    <li><a href="services.html">Corporate Training</a></li>
+                    <li><a href="services.html">Dashboard Development</a></li>
+                    <li><a href="services.html">AI & Automation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CSeametry Engineering Consultancy Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════
+        // ARTICLE DATA
+        // ═══════════════════════════════════════════════════════════
+        const articles = [
+            {
+                id: 1,
+                title: "Building Enterprise Data Pipelines That Actually Scale",
+                date: "2026-08-20",
+                formattedDate: "August 20, 2026",
+                readTime: "5 min read",
+                category: "data-analytics",
+                categoryLabel: "Data Analytics",
+                image: "https://picsum.photos/800/500?random=10",
+                hook: "A deep dive into architectural patterns that transform chaotic data flows into reliable, cost-efficient intelligence systems.",
+                content: `
+                    <p>Every growing business hits the same wall: data is everywhere, but insights are nowhere. Spreadsheets multiply, dashboards lag, and by the time a report reaches leadership, the numbers are already stale.</p>
+                    <h3>The Three-Layer Architecture</h3>
+                    <p>The most resilient data pipelines follow a simple principle — separate ingestion, transformation, and serving into independent, observable layers. This lets you scale each piece without rebuilding everything.</p>
+                    <p>At CSeametry, we've implemented this pattern for manufacturing firms, e-commerce brands, and fintech startups — reducing data delivery latency by 60% on average while cutting infrastructure costs.</p>
+                    <h3>Key Takeaway</h3>
+                    <p>Start with the business question, not the technology. Map every pipeline stage to a decision it enables, and you'll never build infrastructure that nobody uses.</p>
+                `,
+                code: `// Modular pipeline stage\nasync function transformStage(rawData) {\n  const cleaned = await validate(rawData);\n  const enriched = await enrich(cleaned);\n  return await aggregate(enriched);\n}`
+            },
+            {
+                id: 2,
+                title: "How AI Automation Saved 20+ Hours Weekly for a Retail Chain",
+                date: "2026-07-12",
+                formattedDate: "July 12, 2026",
+                readTime: "4 min read",
+                category: "ai-automation",
+                categoryLabel: "AI & Automation",
+                image: "https://picsum.photos/800/500?random=11",
+                hook: "A real case study showing how intelligent workflow automation transformed manual processes into scalable systems.",
+                content: `
+                    <p>When a mid-sized retail chain approached us, their operations team was drowning in repetitive tasks — inventory reconciliation, sales reporting, and vendor communications consumed over 30 hours of manual work each week.</p>
+                    <h3>The Automation Stack</h3>
+                    <p>We designed a three-tier automation system: an AI classifier for incoming requests, automated workflow triggers for standard operations, and a smart escalation path for exceptions that truly needed human judgement.</p>
+                    <p>Within the first month, the team reclaimed 22 hours per week. By the third month, the system had processed over 4,000 tasks autonomously with a 98.5% accuracy rate.</p>
+                `,
+                code: `async function classifyAndRoute(request) {\n  const category = await aiClassifier.predict(request);\n  if (category.confidence > 0.92) {\n    return automatedHandler(category.type, request);\n  }\n  return escalateToHuman(request);\n}`
+            },
+            {
+                id: 3,
+                title: "Dashboard Design Principles for Executive Decision-Making",
+                date: "2026-06-04",
+                formattedDate: "June 4, 2026",
+                readTime: "6 min read",
+                category: "data-analytics",
+                categoryLabel: "Data Analytics",
+                image: "https://picsum.photos/800/500?random=12",
+                hook: "Why most dashboards fail — and the design framework that turns raw metrics into clear, actionable executive intelligence.",
+                content: `
+                    <p>Most dashboards are built for data teams, not decision-makers. They pack in every metric available, creating beautiful walls of noise that executives learn to ignore.</p>
+                    <h3>The Decision-First Framework</h3>
+                    <p>Every widget on a dashboard should answer exactly one question that leads to a specific action. If a chart doesn't change what someone does next, it doesn't belong.</p>
+                    <p>We use a four-step process: Identify the top 5 decisions, map the metrics that inform each, design the visual hierarchy, and then — critically — test with actual decision-makers before going live.</p>
+                `,
+                code: `const dashboardConfig = {\n  refreshInterval: 300, // seconds\n  alertThresholds: {\n    revenue: { warning: -5, critical: -15 },\n    conversion: { warning: -3, critical: -8 }\n  }\n};`
+            },
+            {
+                id: 4,
+                title: "From Spreadsheets to Systems: A Small Business Transformation",
+                date: "2026-05-18",
+                formattedDate: "May 18, 2026",
+                readTime: "4 min read",
+                category: "business",
+                categoryLabel: "Business Growth",
+                image: "https://picsum.photos/800/500?random=13",
+                hook: "How a manufacturing startup replaced 15 Excel files with one integrated system — and discovered ₹2L in hidden savings.",
+                content: `
+                    <p>The founder's desk was a graveyard of spreadsheets — production tracking, vendor payments, quality logs, customer complaints. Each lived in its own Excel file, maintained by a different team member.</p>
+                    <h3>The Integration Journey</h3>
+                    <p>We consolidated everything into a single, cloud-based data platform with automated ingestion from each department. The transformation wasn't just technical — it changed how the company thinks about data.</p>
+                    <p>Cross-referencing production data with quality complaints revealed a pattern nobody had seen: a specific raw material batch was responsible for 73% of returns. Switching suppliers saved over ₹2 lakhs in the first quarter alone.</p>
+                `,
+                code: null
+            },
+            {
+                id: 5,
+                title: "Upskilling Your Team: The ROI of Corporate Data Training",
+                date: "2026-04-22",
+                formattedDate: "April 22, 2026",
+                readTime: "5 min read",
+                category: "business",
+                categoryLabel: "Business Growth",
+                image: "https://picsum.photos/800/500?random=14",
+                hook: "Why investing in data literacy delivers 3-5x returns — and how to design a training program that actually sticks.",
+                content: `
+                    <p>Most corporate training programs fail because they focus on tools, not thinking. Teaching someone to use Excel pivot tables doesn't make them data-literate — teaching them to ask the right questions does.</p>
+                    <h3>Our Training Philosophy</h3>
+                    <p>We structure every program around real business scenarios from the client's own data. Participants don't learn abstract concepts — they solve actual problems they'll face on Monday morning.</p>
+                    <p>Companies that complete our 8-week program report an average 40% reduction in ad-hoc data requests to IT, and a 3x increase in self-service analytics adoption.</p>
+                `,
+                code: null
+            },
+            {
+                id: 6,
+                title: "Low-Code Automation: When to Build vs. When to Buy",
+                date: "2026-03-15",
+                formattedDate: "March 15, 2026",
+                readTime: "7 min read",
+                category: "engineering",
+                categoryLabel: "Engineering",
+                image: "https://picsum.photos/800/500?random=15",
+                hook: "A practical decision framework for choosing between custom development, low-code platforms, and off-the-shelf SaaS solutions.",
+                content: `
+                    <p>The build-vs-buy debate has a third option now: low-code platforms that sit in the sweet spot between full custom development and rigid SaaS products.</p>
+                    <h3>The Decision Matrix</h3>
+                    <p>We evaluate three dimensions: uniqueness of the workflow (how specific to your business), change frequency (how often processes evolve), and integration depth (how many systems it touches).</p>
+                    <p>High uniqueness + high change frequency = low-code wins. High integration depth + compliance requirements = custom build. Everything else? Start with SaaS and migrate when it breaks.</p>
+                `,
+                code: `const workflowTrigger = (payload) => {\n  return axios.post('/api/v1/trigger', {\n    ...payload,\n    source: 'low-code-engine',\n    timestamp: Date.now()\n  });\n};`
+            }
+        ];
+
+        // ═══════════════════════════════════════════════════════════
+        // STATE
+        // ═══════════════════════════════════════════════════════════
+        let activeCategory = 'all';
+
+        // ═══════════════════════════════════════════════════════════
+        // RENDER FEATURED
+        // ═══════════════════════════════════════════════════════════
+        function renderFeatured() {
+            const featured = articles[0];
+            document.getElementById('featuredImg').src = featured.image;
+            document.getElementById('featuredImg').alt = featured.title;
+            document.getElementById('featuredDate').textContent = featured.formattedDate;
+            document.getElementById('featuredTitle').textContent = featured.title;
+            document.getElementById('featuredHook').textContent = featured.hook;
+            document.getElementById('featuredArticle').onclick = () => openModal(featured.id);
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // RENDER GRID
+        // ═══════════════════════════════════════════════════════════
+        function renderGrid(data) {
+            const grid = document.getElementById('blogGrid');
+            grid.innerHTML = '';
+
+            // Filter out featured (first article) from grid
+            const gridArticles = data.filter(a => a.id !== articles[0].id);
+
+            gridArticles.forEach((item, index) => {
+                // Insert CTA banner after 3rd card
+                if (index === 3) {
+                    const cta = document.createElement('div');
+                    cta.className = 'inline-cta fade-in';
+                    cta.innerHTML = `
+                        <div class="inline-cta-text">
+                            <h3>Ready to transform your data into growth?</h3>
+                            <p>Get a free 30-minute strategy session with our data experts.</p>
+                        </div>
+                        <a href="index.html#contact" class="btn btn-white">Book Free Call →</a>
+                    `;
+                    grid.appendChild(cta);
+                }
+
+                const card = document.createElement('div');
+                card.className = 'blog-card fade-in';
+                card.onclick = () => openModal(item.id);
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <span class="card-category">${item.categoryLabel}</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-date">${item.formattedDate} · ${item.readTime}</div>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-hook">${item.hook}</p>
+                        <div class="card-footer">
+                            Read Article <span class="arrow">→</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Re-observe for fade-in
+            document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // SORT & FILTER
+        // ═══════════════════════════════════════════════════════════
+        function getFilteredSorted() {
+            let filtered = activeCategory === 'all'
+                ? [...articles]
+                : articles.filter(a => a.category === activeCategory);
+
+            const sortValue = document.getElementById('sortFilter').value;
+            filtered.sort((a, b) => {
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                return sortValue === 'newest' ? dateB - dateA : dateA - dateB;
+            });
+
+            return filtered;
+        }
+
+        function sortArticles() {
+            renderGrid(getFilteredSorted());
+        }
+
+        // Category Tab Handling
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                activeCategory = tab.dataset.category;
+                renderGrid(getFilteredSorted());
+            });
+        });
+
+        // ═══════════════════════════════════════════════════════════
+        // MODAL
+        // ═══════════════════════════════════════════════════════════
+        function openModal(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+
+            document.getElementById('modalTitle').textContent = article.title;
+            document.getElementById('modalDate').textContent = article.formattedDate;
+            document.getElementById('modalReadTime').textContent = article.readTime;
+            document.getElementById('modalImg').src = article.image;
+            document.getElementById('modalImg').alt = article.title;
+            document.getElementById('modalBody').innerHTML = article.content;
+            document.getElementById('modalCategory').textContent = article.categoryLabel;
+
+            const codeWrap = document.getElementById('codeBlockWrap');
+            if (article.code) {
+                document.getElementById('modalCode').textContent = article.code;
+                codeWrap.style.display = 'block';
+            } else {
+                codeWrap.style.display = 'none';
+            }
+
+            const modal = document.getElementById('articleModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Scroll modal to top
+            modal.querySelector('.modal-container').scrollTop = 0;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('articleModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on backdrop click
+        document.getElementById('articleModal').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ═══════════════════════════════════════════════════════════
+        // NEWSLETTER (simple UX feedback)
+        // ═══════════════════════════════════════════════════════════
+        function subscribeNewsletter() {
+            const input = document.getElementById('newsletterEmail');
+            const email = input.value.trim();
+            if (!email || !email.includes('@')) {
+                input.style.borderColor = '#ef4444';
+                input.setAttribute('placeholder', 'Please enter a valid email');
+                setTimeout(() => {
+                    input.style.borderColor = '#e2e8f0';
+                    input.setAttribute('placeholder', 'Your email for weekly insights…');
+                }, 2000);
+                return;
+            }
+            input.value = '';
+            input.setAttribute('placeholder', '✅ Subscribed! Check your inbox.');
+            input.style.borderColor = '#22c55e';
+            setTimeout(() => {
+                input.style.borderColor = '#e2e8f0';
+                input.setAttribute('placeholder', 'Your email for weekly insights…');
+            }, 3000);
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // HEADER SCROLL EFFECT
+        // ═══════════════════════════════════════════════════════════
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════════
+        // HAMBURGER MENU
+        // ═══════════════════════════════════════════════════════════
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ═══════════════════════════════════════════════════════════
+        // INTERSECTION OBSERVER (fade-in on scroll)
+        // ═══════════════════════════════════════════════════════════
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ═══════════════════════════════════════════════════════════
+        // INITIAL RENDER
+        // ═══════════════════════════════════════════════════════════
+        renderFeatured();
+        sortArticles();
+    </script>
+</body>
+
+</html>
