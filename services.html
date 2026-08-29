@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services & Pricing | CSeametry - Data Analytics & AI Solutions</title>
+    <title>Services | CSeametry - Data Analytics, AI & Web Solutions</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="Explore CSeametry's services and pricing. Data analysis, corporate training, dashboard development, and AI automation with transparent pricing.">
+        content="CSeametry offers Data Analytics & AI Consulting, Website Development, Business Automations, and Corporate Training. Enterprise-grade solutions by a Chartered Engineer and Principal Data Consultant.">
     <meta name="keywords"
-        content="data analysis pricing, corporate training cost, dashboard development, AI automation services, data consulting India">
+        content="data analytics consulting, AI consulting, website development, business automation, corporate training, data visualization, BI tools, India">
     <meta name="author" content="CSeametry">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.cseametry.co.in/services.html">
@@ -18,9 +18,9 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.cseametry.co.in/services.html">
-    <meta property="og:title" content="Services & Pricing | CSeametry">
+    <meta property="og:title" content="Services | CSeametry">
     <meta property="og:description"
-        content="Transparent pricing for data analysis, AI solutions, and corporate training services.">
+        content="Enterprise-grade Data Analytics, AI, Web Development & Training solutions built by an elite Chartered Engineer.">
     <meta property="og:image" content="https://www.cseametry.co.in/assets/logoo-removebg-preview%20(1).png">
     <meta property="og:site_name" content="CSeametry">
 
@@ -28,9 +28,14 @@
     <link rel="icon" type="image/png" href="assets/logoo-removebg-preview%20(1).png" sizes="64x64">
     <link rel="apple-touch-icon" href="assets/logoo-removebg-preview%20(1).png">
 
+    <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Material Symbols -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap">
 
     <style>
         :root {
@@ -47,6 +52,7 @@
             --gradient-primary: linear-gradient(135deg, #012169 0%, #009ce0 100%);
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 40px -12px rgb(0 0 0 / 0.12);
         }
 
         * {
@@ -75,7 +81,19 @@
             letter-spacing: -0.02em;
         }
 
-        /* Header Styles - Matching index.html */
+        /* Material icon helper */
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .mat-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* ============================
+           HEADER - Matching index.html
+           ============================ */
         header {
             position: fixed;
             top: 0;
@@ -155,10 +173,6 @@
             background: var(--light-blue);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
         .hamburger {
             display: none;
             flex-direction: column;
@@ -194,18 +208,17 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
 
-        /* Hero Section */
+        /* ============================
+           HERO - Compact so sidebar is visible on load
+           ============================ */
         .hero {
             background: var(--white);
-            min-height: auto;
-            min-height: calc(100vh - 70px);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 60px 1.5rem;
+            padding: 110px 1.5rem 36px;
             position: relative;
             overflow: hidden;
-            margin-top: 70px;
             text-align: center;
         }
 
@@ -216,20 +229,21 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 80% 20%, var(--light-blue) 0%, transparent 40%);
+            background: radial-gradient(ellipse at 70% 30%, rgba(0, 156, 224, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 70%, rgba(1, 33, 105, 0.04) 0%, transparent 60%);
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 720px;
             color: var(--dark-gray);
         }
 
         .hero h1 {
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             font-weight: 800;
         }
 
@@ -241,202 +255,403 @@
         }
 
         .hero p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
+            font-size: 1.05rem;
+            opacity: 0.85;
+            max-width: 560px;
             margin: 0 auto;
         }
 
-        /* Container */
-        .container {
-            max-width: 1200px;
+        /* ============================
+           SERVICES LAYOUT
+           ============================ */
+        .services-layout {
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            display: flex;
+            gap: 0;
+            padding: 0 2rem 4rem;
+            min-height: 70vh;
         }
 
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        /* ---- Sidebar ---- */
+        .services-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 90px;
+            align-self: flex-start;
+            padding: 1.25rem 0;
+            height: fit-content;
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--navy);
-            margin-bottom: 1rem;
+        .sidebar-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.65rem;
             font-weight: 700;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
             color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
+            padding: 0 1rem;
+            margin-bottom: 0.6rem;
         }
 
-        /* Service Detail */
-        .service-detail {
-            margin-bottom: 5rem;
-            padding: 3rem 0;
+        .sidebar-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sidebar-nav li a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 1rem;
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.88rem;
+            border-radius: 10px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav li a .sidebar-icon {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-gray);
+            border-radius: 9px;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+            color: var(--gray);
+            font-size: 20px;
+        }
+
+        .sidebar-nav li a:hover {
+            background: var(--light-blue);
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-nav li a:hover .sidebar-icon {
+            background: var(--accent);
+            color: var(--white);
+            transform: scale(1.04);
+        }
+
+        .sidebar-nav li a.active {
+            background: linear-gradient(135deg, rgba(0, 156, 224, 0.08) 0%, rgba(1, 33, 105, 0.05) 100%);
+            color: var(--navy);
+            font-weight: 600;
+            border-left-color: var(--navy);
+        }
+
+        .sidebar-nav li a.active .sidebar-icon {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(0, 156, 224, 0.3);
+        }
+
+        /* ---- Content Area ---- */
+        .services-content {
+            flex: 1;
+            min-width: 0;
+            border-left: 1px solid #e2e8f0;
+            padding-left: 3rem;
+        }
+
+        /* Service Panel */
+        .service-panel {
+            display: none;
+            animation: fadeInPanel 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeInPanel {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Panel Header */
+        .panel-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
             border-bottom: 1px solid #e2e8f0;
         }
 
-        .service-detail:last-child {
-            border-bottom: none;
-        }
-
-        .service-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .service-header h3 {
-            font-size: 2rem;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
+        .panel-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.72rem;
             font-weight: 700;
-        }
-
-        .service-header .subtitle {
-            font-size: 1.1rem;
-            color: var(--gray);
-        }
-
-        .service-info {
-            background: var(--light-gray);
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 3rem;
-        }
-
-        .service-info h4 {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             color: var(--accent);
+            background: rgba(0, 156, 224, 0.07);
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
             margin-bottom: 1rem;
-            font-size: 1.2rem;
-            font-weight: 700;
         }
 
-        .service-info ul {
-            list-style: none;
+        .panel-tag .material-symbols-rounded {
+            font-size: 16px;
+        }
+
+        .panel-header h2 {
+            font-size: 2.1rem;
+            color: var(--navy);
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .panel-header .panel-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.7;
+            max-width: 620px;
+        }
+
+        /* Benefits */
+        .benefits-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title .material-symbols-rounded {
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
         }
 
-        .service-info li {
-            padding-left: 1.5rem;
-            position: relative;
+        .benefit-card {
+            background: var(--light-gray);
+            border-radius: 14px;
+            padding: 1.35rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .benefit-card:hover {
+            border-color: rgba(0, 156, 224, 0.18);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(1, 33, 105, 0.07);
+        }
+
+        .benefit-card .benefit-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(0, 156, 224, 0.1) 0%, rgba(1, 33, 105, 0.08) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .benefit-card .benefit-icon .material-symbols-rounded {
+            font-size: 22px;
+        }
+
+        .benefit-card h4 {
+            font-size: 0.95rem;
+            color: var(--navy);
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            font-size: 0.88rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Deliverables */
+        .deliverables-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .deliverables-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .deliverables-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 0.55rem 0;
+            font-size: 0.9rem;
             color: var(--dark-gray);
         }
 
-        .service-info li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
+        .deliverables-list li .material-symbols-rounded {
             color: var(--accent);
-            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
-        /* Pricing Grid */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .pricing-card {
-            background: var(--white);
-            border: 2px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent);
-        }
-
-        .pricing-card.popular {
-            border-color: var(--accent);
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-primary);
+        /* Why Us */
+        .why-us-section {
+            margin-bottom: 2.5rem;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-radius: 18px;
+            padding: 2.25rem;
             color: var(--white);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .tier-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .pricing {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--navy);
-            margin-bottom: 0.25rem;
-        }
-
-        .price-alt {
-            font-size: 1rem;
-            color: var(--gray);
-        }
-
-        .features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .features li {
-            padding: 0.75rem 0;
-            padding-left: 1.75rem;
             position: relative;
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 0.95rem;
+            overflow: hidden;
         }
 
-        .features li:last-child {
-            border-bottom: none;
-        }
-
-        .features li::before {
-            content: "✓";
+        .why-us-section::before {
+            content: '';
             position: absolute;
-            left: 0;
-            color: var(--accent);
+            top: -60%;
+            right: -15%;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(0, 156, 224, 0.18) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .why-us-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .why-us-badge .material-symbols-rounded {
+            font-size: 16px;
+        }
+
+        .why-us-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.85rem;
             font-weight: 700;
+            position: relative;
+            color: var(--white);
+        }
+
+        .why-us-content {
+            position: relative;
+        }
+
+        .why-us-content p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            opacity: 0.92;
+            margin-bottom: 0.85rem;
+        }
+
+        .why-us-content p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .why-us-highlights {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        .highlight-item .material-symbols-rounded {
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        /* Panel CTA */
+        .panel-cta {
+            background: var(--light-gray);
+            border-radius: 18px;
+            padding: 2.25rem;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .panel-cta:hover {
+            border-color: var(--accent);
+        }
+
+        .panel-cta h3 {
+            font-size: 1.4rem;
+            color: var(--navy);
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+        }
+
+        .panel-cta p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+            max-width: 460px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
-            display: block;
-            width: 100%;
-            padding: 1rem;
+            display: inline-block;
+            padding: 0.9rem 2.25rem;
             background: var(--navy);
             color: var(--white);
             text-align: center;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
@@ -448,46 +663,72 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Value Section */
-        .value-section {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-            color: var(--white);
-            padding: 4rem 2rem;
-            text-align: center;
+        .cta-trust {
+            margin-top: 0.85rem;
+            font-size: 0.78rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
         }
 
-        .value-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .value-card {
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-        }
-
-        .value-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        .cta-trust .material-symbols-rounded {
+            font-size: 15px;
             color: var(--accent);
         }
 
-        .value-card p {
-            opacity: 0.9;
+        /* Mobile Sidebar Toggle */
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 900;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 0.85rem 1.4rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(1, 33, 105, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        /* Final CTA */
+        .sidebar-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(1, 33, 105, 0.4);
+        }
+
+        .sidebar-toggle .material-symbols-rounded {
+            font-size: 20px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 950;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+        }
+
+        /* ============================
+           FINAL CTA
+           ============================ */
         .final-cta {
             text-align: center;
             padding: 4rem 2rem;
@@ -495,25 +736,25 @@
         }
 
         .final-cta h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--navy);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .final-cta p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--gray);
-            margin-bottom: 2rem;
+            margin-bottom: 1.75rem;
         }
 
         .final-cta .cta-button {
-            display: inline-block;
-            width: auto;
-            padding: 1.2rem 3rem;
-            font-size: 1.1rem;
+            padding: 1.1rem 2.75rem;
+            font-size: 1.05rem;
         }
 
-        /* Footer - Matching index.html */
+        /* ============================
+           FOOTER - Matching index.html
+           ============================ */
         footer {
             background: var(--navy);
             color: var(--white);
@@ -583,6 +824,10 @@
             transform: translateY(-3px);
         }
 
+        .social-link .material-symbols-rounded {
+            font-size: 22px;
+        }
+
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
@@ -591,7 +836,9 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive */
+        /* ============================
+           RESPONSIVE
+           ============================ */
         @media (max-width: 968px) {
             .nav-links {
                 position: fixed;
@@ -628,26 +875,70 @@
             }
 
             .hero {
-                padding: 80px 1.5rem 40px;
+                padding: 110px 1.5rem 30px;
             }
 
             .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section-header h2 {
                 font-size: 1.75rem;
             }
 
-            .service-header h3 {
-                font-size: 1.5rem;
+            .services-layout {
+                flex-direction: column;
+                padding: 0 1rem 3rem;
             }
 
-            .pricing-grid {
+            .services-sidebar {
+                position: fixed;
+                top: 0;
+                left: -320px;
+                width: 300px;
+                height: 100vh;
+                background: var(--white);
+                z-index: 960;
+                padding: 5rem 0.75rem 2rem;
+                transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.15);
+                overflow-y: auto;
+            }
+
+            .services-sidebar.mobile-open {
+                left: 0;
+            }
+
+            .sidebar-toggle {
+                display: flex;
+            }
+
+            .sidebar-overlay {
+                display: block;
+                pointer-events: none;
+            }
+
+            .sidebar-overlay.active {
+                pointer-events: auto;
+            }
+
+            .services-content {
+                border-left: none;
+                padding-left: 0;
+            }
+
+            .benefits-grid {
                 grid-template-columns: 1fr;
             }
 
-            .value-section h2,
+            .deliverables-list {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .why-us-highlights {
+                flex-direction: column;
+            }
+
             .final-cta h2 {
                 font-size: 1.75rem;
             }
@@ -665,11 +956,19 @@
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
-            .price {
-                font-size: 2rem;
+            .panel-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .why-us-section {
+                padding: 1.5rem;
+            }
+
+            .panel-cta {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -698,410 +997,478 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (compact so sidebar is visible immediately) -->
     <section class="hero">
         <div class="hero-content">
-            <h1><span class="highlight">Data and Automation Systems</span> for Growth</h1>
-            <p>Comprehensive services and transparent pricing to help you make data-driven decisions, upskill your team,
-                and automate operations</p>
+            <h1><span class="highlight">Enterprise-Grade Compliant Systems</span> That Deliver Results </h1>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Service 1: Data Analysis & Consulting -->
-        <div class="service-detail" id="data-analysis-consulting">
-            <div class="service-header">
-                <h3>Data Analysis & Consulting</h3>
-                <p class="subtitle">Transform raw data into strategic insights that drive business growth</p>
-            </div>
+    <!-- Services Layout: Sidebar + Content -->
+    <div class="services-layout">
 
-            <div class="service-info">
-                <h4>Why Your Business Needs This</h4>
-                <p style="margin-bottom: 1rem;">Make informed decisions backed by data, not guesswork. Stop leaving
-                    money on the table.</p>
-                <h4>Problems We Solve</h4>
-                <ul>
-                    <li>Drowning in data but lacking actionable insights</li>
-                    <li>Unable to identify cost-saving opportunities</li>
-                    <li>Making decisions based on intuition rather than facts</li>
-                    <li>Struggling to understand customer behavior patterns</li>
-                </ul>
-            </div>
+        <!-- Sidebar -->
+        <aside class="services-sidebar" id="servicesSidebar">
+            <div class="sidebar-label">Our Services</div>
+            <ul class="sidebar-nav" id="sidebarNav">
+                <li>
+                    <a href="#" data-service="data-analytics" class="active" id="sidebar-data-analytics">
+                        <span class="sidebar-icon"><span
+                                class="material-symbols-rounded mat-filled">analytics</span></span>
+                        Data Analytics &amp; AI Consulting
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-service="website-dev" id="sidebar-website-dev">
+                        <span class="sidebar-icon"><span
+                                class="material-symbols-rounded mat-filled">language</span></span>
+                        Website Development
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-service="business-auto" id="sidebar-business-auto">
+                        <span class="sidebar-icon"><span
+                                class="material-symbols-rounded mat-filled">precision_manufacturing</span></span>
+                        Business Automations
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-service="corporate-training" id="sidebar-corporate-training">
+                        <span class="sidebar-icon"><span
+                                class="material-symbols-rounded mat-filled">school</span></span>
+                        Corporate Training
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="tier-name">Basic</div>
-                    <div class="pricing">
-                        <div class="price">₹15,000</div>
-                        <div class="price-alt">$180</div>
-                    </div>
-                    <ul class="features">
-                        <li>Single dataset analysis</li>
-                        <li>Basic visualizations</li>
-                        <li>Executive summary report</li>
-                        <li>Email support</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
+        <!-- Content Area -->
+        <div class="services-content">
+
+            <!-- ==========================================
+                 PANEL 1: Data Analytics & AI Consulting
+                 ========================================== -->
+            <div class="service-panel active" id="panel-data-analytics">
+
+                <div class="panel-header">
+                    <div class="panel-tag"><span class="material-symbols-rounded">analytics</span> Consulting</div>
+                    <h2>Data Analytics &amp; AI Consulting</h2>
+                    <p class="panel-subtitle">Stop guessing. Start knowing. We turn your scattered data into a strategic
+                        weapon — so every decision you make is backed by evidence, not instinct.</p>
                 </div>
 
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="tier-name">Standard</div>
-                    <div class="pricing">
-                        <div class="price">₹35,000</div>
-                        <div class="price-alt">$420</div>
+                <div class="benefits-section">
+                    <h3 class="section-title"><span class="material-symbols-rounded">ads_click</span> How You Benefit
+                    </h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">payments</span>
+                            </div>
+                            <h4>Discover Hidden Revenue Streams</h4>
+                            <p>We've helped businesses uncover 15-30% revenue leaks they didn't even know existed —
+                                buried in their own data. Imagine what that number is for you.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">bolt</span>
+                            </div>
+                            <h4>Decisions in Minutes, Not Weeks</h4>
+                            <p>No more waiting for end-of-month reports. Get real-time dashboards and AI-powered alerts
+                                that tell you what's happening — and what to do about it — right now.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span
+                                    class="material-symbols-rounded mat-filled">group_search</span></div>
+                            <h4>Know Your Customers Deeply</h4>
+                            <p>Understand buying patterns, predict churn before it happens, and personalise experiences.
+                                Your competitors already have this edge — it's time you do too.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span
+                                    class="material-symbols-rounded mat-filled">trending_up</span></div>
+                            <h4>Scale Without the Guesswork</h4>
+                            <p>Whether it's forecasting demand, optimising supply chains, or pricing strategy — we build
+                                models that let you grow confidently instead of crossing your fingers.</p>
+                        </div>
                     </div>
-                    <ul class="features">
-                        <li>Multiple dataset integration</li>
-                        <li>Advanced visualizations & dashboards</li>
-                        <li>Detailed insights report</li>
-                        <li>1 strategy session</li>
-                        <li>Priority email support</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
                 </div>
 
-                <div class="pricing-card">
-                    <div class="tier-name">Premium</div>
-                    <div class="pricing">
-                        <div class="price">₹75,000</div>
-                        <div class="price-alt">$900</div>
-                    </div>
-                    <ul class="features">
-                        <li>Comprehensive data audit</li>
-                        <li>Custom analytics framework</li>
-                        <li>Interactive dashboards</li>
-                        <li>Monthly review sessions</li>
-                        <li>Phone & email support</li>
-                        <li>3-month follow-up</li>
+                <div class="deliverables-section">
+                    <h3 class="section-title"><span class="material-symbols-rounded">inventory</span> What We Deliver
+                    </h3>
+                    <ul class="deliverables-list">
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Comprehensive data
+                            audit &amp; strategy roadmap</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Interactive dashboards
+                            (Power BI, Tableau, Looker)</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Predictive &amp;
+                            prescriptive analytics models</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> AI/ML model
+                            development &amp; deployment</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Data pipeline
+                            architecture &amp; integration</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Executive insights
+                            reports &amp; strategy sessions</li>
                     </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
                 </div>
 
-                <div class="pricing-card">
-                    <div class="tier-name">Customized</div>
-                    <div class="pricing">
-                        <div class="price">Custom</div>
-                        <div class="price-alt">Let's Discuss</div>
+                <div class="why-us-section">
+                    <div class="why-us-badge"><span class="material-symbols-rounded">verified</span> Enterprise
+                        Credibility</div>
+                    <h3>Why CSeametry?</h3>
+                    <div class="why-us-content">
+                        <p>Your data deserves more than a freelancer with a Udemy certificate. CSeametry delivers
+                            <strong>compliant enterprise systems</strong> built by an <strong>elite Chartered Engineer
+                                (India)</strong> and <strong>Principal Data Consultant</strong> — the same calibre that
+                            Fortune 500 companies rely on, now accessible to growing businesses like yours.</p>
+                        <p>We don't just analyse data — we architect systems that pass regulatory scrutiny, scale with
+                            your growth, and become your most reliable competitive advantage.</p>
+                        <div class="why-us-highlights">
+                            <div class="highlight-item"><span
+                                    class="material-symbols-rounded mat-filled">military_tech</span> Chartered Engineer
+                                Credential</div>
+                            <div class="highlight-item"><span
+                                    class="material-symbols-rounded mat-filled">fact_check</span> Compliance-Ready
+                                Systems</div>
+                            <div class="highlight-item"><span class="material-symbols-rounded mat-filled">lock</span>
+                                Enterprise-Grade Security</div>
+                        </div>
                     </div>
-                    <ul class="features">
-                        <li>Enterprise-scale analytics</li>
-                        <li>Dedicated data scientist</li>
-                        <li>Custom ML models</li>
-                        <li>Unlimited revisions</li>
-                        <li>24/7 priority support</li>
-                        <li>Long-term partnership</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Contact Us</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Service 2: Corporate Training -->
-        <div class="service-detail" id="corporate-training">
-            <div class="service-header">
-                <h3>Corporate Training</h3>
-                <p class="subtitle">Empower your team with data literacy and modern analytics skills</p>
-            </div>
-
-            <div class="service-info">
-                <h4>Why Your Business Needs This</h4>
-                <p style="margin-bottom: 1rem;">Build internal capability and reduce dependency on external
-                    consultants forever.</p>
-                <h4>Problems We Solve</h4>
-                <ul>
-                    <li>Team lacks data analysis skills</li>
-                    <li>High cost of external consultants</li>
-                    <li>Slow decision-making due to skill gaps</li>
-                    <li>Low adoption of data tools</li>
-                </ul>
-            </div>
-
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="tier-name">Basic</div>
-                    <div class="pricing">
-                        <div class="price">₹20,000</div>
-                        <div class="price-alt">$240</div>
-                    </div>
-                    <ul class="features">
-                        <li>4-hour workshop</li>
-                        <li>Up to 10 participants</li>
-                        <li>Excel fundamentals</li>
-                        <li>Course materials</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
                 </div>
 
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="tier-name">Standard</div>
-                    <div class="pricing">
-                        <div class="price">₹50,000</div>
-                        <div class="price-alt">$600</div>
-                    </div>
-                    <ul class="features">
-                        <li>3-day intensive program</li>
-                        <li>Up to 20 participants</li>
-                        <li>Excel + Python basics</li>
-                        <li>Hands-on projects</li>
-                        <li>Certification</li>
-                        <li>30-day support</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="tier-name">Premium</div>
-                    <div class="pricing">
-                        <div class="price">₹1,20,000</div>
-                        <div class="price-alt">$1,440</div>
-                    </div>
-                    <ul class="features">
-                        <li>2-week comprehensive course</li>
-                        <li>Up to 30 participants</li>
-                        <li>Advanced analytics & ML</li>
-                        <li>Real business case studies</li>
-                        <li>Certification & assessment</li>
-                        <li>90-day support</li>
-                        <li>Follow-up sessions</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="tier-name">Customized</div>
-                    <div class="pricing">
-                        <div class="price">Custom</div>
-                        <div class="price-alt">Let's Discuss</div>
-                    </div>
-                    <ul class="features">
-                        <li>Fully customized curriculum</li>
-                        <li>Unlimited participants</li>
-                        <li>On-site or remote delivery</li>
-                        <li>Custom case studies</li>
-                        <li>Ongoing mentorship</li>
-                        <li>Annual training roadmap</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Contact Us</a>
+                <div class="panel-cta">
+                    <h3>Ready to Unlock Your Data's Potential?</h3>
+                    <p>Book a free 30-minute discovery call. We'll audit your data landscape and show you exactly where
+                        the opportunities are — no commitment required.</p>
+                    <a href="index.html#contact" class="cta-button" id="cta-data-analytics">Book Free Discovery Call</a>
+                    <div class="cta-trust"><span class="material-symbols-rounded mat-filled">lock</span> 100%
+                        confidential. No obligation. Real insights from day one.</div>
                 </div>
             </div>
-        </div>
 
-        <!-- Service 3: Dashboard Development -->
-        <div class="service-detail" id="dashboard-development">
-            <div class="service-header">
-                <h3>Dashboard Development</h3>
-                <p class="subtitle">Real-time visibility into your business metrics and KPIs</p>
-            </div>
+            <!-- ==========================================
+                 PANEL 2: Website Development
+                 ========================================== -->
+            <div class="service-panel" id="panel-website-dev">
 
-            <div class="service-info">
-                <h4>Why Your Business Needs This</h4>
-                <p style="margin-bottom: 1rem;">Monitor performance, spot trends, and make faster data-driven
-                    decisions at a glance.</p>
-                <h4>Problems We Solve</h4>
-                <ul>
-                    <li>No centralized view of business metrics</li>
-                    <li>Manual report generation wastes time</li>
-                    <li>Delayed insights lead to missed opportunities</li>
-                    <li>Disconnected data sources</li>
-                </ul>
-            </div>
-
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="tier-name">Basic</div>
-                    <div class="pricing">
-                        <div class="price">₹25,000</div>
-                        <div class="price-alt">$300</div>
-                    </div>
-                    <ul class="features">
-                        <li>Single-page dashboard</li>
-                        <li>5 key metrics</li>
-                        <li>Basic visualizations</li>
-                        <li>Monthly data refresh</li>
-                        <li>1 revision</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
+                <div class="panel-header">
+                    <div class="panel-tag"><span class="material-symbols-rounded">language</span> Development</div>
+                    <h2>Website Development</h2>
+                    <p class="panel-subtitle">Your website is your 24/7 salesperson. We build stunning, high-performance
+                        sites for businesses and portfolios that don't just look great — they convert visitors into
+                        customers.</p>
                 </div>
 
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="tier-name">Standard</div>
-                    <div class="pricing">
-                        <div class="price">₹60,000</div>
-                        <div class="price-alt">$720</div>
+                <div class="benefits-section">
+                    <h3 class="section-title"><span class="material-symbols-rounded">ads_click</span> How You Benefit
+                    </h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span
+                                    class="material-symbols-rounded mat-filled">rocket_launch</span></div>
+                            <h4>First Impressions That Convert</h4>
+                            <p>Visitors decide in 3 seconds whether they trust your business. A professionally designed
+                                site immediately signals credibility — and turns browsers into buyers.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">devices</span>
+                            </div>
+                            <h4>Flawless on Every Device</h4>
+                            <p>Over 70% of your visitors are on mobile. Our responsive designs look and perform
+                                beautifully on phones, tablets, and desktops — so you never lose a lead to a broken
+                                layout.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">search</span>
+                            </div>
+                            <h4>Built to Be Found (SEO-First)</h4>
+                            <p>We don't just make pretty sites. Every page is engineered for search engines — so your
+                                ideal customers find you organically, reducing your ad spend over time.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">bolt</span>
+                            </div>
+                            <h4>Lightning-Fast Load Times</h4>
+                            <p>Every second of delay costs you 7% in conversions. Our sites are optimised for speed —
+                                giving you an instant edge over slower competitors.</p>
+                        </div>
                     </div>
-                    <ul class="features">
-                        <li>Multi-page interactive dashboard</li>
-                        <li>15+ metrics & KPIs</li>
-                        <li>Advanced charts & filters</li>
-                        <li>Real-time or daily refresh</li>
-                        <li>3 revisions</li>
-                        <li>3-month support</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
                 </div>
 
-                <div class="pricing-card">
-                    <div class="tier-name">Premium</div>
-                    <div class="pricing">
-                        <div class="price">₹1,50,000</div>
-                        <div class="price-alt">$1,800</div>
-                    </div>
-                    <ul class="features">
-                        <li>Enterprise dashboard suite</li>
-                        <li>Unlimited metrics</li>
-                        <li>Custom visualizations</li>
-                        <li>Real-time updates</li>
-                        <li>Mobile responsive</li>
-                        <li>User management</li>
-                        <li>6-month support</li>
-                        <li>Training included</li>
+                <div class="deliverables-section">
+                    <h3 class="section-title"><span class="material-symbols-rounded">inventory</span> What We Deliver
+                    </h3>
+                    <ul class="deliverables-list">
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Custom-designed
+                            business websites &amp; portfolios</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Responsive,
+                            mobile-first design</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> SEO optimisation &amp;
+                            analytics integration</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Contact forms, booking
+                            systems &amp; lead capture</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Domain, hosting setup
+                            &amp; deployment</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Ongoing maintenance
+                            &amp; performance monitoring</li>
                     </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
                 </div>
 
-                <div class="pricing-card">
-                    <div class="tier-name">Customized</div>
-                    <div class="pricing">
-                        <div class="price">Custom</div>
-                        <div class="price-alt">Let's Discuss</div>
+                <div class="why-us-section">
+                    <div class="why-us-badge"><span class="material-symbols-rounded">verified</span> Enterprise
+                        Credibility</div>
+                    <h3>Why CSeametry?</h3>
+                    <div class="why-us-content">
+                        <p>Most web agencies deliver a template with your logo slapped on it. CSeametry builds
+                            <strong>compliant enterprise-grade systems</strong> designed by an <strong>elite Chartered
+                                Engineer</strong> and <strong>Principal Data Consultant</strong> — meaning your site
+                            isn't just beautiful, it's architecturally sound, secure, and built to grow with you.</p>
+                        <p>We understand data, user behaviour, and conversion psychology — so every pixel on your site
+                            works to achieve your business goals.</p>
+                        <div class="why-us-highlights">
+                            <div class="highlight-item"><span class="material-symbols-rounded mat-filled">palette</span>
+                                Custom Design, Not Templates</div>
+                            <div class="highlight-item"><span
+                                    class="material-symbols-rounded mat-filled">monitoring</span> Data-Driven UX
+                                Decisions</div>
+                            <div class="highlight-item"><span
+                                    class="material-symbols-rounded mat-filled">enhanced_encryption</span> Secure &amp;
+                                Scalable Architecture</div>
+                        </div>
                     </div>
-                    <ul class="features">
-                        <li>Fully bespoke solution</li>
-                        <li>Multiple data integrations</li>
-                        <li>AI-powered insights</li>
-                        <li>White-label option</li>
-                        <li>Dedicated developer</li>
-                        <li>Lifetime support</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Contact Us</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Service 4: AI & Automation -->
-        <div class="service-detail" id="business-automation">
-            <div class="service-header">
-                <h3>AI & Automation</h3>
-                <p class="subtitle">Automate repetitive tasks and scale operations intelligently</p>
-            </div>
-
-            <div class="service-info">
-                <h4>Why Your Business Needs This</h4>
-                <p style="margin-bottom: 1rem;">Free your team to focus on high-value work while AI handles the
-                    routine tasks 24/7.</p>
-                <h4>Problems We Solve</h4>
-                <ul>
-                    <li>Team drowning in repetitive manual tasks</li>
-                    <li>Unable to scale without hiring more staff</li>
-                    <li>High error rates in manual processes</li>
-                    <li>Slow response times to customers</li>
-                </ul>
-            </div>
-
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="tier-name">Basic</div>
-                    <div class="pricing">
-                        <div class="price">₹30,000</div>
-                        <div class="price-alt">$360</div>
-                    </div>
-                    <ul class="features">
-                        <li>1 workflow automation</li>
-                        <li>Basic process mapping</li>
-                        <li>Email/Slack integration</li>
-                        <li>Documentation</li>
-                        <li>1-month support</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
                 </div>
 
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="tier-name">Standard</div>
-                    <div class="pricing">
-                        <div class="price">₹75,000</div>
-                        <div class="price-alt">$900</div>
-                    </div>
-                    <ul class="features">
-                        <li>3 workflow automations</li>
-                        <li>Advanced integrations</li>
-                        <li>Custom triggers & actions</li>
-                        <li>Analytics dashboard</li>
-                        <li>3-month support</li>
-                        <li>Training session</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="tier-name">Premium</div>
-                    <div class="pricing">
-                        <div class="price">₹2,00,000</div>
-                        <div class="price-alt">$2,400</div>
-                    </div>
-                    <ul class="features">
-                        <li>End-to-end automation suite</li>
-                        <li>AI chatbot integration</li>
-                        <li>Predictive analytics</li>
-                        <li>Custom ML models</li>
-                        <li>6-month support</li>
-                        <li>Quarterly optimization</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Get Started</a>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="tier-name">Customized</div>
-                    <div class="pricing">
-                        <div class="price">Custom</div>
-                        <div class="price-alt">Let's Discuss</div>
-                    </div>
-                    <ul class="features">
-                        <li>Enterprise automation platform</li>
-                        <li>Full system integration</li>
-                        <li>Custom AI models</li>
-                        <li>Dedicated AI engineer</li>
-                        <li>Continuous optimization</li>
-                        <li>Long-term partnership</li>
-                    </ul>
-                    <a href="index.html#contact" class="cta-button">Contact Us</a>
+                <div class="panel-cta">
+                    <h3>Let's Build Your Digital Presence</h3>
+                    <p>Get a free website audit and consultation. We'll show you exactly how to turn your online
+                        presence into your most powerful sales channel.</p>
+                    <a href="index.html#contact" class="cta-button" id="cta-website-dev">Get Free Website Audit</a>
+                    <div class="cta-trust"><span class="material-symbols-rounded mat-filled">lock</span> No templates.
+                        No compromises. Just results.</div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Value Section -->
-    <section class="value-section">
-        <h2>Why Choose CSeametry?</h2>
-        <div class="value-grid">
-            <div class="value-card">
-                <h3>Highest Level of Professional Expertise</h3>
-                <p>Chartered Engineer India with deep expertise in Data Science and Business Transformation</p>
+            <!-- ==========================================
+                 PANEL 3: Business Automations
+                 ========================================== -->
+            <div class="service-panel" id="panel-business-auto">
+
+                <div class="panel-header">
+                    <div class="panel-tag"><span class="material-symbols-rounded">precision_manufacturing</span>
+                        Automation</div>
+                    <h2>Business Automations</h2>
+                    <p class="panel-subtitle">Your team is drowning in repetitive tasks. We engineer intelligent
+                        automation systems that reclaim hundreds of hours — so your best people can focus on work that
+                        actually moves the needle.</p>
+                </div>
+
+                <div class="benefits-section">
+                    <h3 class="section-title"><span class="material-symbols-rounded">ads_click</span> How You Benefit
+                    </h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">schedule</span>
+                            </div>
+                            <h4>Reclaim 20+ Hours Every Week</h4>
+                            <p>Data entry, report generation, email follow-ups, invoice processing — we automate the
+                                tasks your team secretly hates, freeing them for high-value work.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">shield</span>
+                            </div>
+                            <h4>Eliminate Human Error</h4>
+                            <p>Manual processes fail. One wrong number in a spreadsheet can cascade into costly
+                                mistakes. Our automated systems are consistent, reliable, and audit-ready.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span
+                                    class="material-symbols-rounded mat-filled">stacked_line_chart</span></div>
+                            <h4>Scale Without Hiring</h4>
+                            <p>Growing your business shouldn't mean proportionally growing your payroll. Smart
+                                automation lets you handle 5x the volume with the same team size.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">smart_toy</span>
+                            </div>
+                            <h4>AI-Powered Intelligence</h4>
+                            <p>Go beyond simple automation. Our AI workflows learn from patterns, make smart decisions,
+                                and even predict issues before they happen — your operations, on autopilot.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deliverables-section">
+                    <h3 class="section-title"><span class="material-symbols-rounded">inventory</span> What We Deliver
+                    </h3>
+                    <ul class="deliverables-list">
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Process mapping &amp;
+                            automation strategy</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Custom workflow
+                            automation (Zapier, Power Automate, Python)</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> AI chatbots &amp;
+                            intelligent email responders</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Automated reporting
+                            &amp; alert systems</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> System integrations
+                            (CRM, ERP, Cloud)</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Documentation &amp;
+                            team training on new workflows</li>
+                    </ul>
+                </div>
+
+                <div class="why-us-section">
+                    <div class="why-us-badge"><span class="material-symbols-rounded">verified</span> Enterprise
+                        Credibility</div>
+                    <h3>Why CSeametry?</h3>
+                    <div class="why-us-content">
+                        <p>Anyone can connect two apps with Zapier. It takes an engineer to build <strong>compliant
+                                enterprise automation systems</strong> that don't break at scale. Our solutions are
+                            designed by an <strong>elite Chartered Engineer</strong> and <strong>Principal Data
+                                Consultant</strong> — ensuring your automations are robust, secure, and integrate
+                            seamlessly with your existing infrastructure.</p>
+                        <p>We think in systems, not shortcuts. Every automation we build is documented, maintainable,
+                            and designed to evolve as your business grows.</p>
+                        <div class="why-us-highlights">
+                            <div class="highlight-item"><span class="material-symbols-rounded mat-filled">hub</span>
+                                Seamless System Integration</div>
+                            <div class="highlight-item"><span class="material-symbols-rounded mat-filled">expand</span>
+                                Built to Scale</div>
+                            <div class="highlight-item"><span class="material-symbols-rounded mat-filled">science</span>
+                                Rigorously Tested</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-cta">
+                    <h3>Stop Doing Manually What Machines Do Better</h3>
+                    <p>Book a free automation audit. We'll map your workflows, identify the biggest time-wasters, and
+                        show you exactly how much you can save.</p>
+                    <a href="index.html#contact" class="cta-button" id="cta-business-auto">Get Free Automation Audit</a>
+                    <div class="cta-trust"><span class="material-symbols-rounded mat-filled">lock</span> Average ROI:
+                        300% within 6 months. Let's prove it for your business.</div>
+                </div>
             </div>
-            <div class="value-card">
-                <h3>ROI-Focused</h3>
-                <p>Every solution is designed to deliver measurable business value and cost savings</p>
+
+            <!-- ==========================================
+                 PANEL 4: Corporate Training
+                 ========================================== -->
+            <div class="service-panel" id="panel-corporate-training">
+
+                <div class="panel-header">
+                    <div class="panel-tag"><span class="material-symbols-rounded">school</span> Training</div>
+                    <h2>Corporate Training</h2>
+                    <p class="panel-subtitle">Data Analytics · BI Tools · Visualisation · AI Adoption · AI for Educators
+                        — we don't just teach tools, we transform how your teams think about and use data to drive
+                        decisions.</p>
+                </div>
+
+                <div class="benefits-section">
+                    <h3 class="section-title"><span class="material-symbols-rounded">ads_click</span> How You Benefit
+                    </h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span
+                                    class="material-symbols-rounded mat-filled">psychology</span></div>
+                            <h4>Build a Data-Literate Workforce</h4>
+                            <p>When your entire team speaks the language of data, decisions are faster, meetings are
+                                shorter, and results are measurable. Stop relying on one "data person" — empower
+                                everyone.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">savings</span>
+                            </div>
+                            <h4>Slash External Consulting Costs</h4>
+                            <p>Every analysis you outsource is money leaving your company. Train your people to do it
+                                in-house — the investment pays for itself within the first quarter.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span
+                                    class="material-symbols-rounded mat-filled">rocket_launch</span></div>
+                            <h4>Accelerate AI Adoption</h4>
+                            <p>AI isn't replacing your team — but teams who understand AI will outperform those who
+                                don't. Our training bridges the gap between fear and fluency.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><span class="material-symbols-rounded mat-filled">build</span>
+                            </div>
+                            <h4>Real Skills, Real Projects</h4>
+                            <p>No death-by-PowerPoint. Every session uses your actual data and real business scenarios —
+                                participants walk out with skills they can apply on Monday morning.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deliverables-section">
+                    <h3 class="section-title"><span class="material-symbols-rounded">inventory</span> Training Tracks We
+                        Offer</h3>
+                    <ul class="deliverables-list">
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Data Analytics
+                            Fundamentals &amp; Advanced</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> BI Tools (Power BI,
+                            Tableau, Looker Studio)</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Data Visualisation
+                            &amp; Storytelling</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> AI Adoption for
+                            Business Leaders</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> AI for Educators —
+                            Integrate AI into Teaching</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Python for Data
+                            Analysis &amp; Automation</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Hands-on workshops
+                            with real business data</li>
+                        <li><span class="material-symbols-rounded mat-filled">check_circle</span> Certification &amp;
+                            post-training mentorship</li>
+                    </ul>
+                </div>
+
+                <div class="why-us-section">
+                    <div class="why-us-badge"><span class="material-symbols-rounded">verified</span> Enterprise
+                        Credibility</div>
+                    <h3>Why CSeametry?</h3>
+                    <div class="why-us-content">
+                        <p>Your team deserves more than a trainer reading slides. CSeametry's training programs are
+                            designed and delivered by an <strong>elite Chartered Engineer</strong> and <strong>Principal
+                                Data Consultant</strong> who has built real <strong>compliant enterprise
+                                systems</strong> in the field — not someone who only teaches theory.</p>
+                        <p>Our programs are structured around your industry, your data, and your goals. Participants
+                            don't just learn — they build assets your company keeps forever.</p>
+                        <div class="why-us-highlights">
+                            <div class="highlight-item"><span class="material-symbols-rounded mat-filled">domain</span>
+                                Customised to Your Industry</div>
+                            <div class="highlight-item"><span
+                                    class="material-symbols-rounded mat-filled">construction</span> Hands-On, Not
+                                Theoretical</div>
+                            <div class="highlight-item"><span
+                                    class="material-symbols-rounded mat-filled">trending_up</span> Measurable Skill
+                                Uplift</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-cta">
+                    <h3>Invest in Your Team's Growth</h3>
+                    <p>Get a customised training proposal tailored to your team's current skill level and business
+                        objectives. The first consultation is on us.</p>
+                    <a href="index.html#contact" class="cta-button" id="cta-corporate-training">Request Training
+                        Proposal</a>
+                    <div class="cta-trust"><span class="material-symbols-rounded mat-filled">lock</span> Custom
+                        curriculum. Hands-on projects. Lasting impact.</div>
+                </div>
             </div>
-            <div class="value-card">
-                <h3>Transparent Pricing</h3>
-                <p>Clear, upfront pricing with no hidden costs or surprises</p>
-            </div>
-            <div class="value-card">
-                <h3>Long-term Partnership</h3>
-                <p>We invest in your success with ongoing support and continuous optimization</p>
-            </div>
-        </div>
-    </section>
+
+        </div><!-- /.services-content -->
+    </div><!-- /.services-layout -->
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open services menu">
+        <span class="material-symbols-rounded">menu</span> Services
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- Final CTA -->
     <section class="final-cta">
         <h2>Ready to Transform Your Business?</h2>
-        <p>Let's discuss which service package is right for you</p>
-        <a href="index.html#contact" class="cta-button">Schedule Free Consultation</a>
+        <p>Whether it's data, automation, development, or training — let's find the right solution for you</p>
+        <a href="index.html#contact" class="cta-button" id="cta-final">Schedule Free Consultation</a>
     </section>
 
     <!-- Footer -->
@@ -1113,8 +1480,12 @@
                     sustainable growth.</p>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/supriyo-chatterjee-datascienceprofessional/"
-                        class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">💼</a>
-                    <a href="mailto:supriyochatterjee@cseametry.co.in" class="social-link" aria-label="Email">📧</a>
+                        class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <span class="material-symbols-rounded">work</span>
+                    </a>
+                    <a href="mailto:supriyochatterjee@cseametry.co.in" class="social-link" aria-label="Email">
+                        <span class="material-symbols-rounded">mail</span>
+                    </a>
                 </div>
             </div>
             <div class="footer-section">
@@ -1129,10 +1500,12 @@
             <div class="footer-section">
                 <h3>Services</h3>
                 <ul class="footer-links">
-                    <li><a href="services.html#data-analysis-consulting">Data Analysis & Consulting</a></li>
-                    <li><a href="services.html#corporate-training">Corporate Training</a></li>
-                    <li><a href="services.html#dashboard-development">Dashboard Development</a></li>
-                    <li><a href="services.html#business-automation">AI & Automation</a></li>
+                    <li><a href="services.html" onclick="selectService('data-analytics')">Data Analytics & AI
+                            Consulting</a></li>
+                    <li><a href="services.html" onclick="selectService('website-dev')">Website Development</a></li>
+                    <li><a href="services.html" onclick="selectService('business-auto')">Business Automations</a></li>
+                    <li><a href="services.html" onclick="selectService('corporate-training')">Corporate Training</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1142,7 +1515,87 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // ========================================
+        // SIDEBAR SERVICE NAVIGATION
+        // ========================================
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        const servicePanels = document.querySelectorAll('.service-panel');
+        const sidebar = document.getElementById('servicesSidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function selectService(serviceId) {
+            // Update sidebar active state
+            sidebarLinks.forEach(link => link.classList.remove('active'));
+            const targetLink = document.querySelector(`[data-service="${serviceId}"]`);
+            if (targetLink) targetLink.classList.add('active');
+
+            // Show corresponding panel
+            servicePanels.forEach(panel => panel.classList.remove('active'));
+            const targetPanel = document.getElementById(`panel-${serviceId}`);
+            if (targetPanel) {
+                targetPanel.classList.remove('active');
+                void targetPanel.offsetWidth; // force reflow
+                targetPanel.classList.add('active');
+            }
+
+            closeMobileSidebar();
+
+            // Scroll to content on mobile
+            if (window.innerWidth <= 968) {
+                const contentArea = document.querySelector('.services-content');
+                if (contentArea) {
+                    contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const serviceId = link.getAttribute('data-service');
+                selectService(serviceId);
+            });
+        });
+
+        // Mobile sidebar
+        function openMobileSidebar() {
+            sidebar.classList.add('mobile-open');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileSidebar() {
+            sidebar.classList.remove('mobile-open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        sidebarToggle.addEventListener('click', openMobileSidebar);
+        sidebarOverlay.addEventListener('click', closeMobileSidebar);
+
+        // Hash-based deep linking
+        function checkHash() {
+            const hash = window.location.hash.replace('#', '');
+            const serviceMap = {
+                'data-analytics': 'data-analytics',
+                'data-analysis-consulting': 'data-analytics',
+                'website-dev': 'website-dev',
+                'website-development': 'website-dev',
+                'business-auto': 'business-auto',
+                'business-automation': 'business-auto',
+                'corporate-training': 'corporate-training'
+            };
+            if (hash && serviceMap[hash]) {
+                selectService(serviceMap[hash]);
+            }
+        }
+        checkHash();
+        window.addEventListener('hashchange', checkHash);
+
+        // ========================================
+        // MOBILE MENU TOGGLE
+        // ========================================
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
 
@@ -1151,7 +1604,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
